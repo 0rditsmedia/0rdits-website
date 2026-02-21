@@ -1176,6 +1176,27 @@
             transform: scale(1.1);
         }
 
+        /* YouTube Embed Styling */
+        .youtube-embed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--premium-ease);
+        }
+
+        .video-card:hover .youtube-embed {
+            transform: scale(1.1);
+        }
+
+        .landing-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .mute-button {
             position: absolute;
             bottom: 20px;
@@ -1888,9 +1909,7 @@
 
     <!-- Hero Section -->
     <section class="landing-section" id="home">
-        <video class="landing-video" autoplay muted loop playsinline>
-            <source src="video/video4.mp4" type="video/mp4">
-        </video>
+        <iframe class="landing-video" src="https://www.youtube.com/embed/NZEQTLaDKUA?autoplay=1&mute=1&loop=1&playlist=NZEQTLaDKUA&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <div class="landing-overlay"></div>
         <div class="landing-content">
             <h1 class="landing-text">0rdits</h1>
@@ -2093,50 +2112,40 @@
             <div class="cards-container">
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video1.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/QtBzPo-Ma9s?loop=1&playlist=QtBzPo-Ma9s&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video2.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/5r3CSVdd-D8?loop=1&playlist=5r3CSVdd-D8&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video3.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/G5n9VGB-2rI?loop=1&playlist=G5n9VGB-2rI&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video5.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/EiKjUytpan0?loop=1&playlist=EiKjUytpan0&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video6.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/RbqL66wc3_Q?loop=1&playlist=RbqL66wc3_Q&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
@@ -2144,40 +2153,32 @@
 
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video9.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/Wo43KlT9mu4?loop=1&playlist=Wo43KlT9mu4&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video10.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/gqhES4DNk7M?loop=1&playlist=gqhES4DNk7M&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video11.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/OhfFRP-Ngew?loop=1&playlist=OhfFRP-Ngew&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video muted loop playsinline>
-                            <source src="video/video12.mp4" type="video/mp4">
-                        </video>
-                        <button class="mute-button" aria-label="Toggle mute">
+                        <iframe class="youtube-embed" src="https://www.youtube.com/embed/nVC6L8n5b6A?loop=1&playlist=nVC6L8n5b6A&controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <button class="mute-button" aria-label="Toggle mute" style="display:none;">
                             <i class="fas fa-volume-mute"></i>
                         </button>
                     </div>
@@ -2518,53 +2519,56 @@
                     module.style.transitionDelay = `${index * 0.2}s`;
                 });
 
-                // --- Mute/Unmute Button Functionality ---
+                // --- Mute/Unmute Button Functionality (HTML5 videos only) ---
                 const muteButtons = document.querySelectorAll('.mute-button');
                 muteButtons.forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const video = button.closest('.video-wrapper').querySelector('video');
-                        const icon = button.querySelector('i');
-
-                        if (video.muted) {
-                            video.muted = false;
-                            icon.classList.remove('fa-volume-mute');
-                            icon.classList.add('fa-volume-up');
-                        } else {
-                            video.muted = true;
-                            icon.classList.remove('fa-volume-up');
-                            icon.classList.add('fa-volume-mute');
+                        if (video) {
+                            const icon = button.querySelector('i');
+                            if (video.muted) {
+                                video.muted = false;
+                                icon.classList.remove('fa-volume-mute');
+                                icon.classList.add('fa-volume-up');
+                            } else {
+                                video.muted = true;
+                                icon.classList.remove('fa-volume-up');
+                                icon.classList.add('fa-volume-mute');
+                            }
                         }
                     });
                 });
 
-                // --- Video Hover-to-Play Functionality ---
+                // --- Video Hover-to-Play Functionality (HTML5 videos only) ---
                 const archiveVideoCards = document.querySelectorAll('.video-gallery-section .video-card');
                 archiveVideoCards.forEach(card => {
                     const video = card.querySelector('video');
-                    let easeOutInterval;
+                    if (video) {
+                        let easeOutInterval;
 
-                    card.addEventListener('mouseenter', () => {
-                        clearInterval(easeOutInterval);
-                        video.playbackRate = 1.0;
-                        video.play().catch(error => {
-                            console.log("Video play failed:", error);
+                        card.addEventListener('mouseenter', () => {
+                            clearInterval(easeOutInterval);
+                            video.playbackRate = 1.0;
+                            video.play().catch(error => {
+                                console.log("Video play failed:", error);
+                            });
                         });
-                    });
 
-                    card.addEventListener('mouseleave', () => {
-                        let rate = 1.0;
-                        easeOutInterval = setInterval(() => {
-                            rate -= 0.05;
-                            if (rate <= 0.1) {
-                                clearInterval(easeOutInterval);
-                                video.pause();
-                                video.playbackRate = 1.0; // Reset for next play
-                            } else {
-                                video.playbackRate = rate;
-                            }
-                        }, 20); // ~400ms smooth deceleration
-                    });
+                        card.addEventListener('mouseleave', () => {
+                            let rate = 1.0;
+                            easeOutInterval = setInterval(() => {
+                                rate -= 0.05;
+                                if (rate <= 0.1) {
+                                    clearInterval(easeOutInterval);
+                                    video.pause();
+                                    video.playbackRate = 1.0; // Reset for next play
+                                } else {
+                                    video.playbackRate = rate;
+                                }
+                            }, 20); // ~400ms smooth deceleration
+                        });
+                    }
                 });
 
                 // --- Stills Archive Carousel Logic ---
