@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stills Archive | 0rdits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Media Protection CSS */
+        img,
+        video {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        :root {
+            --premium-ease: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            opacity: 0;
+            transform: scale(0.95);
+            animation: pageEntry 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        @keyframes pageEntry {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        .euro-style {
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            transform: scaleX(1.2);
+            display: inline-block;
+            transform-origin: center;
+        }
+
+        .header {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            opacity: 1;
+            transform: translateY(-50%) translateX(-5px);
+        }
+
+        .catalog-grid {
+            column-count: 4;
+            column-gap: 1rem;
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            background: #0a0a0a;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .grid-item:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0;
+            transition: opacity 1s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Cinematic Lightbox FLIP Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s var(--premium-ease), backdrop-filter 0.5s var(--premium-ease);
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .lightbox-content {
+            position: relative;
+            z-index: 2001;
+            will-change: transform;
+        }
+
+        .lightbox-img {
+            max-width: 95vw;
+            max-height: 95vh;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+            object-fit: contain;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2002;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s var(--premium-ease);
+        }
+
+        .lightbox.active .lightbox-close {
+            opacity: 0.6;
+            transform: translateY(0);
+        }
+
+        /* Background Blur for 'Back Animation' */
+        .catalog-grid,
+        .header,
+        .footer {
+            transition: filter 0.6s var(--premium-ease);
+        }
+
+        body.lightbox-open .catalog-grid,
+        body.lightbox-open .header,
+        body.lightbox-open .footer {
+            filter: blur(15px) brightness(0.5);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .catalog-grid {
+                column-count: 2;
+            }
+
+            .back-btn {
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+                margin-bottom: 2rem;
+                justify-content: center;
+            }
+
+            .header {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catalog-grid {
+                column-count: 1;
+            }
+        }
+
+        .footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <header class="header">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+            <h1 class="euro-style" style="font-size: 2.5rem;">Stills Catalog</h1>
+        </header>
+
+        <main class="catalog-grid" id="catalogGrid">
+            <!-- Images will be injected by JS -->
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 ORDITS. ALL RIGHTS RESERVED. ENGINEERED FOR AUTHORITY.</p>
+        </footer>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close"><i class="fas fa-times"></i></div>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-img">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', e => {
+            if ((e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'S' || e.key === 'U')) ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) ||
+                (e.key === 'F12')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        const photos = [
+            "photo1/AIS01709.jpg", "photo1/AIS01723.jpg", "photo1/AIS01734.jpg", "photo1/AIS01776.jpg", "photo1/AIS01802-2.jpg",
+            "photo1/AIS01826-2.jpg", "photo1/AIS01889-2.jpg", "photo1/AIS01892-2.jpg", "photo1/AIS01943-Enhanced-NR-3.jpg",
+            "photo1/DSC00024-Enhanced-NR.jpg", "photo1/DSC00052.jpg", "photo1/DSC00701-Enhanced-NR.jpg", "photo1/DSC00706.jpg",
+            "photo1/DSC00800-Enhanced-NR.jpg", "photo1/DSC00808.jpg",
+            "photo2/DSC00870.jpg", "photo2/DSC00903.jpg", "photo2/DSC02400.jpg", "photo2/DSC02410.jpg", "photo2/DSC02444.jpg",
+            "photo2/DSC02745-Enhanced-NR.jpg", "photo2/DSC02838.jpg", "photo2/DSC04991-Enhanced-NR-2.jpg", "photo2/DSC05107-Enhanced-NR-3.jpg",
+            "photo2/DSC05146-Enhanced-NR-2.jpg", "photo2/DSC05722-Enhanced-NR.jpg", "photo2/DSC05737-Enhanced-NR.jpg", "photo2/DSC05741-Enhanced-NR.jpg",
+            "photo2/DSC05749-Enhanced-NR.jpg", "photo2/DSC05806-Enhanced-NR.jpg",
+            "photo3/DSC05846.jpg", "photo3/DSC05850.jpg", "photo3/DSC05904-Enhanced-NR.jpg", "photo3/DSC05964-Enhanced-NR.jpg",
+            "photo3/DSC06017.jpg", "photo3/DSC06276-Enhanced-NR.jpg", "photo3/DSC06404.jpg", "photo3/DSC06483-Enhanced-NR.jpg",
+            "photo3/DSC06492-Enhanced-NR.jpg", "photo3/DSC06922-Enhanced-NR.jpg", "photo3/DSC06952.jpg", "photo3/DSC06997.jpg",
+            "photo3/DSC07003.jpg", "photo3/DSC07031.jpg", "photo3/DSC07034.jpg",
+            "photo4/DSC07069.jpg", "photo4/DSC07229.jpg", "photo4/DSC07291-Enhanced-NR.jpg", "photo4/DSC07300-Enhanced-NR.jpg",
+            "photo4/DSC09090.jpg", "photo4/DSC09096-Enhanced-NR.jpg", "photo4/DSC09117-Enhanced-NR.jpg", "photo4/DSC09139-Enhanced-NR.jpg",
+            "photo4/DSC09142-Enhanced-NR.jpg", "photo4/DSC09152-Enhanced-NR-2.jpg", "photo4/IMG_2455-Enhanced-NR.jpg",
+            "photo4/_AIS0424.jpg", "photo4/_AIS9022.jpg", "photo4/_AIS9090.jpg", "photo4/_AIS9097-Enhanced-NR.jpg",
+            "photo5/_AIS9141-Enhanced-NR.jpg", "photo5/_AIS9150.jpg", "photo5/_AIS9155.jpg", "photo5/_AIS9159-Enhanced-NR.jpg",
+            "photo5/_AIS9310-Enhanced-NR.jpg", "photo5/_AIS9338.jpg", "photo5/_AIS9786.jpg", "photo5/_AIS9808.jpg",
+            "photo5/_AIS9821.jpg", "photo5/_AIS9845.jpg", "photo5/_AIS9853.jpg", "photo5/f31030592.jpg", "photo5/f33173376.jpg",
+            "photo5/f34984576-Enhanced-NR.jpg", "photo5/f45225664-Enhanced-NR.jpg",
+            "photo6/f46533120-Enhanced-NR.jpg", "photo6/f46726912.jpg", "photo6/f47408064-Enhanced-NR.jpg", "photo6/f48088704-Enhanced-NR.jpg",
+            "photo6/f49206656-Enhanced-NR.jpg", "photo6/f49401344.jpg", "photo6/f49595648.jpg", "photo6/f52467456-Enhanced-NR.jpg",
+            "photo6/f52710464-Enhanced-NR.jpg", "photo6/f55780416-Enhanced-NR.jpg", "photo6/miniature edit 1.png"
+        ];
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        shuffle(photos);
+
+        const grid = document.getElementById('catalogGrid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('.lightbox-img');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+        photos.forEach(photo => {
+            const item = document.createElement('div');
+            item.className = 'grid-item';
+            const img = new Image();
+            img.src = photo;
+            img.loading = 'lazy';
+            img.alt = photo;
+            img.onload = () => { img.style.opacity = '1'; };
+
+            item.appendChild(img);
+            grid.appendChild(item);
+
+            // --- Cinematic FLIP Lightbox Expansion ---
+            item.addEventListener('click', (e) => {
+                const sourceRect = img.getBoundingClientRect();
+
+                // 1. First: Record starting position
+                lightboxImg.src = img.src;
+                lightboxImg.style.transition = 'none'; // Disable for instant setup
+
+                lightbox.classList.add('active');
+                document.body.classList.add('lightbox-open');
+
+                // 2. Last & Invert: Calculate deltas once layout is set
+                requestAnimationFrame(() => {
+                    const targetRect = lightboxImg.getBoundingClientRect();
+
+                    const scaleX = sourceRect.width / targetRect.width;
+                    const scaleY = sourceRect.height / targetRect.height;
+                    const translateX = (sourceRect.left + sourceRect.width / 2) - (targetRect.left + targetRect.width / 2);
+                    const translateY = (sourceRect.top + sourceRect.height / 2) - (targetRect.top + targetRect.height / 2);
+
+                    // Apply Inverted state instantly
+                    lightboxImg.style.transformOrigin = 'center center';
+                    lightboxImg.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scaleX}, ${scaleY})`;
+
+                    // 3. Play: Animate back to natural center (scale 1, trans 0)
+                    requestAnimationFrame(() => {
+                        lightboxImg.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                        lightboxImg.style.transform = 'translate3d(0, 0, 0) scale(1)';
+                    });
+                });
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.classList.remove('lightbox-open');
+            setTimeout(() => {
+                lightboxImg.src = '';
+                lightboxImg.style.transform = '';
+            }, 500);
+        };
+
+        lightbox.addEventListener('click', closeLightbox);
+        lightboxClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Navbar Hide on Scroll Logic
+        let lastScrollTop = 0;
+        const header = document.querySelector('.header');
+        const scrollThreshold = 50;
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('nav-hidden');
+            } else {
+                header.classList.remove('nav-hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+
+</html>
