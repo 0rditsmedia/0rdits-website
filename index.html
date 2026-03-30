@@ -1292,10 +1292,11 @@
                 padding: 0.5rem 0;
                 text-align: center;
                 transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                opacity: 0.35; /* Expert-level default dimming */
             }
 
             .menu-items:hover a {
-                opacity: 0.35; /* Expert-level dimming of other items */
+                opacity: 0.35; /* Dim all when parent is hovered */
             }
 
             .menu-items a:hover {
@@ -1306,8 +1307,10 @@
             }
 
             .menu-items a.active {
-                opacity: 1 !important;
+                opacity: 1 !important; /* Glowing active section tracker */
                 color: #fff !important;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
             }
 
             /* Footer Social Hover Balance */
@@ -1465,13 +1468,9 @@
             }
 
             .carousel-item {
-                width: auto; 
-                height: auto !important; /* Letting image define physical box size */
-                max-width: 85vw;
+                width: 100%; 
+                height: 38vh !important; /* Invisible logic box for perfect centering */
                 position: absolute;
-                left: 50%; /* Re-enabling the "Professional Offset" method */
-                top: 50%;
-                transform: translate(-50%, -50%);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -3011,12 +3010,17 @@
 
                 // --- Toggle Sidebar ---
                 hamburger.addEventListener('click', () => {
-                    const isActive = sidebar.classList.toggle('active');
-                    hamburger.classList.toggle('active');
-                    overlay.classList.toggle('active');
+                    const willBeActive = !sidebar.classList.contains('active');
                     
-                    // Expert Level Scroll Blocking
-                    document.body.style.overflow = isActive ? 'hidden' : '';
+                    if (willBeActive) {
+                        hamburger.classList.add('active'); // The X animation stays working!
+                        sidebar.classList.add('active');
+                        overlay.classList.add('active');
+                        document.documentElement.style.overflow = 'hidden';
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        closeSidebar();
+                    }
                 });
 
                 overlay.addEventListener('click', closeSidebar);
@@ -3025,7 +3029,7 @@
                         e.preventDefault();
                         const targetId = link.getAttribute('href');
 
-                        // Visual feedback
+                        // Visual feedback instantly jumps to clicked location
                         navLinks.forEach(l => l.classList.remove('active'));
                         link.classList.add('active');
 
@@ -3050,8 +3054,36 @@
                     hamburger.classList.remove('active');
                     sidebar.classList.remove('active');
                     overlay.classList.remove('active');
-                    document.body.style.overflow = ''; // Re-enable scroll
+                    document.documentElement.style.overflow = ''; // Unblock scroll
+                    document.body.style.overflow = '';
                 }
+
+                // --- Sidebar Glow Section Tracking ---
+                const navOptions = { 
+                    root: null, 
+                    rootMargin: '-20% 0px -60% 0px', // Trigger precisely when section enters middle of view
+                    threshold: 0 
+                };
+                const navObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            if (id) {
+                                navLinks.forEach(link => {
+                                    // Remove glow from all, add to currently tracking section
+                                    link.classList.remove('active');
+                                    if(link.getAttribute('href') === '#' + id) {
+                                        link.classList.add('active');
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }, navOptions);
+
+                sections.forEach(sec => {
+                    if (sec.id) navObserver.observe(sec);
+                });
 
                 // --- "Cinema" High-Consistency Navigation ---
                 let lastScroll = window.pageYOffset;
