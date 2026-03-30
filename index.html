@@ -53,7 +53,12 @@
             font-size: 3rem;
             margin-bottom: 20px;
             color: #fff;
-            letter-spacing: 10px;
+            letter-spacing: -1px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            transform: scaleX(1.15); /* Match hero branding */
         }
 
         .loader-bar {
@@ -1217,9 +1222,9 @@
                 top: -100vh;
                 border: none;
                 box-shadow: none;
-                background: rgba(0, 0, 0, 0.98); /* Deeper for luxury */
-                backdrop-filter: blur(25px);
-                -webkit-backdrop-filter: blur(25px);
+                background: rgba(10, 10, 10, 0.98); /* Deeper for luxury */
+                backdrop-filter: none !important; /* Fixed the weird blur bug when opening menu */
+                -webkit-backdrop-filter: none !important;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between; /* Space for items and social footer */
