@@ -1266,16 +1266,17 @@
                 font-style: italic;
                 text-transform: uppercase;
                 letter-spacing: -1px;
-                color: rgba(255, 255, 255, 0.4);
+                color: rgba(255, 255, 255, 0.5); /* Increased base visibility */
                 border: none;
-                padding: 0;
+                padding: 0.5rem 0;
                 text-align: center;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             }
 
             .menu-items a.active, .menu-items a:hover {
-                color: #fff;
-                padding: 0;
-                transform: scale(1.02); /* Subtle scale */
+                color: #fff !important;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
+                transform: scale(1.05); /* Slight pop */
             }
 
             .menu-items a.active::before {
@@ -1285,10 +1286,10 @@
             /* Mobile Social Footer */
             .mobile-socials {
                 display: flex;
-                gap: 2rem;
+                gap: 2.5rem;
                 margin-top: auto;
-                padding-bottom: 2rem;
-                opacity: 0.8;
+                padding-bottom: 100px; /* Elevated to clear search bars */
+                opacity: 1;
             }
             .mobile-socials a {
                 color: #fff;
@@ -1310,14 +1311,15 @@
             }
 
             .landing-text {
-                font-size: 2.2rem;
-                letter-spacing: -0.5px;
-                transform: scaleX(1.05);
-                white-space: nowrap;
+                font-size: 1.5rem; /* Reduced to prevent wrapping */
+                letter-spacing: -1px;
+                transform: scaleX(1.1);
+                white-space: normal; /* Allow natural wrap but keep it tight */
                 margin: 0;
-                padding: 0 15px;
-                display: inline-block;
-                width: auto;
+                padding: 0 10px;
+                display: block;
+                width: 100%;
+                text-align: center;
             }
 
             @keyframes heroTitleReveal {
@@ -1330,7 +1332,8 @@
             }
             
             .section-title h1 {
-                font-size: 1.8rem;
+                font-size: 1.4rem; /* Downscaled for minimalism */
+                letter-spacing: 5px;
             }
 
             /* --- 3. ABOUT SECTION --- */
@@ -1343,8 +1346,8 @@
                 text-align: left; /* Keep left alignment for editorial feel */
             }
             .about-title {
-                font-size: 2.2rem;
-                line-height: 1.1;
+                font-size: 1.8rem; /* Fit on fewer lines */
+                line-height: 1.2;
                 margin-left: 0;
             }
             .about-body {
@@ -1494,46 +1497,26 @@
                 padding-left: 1.5rem;
             }
 
-            /* --- 5. MOTION ARCHIVE STAGGERED MASONRY --- */
+            /* --- 5. MOTION ARCHIVE (2-COLUMN STAGGERED & MAXIMIZED) --- */
             .cards-container {
-                display: grid;
+                display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
-                padding: 0 10px !important; /* Slight edge padding */
+                gap: 6px !important; /* Minimal gap for maximum video size */
+                padding: 0 4px !important; /* Minimal side padding */
                 margin-bottom: 40px;
+                align-items: start;
             }
             .video-card {
+                width: 100% !important;
                 height: auto !important;
                 aspect-ratio: 9/16;
-                border-radius: 8px; /* Restored elegant radius */
+                border-radius: 6px;
                 border: none;
             }
             .video-card:nth-child(even) {
-                transform: translateY(40px) !important; /* Stagger effect */
+                transform: translateY(25px) !important; /* Subtle premium stagger */
             }
-            .stills-carousel-container {
-                padding: 0;
-            }
-            .stills-carousel {
-                display: flex !important;
-                overflow-x: auto !important;
-                scroll-snap-type: x mandatory;
-                gap: 10px;
-                padding: 20px 1.5rem;
-                -webkit-overflow-scrolling: touch;
-            }
-            .stills-carousel::-webkit-scrollbar { display: none; }
-            .carousel-item, .carousel-item.hidden {
-                flex: 0 0 90% !important;
-                scroll-snap-align: center;
-                height: 50vh !important;
-                display: block !important;
-                opacity: 1 !important;
-                visibility: visible !important;
-                pointer-events: auto !important;
-                transform: none !important;
-            }
-            .carousel-arrow { display: none; }
+            /* Removed duplicate carousel style to preserve Cinematic JS version */
 
             /* --- 6. CONTACT HUD REDESIGN SCROLL-REVEAL GLOW --- */
             .contact-section {
@@ -2873,7 +2856,25 @@
                 });
 
                 overlay.addEventListener('click', closeSidebar);
-                navLinks.forEach(link => link.addEventListener('click', closeSidebar));
+                navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        const targetId = link.getAttribute('href');
+                        if (targetId.startsWith('#')) {
+                            // Smooth scroll fallback for mobile
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                e.preventDefault();
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                        
+                        // --- Instant Visual Feedback ---
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                        
+                        closeSidebar();
+                    });
+                });
 
                 function closeSidebar() {
                     hamburger.classList.remove('active');
