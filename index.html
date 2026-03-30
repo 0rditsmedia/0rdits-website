@@ -1165,6 +1165,194 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* --- MOBILE PERFECTION (DESKTOP INTACT) --- */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 4rem 1.5rem;
+            }
+
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            /* Scaling down massive typography */
+            .landing-text {
+                font-size: 3.5rem;
+                letter-spacing: -1px;
+                transform: scaleX(1.1);
+            }
+
+            @keyframes heroTitleReveal {
+                to {
+                    opacity: 0.85;
+                    filter: blur(0);
+                    letter-spacing: -1px;
+                    transform: scaleX(1.1) scale(1);
+                }
+            }
+
+            .landing-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 6px;
+            }
+
+            .about-section, .contact-section, .services-section {
+                padding: var(--section-padding);
+            }
+
+            /* Grids to Single Column & Centering */
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .about-header-group {
+                align-items: center;
+                width: 100%;
+            }
+
+            .about-title {
+                font-size: 2.8rem;
+                transform-origin: center;
+                text-align: center;
+            }
+
+            .about-tagline {
+                transform-origin: center;
+            }
+
+            .about-body {
+                font-size: 1.05rem;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
+            .authority-statement {
+                border-left: none;
+                border-top: 2px solid #fff;
+                border-bottom: 2px solid #fff;
+                padding: 1.5rem 0;
+                margin: 3rem 0;
+                font-size: 1.2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                padding: 2rem 0;
+            }
+
+            .stat-item h3 {
+                font-size: 1.5rem;
+            }
+
+            .profile-card {
+                width: 85%;
+                margin: 0 auto;
+                aspect-ratio: 1/1.2;
+            }
+
+            /* Motion Archive - 2 Columns locked */
+            .cards-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+                padding: 10px !important;
+            }
+
+            .video-card {
+                height: auto !important;
+                aspect-ratio: 9/16;
+            }
+
+            /* Stills Carousel - Mobile Swipe Style */
+            .stills-carousel-container {
+                overflow: hidden;
+                padding: 0;
+            }
+
+            .stills-carousel {
+                display: flex !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+                padding: 20px;
+                -webkit-overflow-scrolling: touch;
+                height: auto !important;
+                perspective: none !important;
+            }
+
+            .stills-carousel::-webkit-scrollbar {
+                display: none;
+            }
+
+            .carousel-item {
+                flex: 0 0 85% !important;
+                position: relative !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                scroll-snap-align: center;
+                height: 400px !important;
+            }
+
+            .carousel-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .carousel-arrow {
+                display: none; /* Hide arrows on mobile for clean swipe feel */
+            }
+
+            /* Contact HUD - Ambient Glow for Mobile */
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-module {
+                padding: 2.5rem 2rem;
+            }
+
+            .module-title {
+                font-size: 2.5rem;
+            }
+
+            /* Mobile-specific interaction: Constant reveal instead of hover */
+            .contact-module::before {
+                background: var(--accent-color);
+                box-shadow: 0 0 15px var(--accent-color);
+                width: 4px;
+            }
+
+            .contact-module .module-icon {
+                opacity: 1;
+                color: var(--accent-color);
+            }
+
+            .contact-module .scan-line {
+                opacity: 0.4;
+            }
+
+            .contact-module .status-text {
+                opacity: 0.8;
+                color: #fff;
+            }
+
+            .contact-module .module-title {
+                opacity: 1;
+                text-shadow: 0 0 15px var(--accent-glow);
+            }
+        }
+
         /* VIDEO GALLERY SECTION */
         .video-gallery-section {
             padding: 8rem 2rem;
@@ -2731,6 +2919,32 @@
                     });
                 });
 
+                // --- MOBILE: Auto-play Videos on Scroll (Intersection Observer) ---
+                if (window.innerWidth <= 768) {
+                    const videoObserverOptions = {
+                        root: null,
+                        threshold: 0.7 // Play when 70% of video is visible
+                    };
+
+                    const videoObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            const playerContainer = entry.target.querySelector('.yt-player-container');
+                            const player = players[playerContainer.id];
+                            
+                            if (player && player.playVideo && player.pauseVideo) {
+                                if (entry.isIntersecting) {
+                                    player.playVideo();
+                                } else {
+                                    player.pauseVideo();
+                                }
+                            }
+                        });
+                    }, videoObserverOptions);
+
+                    archiveVideoCards.forEach(card => videoObserver.observe(card));
+                }
+
+
                 // --- Email Button Logic ---
                 const emailBtn = document.querySelector('.command-btn i.fa-envelope')?.parentElement;
                 if (emailBtn) {
@@ -2792,6 +3006,8 @@
                 const totalStills = stillsItems.length;
 
                 function updateStillsCarousel() {
+                    if (window.innerWidth <= 768) return; // Let CSS handle mobile swiping
+                    
                     stillsItems.forEach((item, index) => {
                         item.classList.remove('prev', 'active', 'next', 'hidden');
 
