@@ -109,6 +109,10 @@
             scroll-behavior: smooth;
         }
 
+        html {
+            overflow-x: hidden;
+        }
+
         /* Eurostile Bold Italic Simulation */
         .euro-style {
             font-family: 'Inter', sans-serif;
@@ -1231,7 +1235,7 @@
                 align-items: center;
                 transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
                 padding: 10vh 0 5vh;
-                z-index: 990;
+                z-index: 1010; /* Must be ABOVE overlay (1004) so taps reach links */
                 overflow-y: auto;
             }
 
@@ -1303,15 +1307,16 @@
             /* --- 2. HERO & TYPOGRAPHY --- */
             .landing-content {
                 width: 100%;
-                overflow: visible;
+                overflow: hidden;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
             }
 
+            /* Hero: "0rdits" — short word, fits on one line at 18vw easily */
             .landing-text {
-                font-size: 16vw; /* Premium, centered fluid proportion */
+                font-size: 18vw;
                 letter-spacing: -0.5vw;
                 transform: scaleX(1);
                 white-space: nowrap;
@@ -1328,21 +1333,25 @@
             }
 
             .landing-subtitle {
-                font-size: 3.5vw;
-                letter-spacing: 2vw;
-                margin-top: 15px;
+                font-size: 3vw;
+                letter-spacing: 1.5vw;
+                margin-top: 12px;
             }
 
-            /* --- UNIFIED TITLE SIZING (Guarantees fits on 1 line across ANY device width) --- */
+            /* --- SECTION TITLES: Natural word-wrap at a legible size ---
+               Remove wide desktop scaleX. Use a comfortable rem size.
+               Titles wrap at word boundaries — intentional, editorial. */
             .euro-style {
-                transform: scaleX(1) !important; /* Remove wide desktop stretch */
-                letter-spacing: 0 !important;
+                transform: scaleX(1) !important;
+                letter-spacing: -0.5px !important;
             }
-            
+
             .section-title h1 {
-                font-size: min(4.8vw, 22px); /* Mathematically perfectly fits 'Services & Strategic Solutions' */
-                letter-spacing: 0;
-                white-space: nowrap;
+                font-size: 1.6rem;
+                letter-spacing: -0.5px;
+                white-space: normal;
+                word-break: break-word;
+                line-height: 1.15;
             }
 
             /* --- 3. ABOUT SECTION --- */
@@ -1354,13 +1363,15 @@
                 gap: 4rem;
                 text-align: left; /* Keep left alignment for editorial feel */
             }
+            /* "Behind the wheel" — wraps as "Behind the / wheel" if needed, editorial feel */
             .about-title {
-                font-size: min(4.8vw, 22px); /* Unified with all section titles */
+                font-size: 1.6rem;
                 line-height: 1.2;
                 margin-left: 0;
-                white-space: nowrap;
+                white-space: normal;
+                word-break: break-word;
                 transform: scaleX(1) !important;
-                letter-spacing: 0 !important;
+                letter-spacing: -0.5px !important;
             }
             .about-body {
                 font-size: 0.9rem;
@@ -1482,10 +1493,12 @@
                 align-items: flex-start;
                 gap: 1rem;
             }
+            /* Service card headings: "Production Tasks", "Identity Maxing" etc. — all short, fit on one line */
             .category-header h2 {
-                font-size: min(4.8vw, 22px); /* Unified with all section titles */
+                font-size: 1.4rem;
                 line-height: 1.2;
-                white-space: nowrap;
+                white-space: normal;
+                word-break: break-word;
             }
             .service-list {
                 display: flex;
@@ -1547,12 +1560,13 @@
                 /* transform logic left alone so desktop `.reveal` animates it */
             }
             .contact-module::before { display: none !important; } /* Remove thick vertical bar */
+            /* Contact titles: "EMAIL" / "WHATSAPP" — very short, always single line */
             .module-title {
-                font-size: min(4.8vw, 22px); /* Unified with all section titles */
+                font-size: 1.6rem;
                 margin-bottom: 0.5rem;
                 color: #fff !important;
                 opacity: 0.9 !important;
-                white-space: nowrap;
+                white-space: normal;
             }
             .module-data {
                 font-size: 0.9rem;
@@ -2874,22 +2888,23 @@
                     link.addEventListener('click', (e) => {
                         e.preventDefault();
                         const targetId = link.getAttribute('href');
-                        
-                        // --- Instant Visual Feedback ---
+
+                        // Visual feedback
                         navLinks.forEach(l => l.classList.remove('active'));
                         link.classList.add('active');
-                        
-                        // Close sidebar FIRST
+
+                        // Close sidebar first
                         closeSidebar();
-                        
-                        // Then scroll after sidebar transition clears (fixes mobile blocking)
+
+                        // Scroll after sidebar transition (600ms matches CSS transition)
                         if (targetId && targetId.startsWith('#')) {
                             const targetElement = document.querySelector(targetId);
                             if (targetElement) {
                                 setTimeout(() => {
-                                    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 60;
-                                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                                }, 450); // Wait for sidebar exit transition
+                                    const top = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                                    const offset = 60; // navbar height
+                                    window.scrollTo({ top: Math.max(0, top - offset), behavior: 'smooth' });
+                                }, 600);
                             }
                         }
                     });
