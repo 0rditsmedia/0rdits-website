@@ -1408,19 +1408,25 @@
             /* Container is the reference for arrows — same as desktop */
             .stills-carousel-container {
                 position: relative;
-                height: 52vw;   /* scales with screen width, just like desktop uses a fixed-ish height */
-                min-height: 180px;
+                height: 65vw;   /* Increased slightly for better spacing */
+                min-height: 250px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 perspective: 1200px;
-                overflow: visible; /* let side peeks show */
+                overflow: visible; 
+            }
+            .stills-carousel {
+                height: 100% !important; /* Fixes "line in middle" by containing height */
+                width: 100%;
+                position: relative;
             }
 
             /* ITEMS: mirror the desktop layout, just with vw-based sizes */
             .carousel-item {
-                width: 72vw;
-                height: 48vw;
+                width: auto;
+                height: 42vw; 
+                max-width: 65vw; /* Smaller for better fit on phone */
                 position: absolute;
                 left: 50%;
                 top: 50%;
@@ -1435,9 +1441,9 @@
             }
 
             .carousel-item img {
-                width: 100%;
                 height: 100%;
-                object-fit: cover;
+                width: auto;
+                object-fit: contain; /* adapt to photos size */
                 border-radius: 4px;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.7);
                 display: block;
@@ -1446,23 +1452,23 @@
             /* ACTIVE: full-size, full opacity, centered */
             .carousel-item.active {
                 opacity: 1;
-                transform: translate(-50%, -50%) translateZ(0) scale(0.95);
+                transform: translate(-50%, -50%) translateZ(0) scale(1.0);
                 z-index: 5;
                 pointer-events: auto;
             }
 
             /* PREV: peek from left, faded — exactly like desktop */
             .carousel-item.prev {
-                opacity: 0.35;
-                transform: translate(-125%, -50%) translateZ(-100px) scale(0.75);
+                opacity: 0.25;
+                transform: translate(-140%, -50%) translateZ(-150px) scale(0.7);
                 z-index: 3;
                 pointer-events: auto; /* swipeable */
             }
 
             /* NEXT: peek from right, faded — exactly like desktop */
             .carousel-item.next {
-                opacity: 0.35;
-                transform: translate(25%, -50%) translateZ(-100px) scale(0.75);
+                opacity: 0.25;
+                transform: translate(40%, -50%) translateZ(-150px) scale(0.7);
                 z-index: 3;
                 pointer-events: auto;
             }
@@ -1486,8 +1492,8 @@
                 cursor: pointer;
             }
 
-            .arrow-left  { left: 0.5rem; }
-            .arrow-right { right: 0.5rem; }
+            .arrow-left  { left: 0.2rem; }
+            .arrow-right { right: 0.2rem; }
             .stat-item h3 {
                 font-size: 1.8rem;
             }
@@ -1567,10 +1573,10 @@
             /* --- 5. MOTION ARCHIVE — Fill screen, keep cinematic stagger --- */
             .cards-container {
                 display: grid !important;
-                grid-template-columns: 1fr !important; /* Single column for maximum video size */
-                gap: 20px !important;
+                grid-template-columns: repeat(2, 1fr) !important; /* 2 Column grid restored */
+                gap: 8px !important; /* Breathable gap */
                 padding: 0 0.75rem !important;
-                margin: 0 0 30px !important;
+                margin: 0 0 40px !important;
                 align-items: start;
             }
             .video-card {
@@ -2345,7 +2351,7 @@
         .stills-explorer-link {
             text-decoration: none;
             display: block;
-            margin: 4rem auto 0;
+            margin: 6rem auto 0; /* Pushed down more for mobile comfort */
             text-align: center;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
