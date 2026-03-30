@@ -436,6 +436,11 @@
             box-shadow: 0 5px 15px rgba(220, 39, 67, 0.5);
         }
 
+        /* Hide mobile socials on desktop by default */
+        .mobile-socials {
+            display: none;
+        }
+
         /* LANDING SECTION */
         .landing-section {
             position: relative;
@@ -1306,7 +1311,7 @@
 
             /* Mobile Social Footer */
             .mobile-socials {
-                display: flex;
+                display: flex !important;
                 gap: 2.5rem;
                 margin-top: auto;
                 padding-bottom: 100px; /* Elevated to clear search bars */
@@ -1361,9 +1366,9 @@
             }
 
             .landing-subtitle {
-                font-size: 1.1rem; /* Scaled up for better visibility */
+                font-size: 1.3rem; /* Further increased for legibility as requested */
                 letter-spacing: 2px; 
-                opacity: 0.7;
+                opacity: 0.8;
                 margin-top: 5px; /* Closer to the main title */
             }
 
@@ -1433,6 +1438,12 @@
                 align-items: center !important;
                 justify-content: center !important;
                 overflow: visible; 
+            }
+
+            .stills-carousel {
+                height: 100% !important; 
+                width: 100%;
+                position: relative;
             }
 
             .carousel-item {
