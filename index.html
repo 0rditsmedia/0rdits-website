@@ -1428,25 +1428,18 @@
 
             .stills-carousel-container {
                 position: relative;
-                height: 85vw;   /* Safe zone for photos to live in without overlapping neighbors */
-                min-height: 320px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                perspective: 1200px;
+                height: 85vh; /* Massive height to push everything down */
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
                 overflow: visible; 
             }
 
-            .stills-carousel {
-                height: 100% !important; 
-                width: 100%;
-                position: relative;
-            }
-
             .carousel-item {
-                width: auto; 
-                height: 38vw; 
-                max-width: 80vw; /* Increased to allow CADRE to adapt to wide photos */
+                width: auto !important; 
+                height: auto !important; /* Let image drive the size */
+                max-width: 85vw;
+                max-height: 50vh; /* Safety cap */
                 position: absolute;
                 left: 50%;
                 top: 50%;
@@ -1457,17 +1450,19 @@
                 transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 opacity: 0;
                 pointer-events: none;
-                transform-style: preserve-3d;
-                will-change: transform, opacity;
+                background: transparent !important; /* Remove any ghost cadre box */
+                border: none !important;
             }
 
             .carousel-item img {
-                height: 100%;
+                height: auto;
                 width: auto;
                 max-width: 100%;
-                object-fit: contain; /* Perfect fit without cropping */
-                border-radius: 4px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+                max-height: 50vh;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 10px 50px rgba(0,0,0,0.9);
+                border: 1px solid rgba(255,255,255,0.1); /* The new refined cadre */
                 display: block;
             }
 
@@ -1497,30 +1492,28 @@
 
             /* ARROWS: far screen edges, elevated z-index */
             .carousel-arrow {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 40px;
-                height: 40px;
-                background: rgba(0, 0, 0, 0.7);
+                width: 32px; /* Smaller as requested */
+                height: 32px;
+                background: rgba(0, 0, 0, 0.8);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 50%;
-                z-index: 30;
+                z-index: 100;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 color: #fff;
-                cursor: pointer;
+                font-size: 0.7rem;
             }
 
             .arrow-left  { left: 5px; }
             .arrow-right { right: 5px; }
 
-            /* Progress UI: Forced below the photo zone with absolute clearance */
+            /* Progress UI: Forced vertical clearance */
             .stills-explorer-link {
-                margin-top: 15vw !important; 
-                display: block !important;
-                clear: both;
+                margin-top: 20vh !important; /* Drastic push to guarantee clearance */
+                position: relative;
+                z-index: 10;
+                display: block;
             }
             .stat-item h3 {
                 font-size: 1.8rem;
@@ -2217,7 +2210,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem 0;
+            padding: 2rem 0;
             min-height: 500px; /* Forces structural height to push siblings down */
             perspective: 1000px;
         }
