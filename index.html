@@ -1266,7 +1266,7 @@
                 font-style: italic;
                 text-transform: uppercase;
                 letter-spacing: -1px;
-                color: rgba(255, 255, 255, 0.5); /* Increased base visibility */
+                color: rgba(255, 255, 255, 0.85); /* Clean, bright, no muffled look */
                 border: none;
                 padding: 0.5rem 0;
                 text-align: center;
@@ -1311,29 +1311,36 @@
             }
 
             .landing-text {
-                font-size: 1.5rem; /* Reduced to prevent wrapping */
-                letter-spacing: -1px;
-                transform: scaleX(1.1);
-                white-space: normal; /* Allow natural wrap but keep it tight */
+                font-size: 2.8rem; /* Compact, centered like desktop */
+                letter-spacing: -2px;
+                transform: scaleX(1.15);
+                white-space: nowrap;
                 margin: 0;
-                padding: 0 10px;
-                display: block;
-                width: 100%;
+                padding: 0;
+                display: inline-block;
+                width: auto;
                 text-align: center;
             }
 
             @keyframes heroTitleReveal {
-                to { opacity: 0.9; filter: blur(0); letter-spacing: -2px; transform: scaleX(1.05) scale(1); }
+                to { opacity: 0.9; filter: blur(0); letter-spacing: -2px; transform: scaleX(1.15) scale(1); }
             }
 
             .landing-subtitle {
-                font-size: 0.8rem;
-                letter-spacing: 12px;
+                font-size: 0.65rem;
+                letter-spacing: 6px;
+            }
+
+            /* --- UNIFIED TITLE SIZING (single-line guaranteed) --- */
+            .euro-style {
+                transform: scaleX(1) !important; /* Remove wide stretch on mobile */
+                letter-spacing: 0 !important;
             }
             
             .section-title h1 {
-                font-size: 1.4rem; /* Downscaled for minimalism */
-                letter-spacing: 5px;
+                font-size: 1rem; /* Unified: fits longest title on one line */
+                letter-spacing: 0;
+                white-space: nowrap;
             }
 
             /* --- 3. ABOUT SECTION --- */
@@ -1346,12 +1353,15 @@
                 text-align: left; /* Keep left alignment for editorial feel */
             }
             .about-title {
-                font-size: 1.8rem; /* Fit on fewer lines */
+                font-size: 1rem; /* Unified with all section titles */
                 line-height: 1.2;
                 margin-left: 0;
+                white-space: nowrap;
+                transform: scaleX(1) !important;
+                letter-spacing: 0 !important;
             }
             .about-body {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             .about-stats {
                 grid-template-columns: 1fr; /* Stack vertically for space */
@@ -1471,8 +1481,9 @@
                 gap: 1rem;
             }
             .category-header h2 {
-                font-size: 1.8rem;
+                font-size: 1rem; /* Unified with all section titles */
                 line-height: 1.2;
+                white-space: nowrap;
             }
             .service-list {
                 display: flex;
@@ -1535,10 +1546,11 @@
             }
             .contact-module::before { display: none !important; } /* Remove thick vertical bar */
             .module-title {
-                font-size: 2.4rem;
+                font-size: 1rem; /* Unified with all section titles */
                 margin-bottom: 0.5rem;
                 color: #fff !important;
                 opacity: 0.9 !important;
+                white-space: nowrap;
             }
             .module-data {
                 font-size: 0.9rem;
@@ -2858,21 +2870,26 @@
                 overlay.addEventListener('click', closeSidebar);
                 navLinks.forEach(link => {
                     link.addEventListener('click', (e) => {
+                        e.preventDefault();
                         const targetId = link.getAttribute('href');
-                        if (targetId.startsWith('#')) {
-                            // Smooth scroll fallback for mobile
-                            const targetElement = document.querySelector(targetId);
-                            if (targetElement) {
-                                e.preventDefault();
-                                targetElement.scrollIntoView({ behavior: 'smooth' });
-                            }
-                        }
                         
                         // --- Instant Visual Feedback ---
                         navLinks.forEach(l => l.classList.remove('active'));
                         link.classList.add('active');
                         
+                        // Close sidebar FIRST
                         closeSidebar();
+                        
+                        // Then scroll after sidebar transition clears (fixes mobile blocking)
+                        if (targetId && targetId.startsWith('#')) {
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                setTimeout(() => {
+                                    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 60;
+                                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                                }, 450); // Wait for sidebar exit transition
+                            }
+                        }
                     });
                 });
 
