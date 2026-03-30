@@ -1194,12 +1194,16 @@
                 height: 45px;
             }
 
+            /* Hide desktop social/contact icons to clean up header */
+            .nav-right, .desktop-nav {
+                display: none !important;
+            }
+
             .hamburger-menu span {
                 height: 2px;
                 background: #fff;
             }
 
-            /* Slide from Top Menu */
             .sidebar-menu {
                 width: 100vw;
                 height: 100vh;
@@ -1216,6 +1220,8 @@
                 align-items: center;
                 transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
                 padding: 0;
+                z-index: 990;
+                overflow-y: auto;
             }
 
             .sidebar-menu.active {
@@ -1237,12 +1243,12 @@
             }
 
             .menu-items a {
-                font-size: 3.5rem;
+                font-size: 2.2rem;
                 font-family: 'Inter', sans-serif;
                 font-weight: 900;
                 font-style: italic;
                 text-transform: uppercase;
-                letter-spacing: -2px;
+                letter-spacing: -1px;
                 color: rgba(255, 255, 255, 0.4);
                 border: none;
                 padding: 0;
@@ -1261,8 +1267,8 @@
 
             /* --- 2. HERO & TYPOGRAPHY --- */
             .landing-text {
-                font-size: 3.5rem;
-                letter-spacing: -2px;
+                font-size: 2.5rem;
+                letter-spacing: -1px;
                 transform: scaleX(1.1);
             }
 
@@ -1276,7 +1282,7 @@
             }
             
             .section-title h1 {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
             }
 
             /* --- 3. ABOUT SECTION --- */
@@ -1289,12 +1295,12 @@
                 text-align: left; /* Keep left alignment for editorial feel */
             }
             .about-title {
-                font-size: 3.2rem;
-                line-height: 1;
-                margin-left: -2px;
+                font-size: 2.2rem;
+                line-height: 1.1;
+                margin-left: 0;
             }
             .about-body {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             .about-stats {
                 grid-template-columns: 1fr; /* Stack vertically for space */
@@ -1303,32 +1309,44 @@
                 padding-top: 0;
             }
             .stat-item h3 {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
             }
             .profile-card {
                 aspect-ratio: 4/5;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 1 !important;
+            }
+            .profile-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            .about-visual, .about-visual.reveal {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
             }
 
-            /* --- 4. SERVICES REDESIGN (BORDERLESS & MAGAZINE-STYLE) --- */
+            /* --- 4. SERVICES REDESIGN (MOBILE OPTIMIZED CARDS) --- */
             .services-section {
                 padding: var(--section-padding);
             }
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 0; /* Remove gap, use padding inside items */
+                gap: 1.2rem; /* Much tighter spacing */
             }
             
             .service-category {
-                background: transparent !important;
-                border: none !important;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-                border-radius: 0 !important;
-                padding: 4rem 0 !important; /* Huge top/bottom padding, zero sides */
+                background: rgba(10, 10, 10, 0.9) !important;
+                border: 1px solid rgba(255, 255, 255, 0.05) !important;
+                border-radius: 12px !important;
+                padding: 2.5rem 1.5rem !important; /* Elegant mobile padding */
                 box-shadow: none !important;
-                transform: none !important;
-            }
-            .service-category:last-child {
-                border-bottom: none !important;
             }
 
             .category-header {
@@ -1337,28 +1355,25 @@
                 gap: 1rem;
             }
             .category-header h2 {
-                font-size: 2.8rem;
-                line-height: 1;
+                font-size: 1.8rem;
+                line-height: 1.2;
             }
             .service-list {
                 display: flex;
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
                 margin-top: 1rem;
             }
             
             /* The Ultimate Growth Pack special treatment */
             .service-category.premium-pack {
-                padding: 4rem 1.5rem !important; /* Slight horizontal padding */
-                margin: 4rem -1.5rem 0; /* Break out of container */
-                background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent) !important;
-                border-radius: 20px 20px 0 0 !important;
-                border-top: 1px solid rgba(255,255,255,0.2) !important;
-                border-bottom: none !important;
+                background: linear-gradient(to bottom, rgba(20,20,30,0.9), rgba(10,10,10,0.9)) !important;
+                border: 1px solid rgba(0,255,0,0.2) !important;
+                box-shadow: 0 10px 40px rgba(0,255,0,0.05) !important;
             }
             .pack-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
             .pack-item {
                 background: transparent;
@@ -1366,18 +1381,22 @@
                 padding-left: 1.5rem;
             }
 
-            /* --- 5. MOTION ARCHIVE & CAROUSEL --- */
+            /* --- 5. MOTION ARCHIVE STAGGERED MASONRY --- */
             .cards-container {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 5px !important;
-                padding: 0 !important; /* Edge to edge */
+                gap: 10px !important;
+                padding: 0 10px !important; /* Slight edge padding */
+                margin-bottom: 40px;
             }
             .video-card {
                 height: auto !important;
                 aspect-ratio: 9/16;
-                border-radius: 0; /* Edge to edge crispness */
+                border-radius: 8px; /* Restored elegant radius */
                 border: none;
+            }
+            .video-card:nth-child(even) {
+                transform: translateY(40px) !important; /* Stagger effect */
             }
             .stills-carousel-container {
                 padding: 0;
@@ -1391,14 +1410,19 @@
                 -webkit-overflow-scrolling: touch;
             }
             .stills-carousel::-webkit-scrollbar { display: none; }
-            .carousel-item {
+            .carousel-item, .carousel-item.hidden {
                 flex: 0 0 90% !important;
                 scroll-snap-align: center;
                 height: 50vh !important;
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+                transform: none !important;
             }
             .carousel-arrow { display: none; }
 
-            /* --- 6. CONTACT HUD REDESIGN (NO BOXES, EDGE TYPOGRAPHY) --- */
+            /* --- 6. CONTACT HUD REDESIGN SCROLL-REVEAL GLOW --- */
             .contact-section {
                 padding: 6rem 1.5rem;
             }
@@ -1411,38 +1435,48 @@
                 border: none !important;
                 padding: 0 !important;
                 box-shadow: none !important;
-                transform: none !important;
+                /* transform logic left alone so desktop `.reveal` animates it */
             }
-            .contact-module::before { display: none !important; } /* Remove vertical bar */
+            .contact-module::before { display: none !important; } /* Remove thick vertical bar */
             .module-title {
-                font-size: 3.8rem;
+                font-size: 2.4rem;
                 margin-bottom: 0.5rem;
-                text-shadow: none !important;
                 color: #fff !important;
                 opacity: 0.9 !important;
             }
             .module-data {
-                font-size: 1.2rem;
+                font-size: 0.9rem;
                 letter-spacing: 2px !important;
             }
             
-            /* Custom minimalist scan line under the module */
+            /* Minimalist scan line waits for scroll activation */
             .contact-module .scan-line {
                 position: relative !important;
-                animation: none !important;
                 height: 1px !important;
                 width: 100% !important;
                 top: auto; left: auto;
                 margin-top: 1.5rem;
-                opacity: 0.5 !important;
                 background: linear-gradient(90deg, var(--accent-color), transparent) !important;
+                opacity: 0;
+            }
+
+            /* Scroll-driven illumination sequence */
+            .contact-module.reveal.active .scan-line {
+                opacity: 1 !important;
+                box-shadow: 0 0 15px var(--accent-color);
+            }
+            .contact-module.reveal.active .module-icon {
+                color: var(--accent-color) !important;
+                opacity: 1 !important;
+            }
+            .contact-module.reveal.active .module-title {
+                text-shadow: 0 0 20px var(--accent-glow) !important;
             }
             
             .module-header {
                 margin-bottom: 1rem;
             }
             .contact-module .status-text {
-                opacity: 1 !important;
                 color: #fff !important;
             }
         }
@@ -3013,7 +3047,7 @@
                     });
                 });
 
-                // --- MOBILE: Auto-play Videos on Scroll (Intersection Observer) ---
+                // --- MOBILE: Auto-play First Video on Scroll, Click-to-Play others ---
                 if (window.innerWidth <= 768) {
                     const videoObserverOptions = {
                         root: null,
@@ -3035,9 +3069,25 @@
                         });
                     }, videoObserverOptions);
 
-                    archiveVideoCards.forEach(card => videoObserver.observe(card));
+                    archiveVideoCards.forEach((card, index) => {
+                        if (index === 0) {
+                            // Only auto-play the very first video
+                            videoObserver.observe(card);
+                        } else {
+                            // Click-to-play for all others so they stay hidden under thumbnails
+                            card.addEventListener('click', (e) => {
+                                // Don't intercept if they clicked the mute button
+                                if (e.target.closest('.mute-button')) return;
+                                
+                                const playerContainer = card.querySelector('.yt-player-container');
+                                const player = players[playerContainer.id];
+                                if (player && player.playVideo) {
+                                    player.playVideo();
+                                }
+                            });
+                        }
+                    });
                 }
-
 
                 // --- Email Button Logic ---
                 const emailBtn = document.querySelector('.command-btn i.fa-envelope')?.parentElement;
