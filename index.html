@@ -1311,34 +1311,36 @@
             }
 
             .landing-text {
-                font-size: 2.8rem; /* Compact, centered like desktop */
-                letter-spacing: -2px;
-                transform: scaleX(1.15);
+                font-size: 16vw; /* Premium, centered fluid proportion */
+                letter-spacing: -0.5vw;
+                transform: scaleX(1);
                 white-space: nowrap;
                 margin: 0;
                 padding: 0;
-                display: inline-block;
-                width: auto;
+                display: block;
+                width: 100%;
                 text-align: center;
+                line-height: 1;
             }
 
             @keyframes heroTitleReveal {
-                to { opacity: 0.9; filter: blur(0); letter-spacing: -2px; transform: scaleX(1.15) scale(1); }
+                to { opacity: 0.9; filter: blur(0); letter-spacing: -0.5vw; transform: scaleX(1) scale(1); }
             }
 
             .landing-subtitle {
-                font-size: 0.65rem;
-                letter-spacing: 6px;
+                font-size: 3.5vw;
+                letter-spacing: 2vw;
+                margin-top: 15px;
             }
 
-            /* --- UNIFIED TITLE SIZING (single-line guaranteed) --- */
+            /* --- UNIFIED TITLE SIZING (Guarantees fits on 1 line across ANY device width) --- */
             .euro-style {
-                transform: scaleX(1) !important; /* Remove wide stretch on mobile */
+                transform: scaleX(1) !important; /* Remove wide desktop stretch */
                 letter-spacing: 0 !important;
             }
             
             .section-title h1 {
-                font-size: 1rem; /* Unified: fits longest title on one line */
+                font-size: min(4.8vw, 22px); /* Mathematically perfectly fits 'Services & Strategic Solutions' */
                 letter-spacing: 0;
                 white-space: nowrap;
             }
@@ -1353,7 +1355,7 @@
                 text-align: left; /* Keep left alignment for editorial feel */
             }
             .about-title {
-                font-size: 1rem; /* Unified with all section titles */
+                font-size: min(4.8vw, 22px); /* Unified with all section titles */
                 line-height: 1.2;
                 margin-left: 0;
                 white-space: nowrap;
@@ -1481,7 +1483,7 @@
                 gap: 1rem;
             }
             .category-header h2 {
-                font-size: 1rem; /* Unified with all section titles */
+                font-size: min(4.8vw, 22px); /* Unified with all section titles */
                 line-height: 1.2;
                 white-space: nowrap;
             }
@@ -1546,7 +1548,7 @@
             }
             .contact-module::before { display: none !important; } /* Remove thick vertical bar */
             .module-title {
-                font-size: 1rem; /* Unified with all section titles */
+                font-size: min(4.8vw, 22px); /* Unified with all section titles */
                 margin-bottom: 0.5rem;
                 color: #fff !important;
                 opacity: 0.9 !important;
