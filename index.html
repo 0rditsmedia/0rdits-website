@@ -1178,7 +1178,8 @@
                 -webkit-backdrop-filter: none !important;
                 border: none !important;
                 box-shadow: none !important;
-                padding: 1.5rem 0;
+                padding: 1.2rem 0; /* Tightened */
+                height: auto;
             }
 
             .navbar.scrolled {
@@ -1188,6 +1189,10 @@
 
             .nav-container {
                 padding: 0 1.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
             }
 
             .logo img {
@@ -1211,15 +1216,15 @@
                 top: -100vh;
                 border: none;
                 box-shadow: none;
-                background: rgba(0, 0, 0, 0.95);
-                backdrop-filter: blur(30px);
-                -webkit-backdrop-filter: blur(30px);
+                background: rgba(0, 0, 0, 0.98); /* Deeper for luxury */
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: space-between; /* Space for items and social footer */
                 align-items: center;
                 transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-                padding: 0;
+                padding: 10vh 0 5vh;
                 z-index: 990;
                 overflow-y: auto;
             }
@@ -1258,22 +1263,53 @@
             .menu-items a.active, .menu-items a:hover {
                 color: #fff;
                 padding: 0;
-                transform: scale(1.05);
+                transform: scale(1.02); /* Subtle scale */
             }
 
             .menu-items a.active::before {
                 display: none;
             }
 
+            /* Mobile Social Footer */
+            .mobile-socials {
+                display: flex;
+                gap: 2rem;
+                margin-top: auto;
+                padding-bottom: 2rem;
+                opacity: 0.8;
+            }
+            .mobile-socials a {
+                color: #fff;
+                font-size: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+            .mobile-socials a:active {
+                transform: scale(0.9);
+            }
+
             /* --- 2. HERO & TYPOGRAPHY --- */
+            .landing-content {
+                width: 100%;
+                overflow: visible;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
             .landing-text {
-                font-size: 2.5rem;
-                letter-spacing: -1px;
-                transform: scaleX(1.1);
+                font-size: 2.2rem;
+                letter-spacing: -0.5px;
+                transform: scaleX(1.05);
+                white-space: nowrap;
+                margin: 0;
+                padding: 0 15px;
+                display: inline-block;
+                width: auto;
             }
 
             @keyframes heroTitleReveal {
-                to { opacity: 0.9; filter: blur(0); letter-spacing: -2px; transform: scaleX(1.1) scale(1); }
+                to { opacity: 0.9; filter: blur(0); letter-spacing: -2px; transform: scaleX(1.05) scale(1); }
             }
 
             .landing-subtitle {
@@ -2290,6 +2326,11 @@
             <li><a href="#stills" class="nav-link" data-section="stills">Stills Archive</a></li>
             <li><a href="#lets-talk" class="nav-link" data-section="lets-talk">Contact</a></li>
         </ul>
+        <div class="mobile-socials">
+            <a href="https://www.instagram.com/0rdits/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@0rdits" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@0rditsMarouane/shorts" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -3132,13 +3173,23 @@
                 shuffle(photos);
 
                 const stillsContainer = document.getElementById('stillsCarousel');
-                photos.forEach((photo, index) => {
+                const isMobile = window.innerWidth <= 768;
+                const displayPhotos = isMobile ? photos.slice(0, 20) : photos;
+
+                displayPhotos.forEach((photo, index) => {
                     const item = document.createElement('div');
                     item.className = 'carousel-item hidden';
                     item.dataset.index = index;
-                    item.innerHTML = `<img src="${photo}" alt="Still ${index + 1}">`;
+                    item.innerHTML = `<img src="${photo}" alt="Still ${index + 1}" loading="lazy">`;
                     stillsContainer.appendChild(item);
                 });
+
+                if (isMobile && photos.length > 20) {
+                    const viewAll = document.createElement('div');
+                    viewAll.className = 'carousel-item hidden view-all-link';
+                    viewAll.innerHTML = `<a href="stills.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 900; font-style: italic;">View Full Archive</a>`;
+                    stillsContainer.appendChild(viewAll);
+                }
 
                 const stillsItems = document.querySelectorAll('.stills-archive-section .carousel-item');
                 const prevStillsBtn = document.getElementById('prevStills');
