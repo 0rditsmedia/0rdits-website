@@ -35,9 +35,9 @@
         }
         .loader-content { text-align: center; }
         .loader-logo {
-            font-size: 3rem; margin-bottom: 20px; color: #fff; letter-spacing: 10px;
+            font-size: 3rem; margin-bottom: 20px; color: #fff; letter-spacing: -1px;
             font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; text-transform: uppercase;
-            transform: scaleX(1.2); /* Mimic Eurostile wide profile */
+            transform: scaleX(1.15); /* Match 0RDITS hero branding */
         }
         .loader-bar {
             width: 200px; height: 2px; background: rgba(255, 255, 255, 0.1);
@@ -388,14 +388,13 @@
             img.loading = 'lazy';
             img.alt = photo;
             let imagesLoaded = 0;
-            const threshold = 15; // Reveal site after first 15 images
+            const threshold = 5; // Load few to reveal fast
 
             img.onload = () => { 
                 img.style.opacity = '1'; 
                 imagesLoaded++;
-                if (imagesLoaded === threshold) {
-                    const loader = document.getElementById('site-loader');
-                    if (loader) loader.classList.add('loaded');
+                if (imagesLoaded >= threshold) {
+                    dismissLoader();
                 }
             };
 
@@ -470,13 +469,18 @@
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
 
-        // Remove Loader Safety (if threshold not met)
-        window.addEventListener('load', () => {
+        const dismissLoader = () => {
             const loader = document.getElementById('site-loader');
             if (loader && !loader.classList.contains('loaded')) {
                 loader.classList.add('loaded');
             }
-        });
+        };
+
+        // Safety Timeout (2 seconds)
+        setTimeout(dismissLoader, 2000);
+
+        // Remove Loader Safety (if load event fires first)
+        window.addEventListener('load', dismissLoader);
     </script>
 </body>
 </html>
