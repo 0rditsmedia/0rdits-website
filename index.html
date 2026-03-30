@@ -1168,7 +1168,22 @@
         /* --- MOBILE PERFECTION (DESKTOP INTACT) --- */
         @media (max-width: 768px) {
             :root {
-                --section-padding: 4rem 1.5rem;
+                --section-padding: 6rem 1.5rem;
+            }
+
+            /* --- 1. FULL-SCREEN MENU & HEADER REDESIGN --- */
+            .navbar {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 1.5rem 0;
+            }
+
+            .navbar.scrolled {
+                background: rgba(0,0,0,0.8) !important;
+                backdrop-filter: blur(10px) !important;
             }
 
             .nav-container {
@@ -1176,180 +1191,259 @@
             }
 
             .logo img {
-                height: 50px;
+                height: 45px;
             }
 
-            /* Scaling down massive typography */
+            .hamburger-menu span {
+                height: 2px;
+                background: #fff;
+            }
+
+            /* Slide from Top Menu */
+            .sidebar-menu {
+                width: 100vw;
+                height: 100vh;
+                left: 0;
+                top: -100vh;
+                border: none;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                padding: 0;
+            }
+
+            .sidebar-menu.active {
+                left: 0 !important;
+                top: 0;
+            }
+
+            .menu-items {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2.5rem;
+            }
+
+            .menu-items li {
+                margin: 0;
+            }
+
+            .menu-items a {
+                font-size: 3.5rem;
+                font-family: 'Inter', sans-serif;
+                font-weight: 900;
+                font-style: italic;
+                text-transform: uppercase;
+                letter-spacing: -2px;
+                color: rgba(255, 255, 255, 0.4);
+                border: none;
+                padding: 0;
+                text-align: center;
+            }
+
+            .menu-items a.active, .menu-items a:hover {
+                color: #fff;
+                padding: 0;
+                transform: scale(1.05);
+            }
+
+            .menu-items a.active::before {
+                display: none;
+            }
+
+            /* --- 2. HERO & TYPOGRAPHY --- */
             .landing-text {
                 font-size: 3.5rem;
-                letter-spacing: -1px;
+                letter-spacing: -2px;
                 transform: scaleX(1.1);
             }
 
             @keyframes heroTitleReveal {
-                to {
-                    opacity: 0.85;
-                    filter: blur(0);
-                    letter-spacing: -1px;
-                    transform: scaleX(1.1) scale(1);
-                }
+                to { opacity: 0.9; filter: blur(0); letter-spacing: -2px; transform: scaleX(1.1) scale(1); }
             }
 
             .landing-subtitle {
-                font-size: 0.9rem;
-                letter-spacing: 6px;
+                font-size: 0.8rem;
+                letter-spacing: 12px;
+            }
+            
+            .section-title h1 {
+                font-size: 2.5rem;
             }
 
-            .about-section, .contact-section, .services-section {
+            /* --- 3. ABOUT SECTION --- */
+            .about-section {
                 padding: var(--section-padding);
             }
-
-            /* Grids to Single Column & Centering */
             .about-container {
                 grid-template-columns: 1fr;
                 gap: 4rem;
-                text-align: center;
+                text-align: left; /* Keep left alignment for editorial feel */
             }
-
-            .about-header-group {
-                align-items: center;
-                width: 100%;
-            }
-
             .about-title {
-                font-size: 2.8rem;
-                transform-origin: center;
-                text-align: center;
+                font-size: 3.2rem;
+                line-height: 1;
+                margin-left: -2px;
             }
-
-            .about-tagline {
-                transform-origin: center;
-            }
-
             .about-body {
-                font-size: 1.05rem;
-                margin: 0 auto;
-                max-width: 100%;
+                font-size: 1.1rem;
             }
-
-            .authority-statement {
-                border-left: none;
-                border-top: 2px solid #fff;
-                border-bottom: 2px solid #fff;
-                padding: 1.5rem 0;
-                margin: 3rem 0;
-                font-size: 1.2rem;
-            }
-
             .about-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1rem;
-                padding: 2rem 0;
+                grid-template-columns: 1fr; /* Stack vertically for space */
+                gap: 2rem;
+                border: none;
+                padding-top: 0;
             }
-
             .stat-item h3 {
-                font-size: 1.5rem;
+                font-size: 2.5rem;
             }
-
             .profile-card {
-                width: 85%;
-                margin: 0 auto;
-                aspect-ratio: 1/1.2;
+                aspect-ratio: 4/5;
             }
 
-            /* Motion Archive - 2 Columns locked */
+            /* --- 4. SERVICES REDESIGN (BORDERLESS & MAGAZINE-STYLE) --- */
+            .services-section {
+                padding: var(--section-padding);
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 0; /* Remove gap, use padding inside items */
+            }
+            
+            .service-category {
+                background: transparent !important;
+                border: none !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+                border-radius: 0 !important;
+                padding: 4rem 0 !important; /* Huge top/bottom padding, zero sides */
+                box-shadow: none !important;
+                transform: none !important;
+            }
+            .service-category:last-child {
+                border-bottom: none !important;
+            }
+
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .category-header h2 {
+                font-size: 2.8rem;
+                line-height: 1;
+            }
+            .service-list {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                margin-top: 1rem;
+            }
+            
+            /* The Ultimate Growth Pack special treatment */
+            .service-category.premium-pack {
+                padding: 4rem 1.5rem !important; /* Slight horizontal padding */
+                margin: 4rem -1.5rem 0; /* Break out of container */
+                background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent) !important;
+                border-radius: 20px 20px 0 0 !important;
+                border-top: 1px solid rgba(255,255,255,0.2) !important;
+                border-bottom: none !important;
+            }
+            .pack-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .pack-item {
+                background: transparent;
+                border-left: 2px solid rgba(255,255,255,0.2);
+                padding-left: 1.5rem;
+            }
+
+            /* --- 5. MOTION ARCHIVE & CAROUSEL --- */
             .cards-container {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
-                padding: 10px !important;
+                gap: 5px !important;
+                padding: 0 !important; /* Edge to edge */
             }
-
             .video-card {
                 height: auto !important;
                 aspect-ratio: 9/16;
+                border-radius: 0; /* Edge to edge crispness */
+                border: none;
             }
-
-            /* Stills Carousel - Mobile Swipe Style */
             .stills-carousel-container {
-                overflow: hidden;
                 padding: 0;
             }
-
             .stills-carousel {
                 display: flex !important;
                 overflow-x: auto !important;
                 scroll-snap-type: x mandatory;
-                gap: 15px;
-                padding: 20px;
+                gap: 10px;
+                padding: 20px 1.5rem;
                 -webkit-overflow-scrolling: touch;
-                height: auto !important;
-                perspective: none !important;
             }
-
-            .stills-carousel::-webkit-scrollbar {
-                display: none;
-            }
-
+            .stills-carousel::-webkit-scrollbar { display: none; }
             .carousel-item {
-                flex: 0 0 85% !important;
-                position: relative !important;
-                opacity: 1 !important;
-                visibility: visible !important;
-                transform: none !important;
+                flex: 0 0 90% !important;
                 scroll-snap-align: center;
-                height: 400px !important;
+                height: 50vh !important;
             }
+            .carousel-arrow { display: none; }
 
-            .carousel-item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 8px;
+            /* --- 6. CONTACT HUD REDESIGN (NO BOXES, EDGE TYPOGRAPHY) --- */
+            .contact-section {
+                padding: 6rem 1.5rem;
             }
-
-            .carousel-arrow {
-                display: none; /* Hide arrows on mobile for clean swipe feel */
-            }
-
-            /* Contact HUD - Ambient Glow for Mobile */
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 4rem;
             }
-
             .contact-module {
-                padding: 2.5rem 2rem;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                transform: none !important;
             }
-
+            .contact-module::before { display: none !important; } /* Remove vertical bar */
             .module-title {
-                font-size: 2.5rem;
+                font-size: 3.8rem;
+                margin-bottom: 0.5rem;
+                text-shadow: none !important;
+                color: #fff !important;
+                opacity: 0.9 !important;
             }
-
-            /* Mobile-specific interaction: Constant reveal instead of hover */
-            .contact-module::before {
-                background: var(--accent-color);
-                box-shadow: 0 0 15px var(--accent-color);
-                width: 4px;
+            .module-data {
+                font-size: 1.2rem;
+                letter-spacing: 2px !important;
             }
-
-            .contact-module .module-icon {
-                opacity: 1;
-                color: var(--accent-color);
-            }
-
+            
+            /* Custom minimalist scan line under the module */
             .contact-module .scan-line {
-                opacity: 0.4;
+                position: relative !important;
+                animation: none !important;
+                height: 1px !important;
+                width: 100% !important;
+                top: auto; left: auto;
+                margin-top: 1.5rem;
+                opacity: 0.5 !important;
+                background: linear-gradient(90deg, var(--accent-color), transparent) !important;
             }
-
+            
+            .module-header {
+                margin-bottom: 1rem;
+            }
             .contact-module .status-text {
-                opacity: 0.8;
-                color: #fff;
-            }
-
-            .contact-module .module-title {
-                opacity: 1;
-                text-shadow: 0 0 15px var(--accent-glow);
+                opacity: 1 !important;
+                color: #fff !important;
             }
         }
 
