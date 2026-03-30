@@ -37,6 +37,7 @@
         .loader-logo {
             font-size: 3rem; margin-bottom: 20px; color: #fff; letter-spacing: 10px;
             font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; text-transform: uppercase;
+            transform: scaleX(1.2); /* Mimic Eurostile wide profile */
         }
         .loader-bar {
             width: 200px; height: 2px; background: rgba(255, 255, 255, 0.1);
@@ -386,7 +387,17 @@
             img.src = photo;
             img.loading = 'lazy';
             img.alt = photo;
-            img.onload = () => { img.style.opacity = '1'; };
+            let imagesLoaded = 0;
+            const threshold = 15; // Reveal site after first 15 images
+
+            img.onload = () => { 
+                img.style.opacity = '1'; 
+                imagesLoaded++;
+                if (imagesLoaded === threshold) {
+                    const loader = document.getElementById('site-loader');
+                    if (loader) loader.classList.add('loaded');
+                }
+            };
 
             item.appendChild(img);
             grid.appendChild(item);
@@ -459,10 +470,12 @@
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
 
-        // Remove Loader
+        // Remove Loader Safety (if threshold not met)
         window.addEventListener('load', () => {
             const loader = document.getElementById('site-loader');
-            if (loader) loader.classList.add('loaded');
+            if (loader && !loader.classList.contains('loaded')) {
+                loader.classList.add('loaded');
+            }
         });
     </script>
 </body>
