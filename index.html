@@ -1183,8 +1183,9 @@
             }
 
             .navbar.scrolled {
-                background: rgba(0,0,0,0.8) !important;
-                backdrop-filter: blur(10px) !important;
+                background: rgba(0,0,0,0.95) !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
             }
 
             .nav-container {
@@ -1344,6 +1345,71 @@
                 border: none;
                 padding-top: 0;
             }
+            /* --- 3. STILLS CAROUSEL MOBILE REFINEMENT --- */
+            .stills-archive-section {
+                padding: 4rem 0; /* Full bleed potential */
+                overflow: hidden;
+            }
+
+            .stills-carousel-container {
+                height: 350px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                perspective: 1000px;
+            }
+
+            .carousel-item {
+                width: 70vw; /* Peek effect */
+                height: 300px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+                opacity: 0;
+                transform-style: preserve-3d;
+            }
+
+            .carousel-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 4px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            }
+
+            .carousel-item.active {
+                opacity: 1;
+                transform: translate(-50%, -50%) translateZ(0) scale(1);
+                z-index: 5;
+            }
+
+            .carousel-item.prev {
+                opacity: 0.4;
+                transform: translate(-105%, -50%) translateZ(-100px) scale(0.85);
+                z-index: 3;
+            }
+
+            .carousel-item.next {
+                opacity: 0.4;
+                transform: translate(5%, -50%) translateZ(-100px) scale(0.85);
+                z-index: 3;
+            }
+
+            .carousel-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+                background: rgba(0,0,0,0.6);
+                z-index: 20;
+            }
+
+            .arrow-left { left: 10px; }
+            .arrow-right { right: 10px; }
             .stat-item h3 {
                 font-size: 1.8rem;
             }
@@ -3201,8 +3267,7 @@
                 const totalStills = stillsItems.length;
 
                 function updateStillsCarousel() {
-                    if (window.innerWidth <= 768) return; // Let CSS handle mobile swiping
-                    
+                    // Re-enabled logic for all screens to maintain high-end cinematic feel
                     stillsItems.forEach((item, index) => {
                         item.classList.remove('prev', 'active', 'next', 'hidden');
 
