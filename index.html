@@ -1177,8 +1177,20 @@
         /* --- MOBILE PERFECTION (DESKTOP INTACT) --- */
         @media (max-width: 768px) {
             :root {
-                --section-padding: 6rem 1.5rem;
+                --section-padding: 5rem 0.75rem; /* Wider — less wasted side space */
             }
+
+            .about-section, 
+            .services-section, 
+            .video-gallery-section, 
+            .stills-archive-section, 
+            .contact-section {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+
+            /* Utility: line-break only on mobile */
+            .mob-break { display: block; }
 
             /* --- 1. FULL-SCREEN MENU & HEADER REDESIGN --- */
             .navbar {
@@ -1287,6 +1299,11 @@
                 display: none;
             }
 
+            /* Dim inactive items — focus effect */
+            .menu-items:hover .nav-link { opacity: 0.35; transition: opacity 0.3s ease; }
+            .menu-items:hover .nav-link:hover { opacity: 1; }
+            .menu-items .nav-link.active { opacity: 1; }
+
             /* Mobile Social Footer */
             .mobile-socials {
                 display: flex;
@@ -1382,23 +1399,28 @@
                 border: none;
                 padding-top: 0;
             }
-            /* --- 3. STILLS CAROUSEL MOBILE REFINEMENT --- */
+            /* --- 6. STILLS ARCHIVE — Desktop-parity cinematic peek carousel --- */
             .stills-archive-section {
-                padding: 4rem 0; /* Full bleed potential */
+                padding: 4rem 0;
                 overflow: hidden;
             }
 
+            /* Container is the reference for arrows — same as desktop */
             .stills-carousel-container {
-                height: 350px;
+                position: relative;
+                height: 52vw;   /* scales with screen width, just like desktop uses a fixed-ish height */
+                min-height: 180px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                perspective: 1000px;
+                perspective: 1200px;
+                overflow: visible; /* let side peeks show */
             }
 
+            /* ITEMS: mirror the desktop layout, just with vw-based sizes */
             .carousel-item {
-                width: 70vw; /* Peek effect */
-                height: 300px;
+                width: 72vw;
+                height: 48vw;
                 position: absolute;
                 left: 50%;
                 top: 50%;
@@ -1408,6 +1430,7 @@
                 justify-content: center;
                 transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
                 opacity: 0;
+                pointer-events: none;
                 transform-style: preserve-3d;
             }
 
@@ -1416,37 +1439,55 @@
                 height: 100%;
                 object-fit: cover;
                 border-radius: 4px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+                display: block;
             }
 
+            /* ACTIVE: full-size, full opacity, centered */
             .carousel-item.active {
                 opacity: 1;
-                transform: translate(-50%, -50%) translateZ(0) scale(1);
+                transform: translate(-50%, -50%) translateZ(0) scale(0.95);
                 z-index: 5;
+                pointer-events: auto;
             }
 
+            /* PREV: peek from left, faded — exactly like desktop */
             .carousel-item.prev {
-                opacity: 0.4;
-                transform: translate(-105%, -50%) translateZ(-100px) scale(0.85);
+                opacity: 0.35;
+                transform: translate(-125%, -50%) translateZ(-100px) scale(0.75);
                 z-index: 3;
+                pointer-events: auto; /* swipeable */
             }
 
+            /* NEXT: peek from right, faded — exactly like desktop */
             .carousel-item.next {
-                opacity: 0.4;
-                transform: translate(5%, -50%) translateZ(-100px) scale(0.85);
+                opacity: 0.35;
+                transform: translate(25%, -50%) translateZ(-100px) scale(0.75);
                 z-index: 3;
+                pointer-events: auto;
             }
 
+            /* ARROWS: screen edges, vertically centered on the carousel height */
             .carousel-arrow {
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
-                background: rgba(0,0,0,0.6);
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
+                background: rgba(0, 0, 0, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 50%;
                 z-index: 20;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                cursor: pointer;
             }
 
-            .arrow-left { left: 10px; }
-            .arrow-right { right: 10px; }
+            .arrow-left  { left: 0.5rem; }
+            .arrow-right { right: 0.5rem; }
             .stat-item h3 {
                 font-size: 1.8rem;
             }
@@ -1523,13 +1564,13 @@
                 padding-left: 1.5rem;
             }
 
-            /* --- 5. MOTION ARCHIVE (2-COLUMN STAGGERED & MAXIMIZED) --- */
+            /* --- 5. MOTION ARCHIVE — Fill screen, keep cinematic stagger --- */
             .cards-container {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 6px !important; /* Minimal gap for maximum video size */
-                padding: 0 4px !important; /* Minimal side padding */
-                margin-bottom: 40px;
+                grid-template-columns: 1fr !important; /* Single column for maximum video size */
+                gap: 20px !important;
+                padding: 0 0.75rem !important;
+                margin: 0 0 30px !important;
                 align-items: start;
             }
             .video-card {
@@ -2501,7 +2542,7 @@
     <!-- SERVICES SECTION -->
     <section class="services-section" id="services">
         <div class="section-title">
-            <h1 class="euro-style">Services & Strategic Solutions</h1>
+            <h1 class="euro-style">Services &amp; <span class="mob-break">Strategic Solutions</span></h1>
         </div>
 
         <div class="services-grid">
@@ -2866,6 +2907,32 @@
                 }
             });
 
+            // --- Custom Eased Smooth Scroll (900ms Cubic) ---
+            function smoothScrollTo(targetY, duration = 900) {
+                const startY = window.pageYOffset;
+                const distance = targetY - startY;
+                let startTime = null;
+
+                function cubicEaseInOut(t) {
+                    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                }
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const ease = cubicEaseInOut(progress);
+
+                    window.scrollTo(0, startY + distance * ease);
+
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    }
+                }
+
+                requestAnimationFrame(animation);
+            }
+
             document.addEventListener('DOMContentLoaded', () => {
                 const hamburger = document.getElementById('hamburger');
                 const sidebar = document.getElementById('sidebar');
@@ -2896,15 +2963,15 @@
                         // Close sidebar first
                         closeSidebar();
 
-                        // Scroll after sidebar transition (600ms matches CSS transition)
+                        // Scroll after sidebar transition
                         if (targetId && targetId.startsWith('#')) {
                             const targetElement = document.querySelector(targetId);
                             if (targetElement) {
                                 setTimeout(() => {
                                     const top = targetElement.getBoundingClientRect().top + window.pageYOffset;
                                     const offset = 60; // navbar height
-                                    window.scrollTo({ top: Math.max(0, top - offset), behavior: 'smooth' });
-                                }, 600);
+                                    smoothScrollTo(Math.max(0, top - offset), 900);
+                                }, 500); // reduced delay to account for longer scroll duration
                             }
                         }
                     });
@@ -3319,10 +3386,16 @@
 
                         if (index === currentStillsIndex) {
                             item.classList.add('active');
+                            const img = item.querySelector('img');
+                            if (img) img.loading = "eager";
                         } else if (index === (currentStillsIndex - 1 + totalStills) % totalStills) {
                             item.classList.add('prev');
+                            const img = item.querySelector('img');
+                            if (img) img.loading = "eager";
                         } else if (index === (currentStillsIndex + 1) % totalStills) {
                             item.classList.add('next');
+                            const img = item.querySelector('img');
+                            if (img) img.loading = "eager";
                         } else {
                             item.classList.add('hidden');
                         }
@@ -3366,6 +3439,32 @@
                     lastScrollTop = scrollTop;
                 });
                 */
+
+                // --- Touch Swipe Support for Stills ---
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                stillsContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                stillsContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    if (touchEndX < touchStartX - swipeThreshold) {
+                        // Swipe Left -> Next
+                        currentStillsIndex = (currentStillsIndex + 1) % totalStills;
+                        updateStillsCarousel();
+                    } else if (touchEndX > touchStartX + swipeThreshold) {
+                        // Swipe Right -> Prev
+                        currentStillsIndex = (currentStillsIndex - 1 + totalStills) % totalStills;
+                        updateStillsCarousel();
+                    }
+                }
 
                 // Handle stills explorer click
                 const stillsExplorerElement = document.getElementById('stillsExplorer');
