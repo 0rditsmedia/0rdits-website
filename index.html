@@ -1361,10 +1361,10 @@
             }
 
             .landing-subtitle {
-                font-size: 0.85rem; /* Increased as requested */
-                letter-spacing: 3px; 
-                opacity: 0.6;
-                margin-top: 2px; /* Closer to the main title */
+                font-size: 1.1rem; /* Scaled up for better visibility */
+                letter-spacing: 2px; 
+                opacity: 0.7;
+                margin-top: 5px; /* Closer to the main title */
             }
 
             @keyframes heroTitleReveal {
@@ -1492,6 +1492,9 @@
 
             /* ARROWS: far screen edges, elevated z-index */
             .carousel-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
                 width: 32px; /* Smaller as requested */
                 height: 32px;
                 background: rgba(0, 0, 0, 0.8);
@@ -1514,6 +1517,9 @@
                 position: relative;
                 z-index: 10;
                 display: block;
+            }
+            .slide-bar-text {
+                display: none !important; /* Remove redundant text as requested */
             }
             .stat-item h3 {
                 font-size: 1.8rem;
