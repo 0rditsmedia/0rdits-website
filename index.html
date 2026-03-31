@@ -18,10 +18,11 @@
             user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
+            -webkit-touch-callout: none; /* Prevents long-press "Save Image" menu on mobile */
         }
 
         :root {
-            --premium-ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --premium-ease: 0.7s cubic-bezier(0.65, 0, 0.35, 1); /* Slower, profound ease-in-out */
             --neon-green: #39ff14;
         }
 
@@ -2996,6 +2997,17 @@
 
                 requestAnimationFrame(animation);
             }
+
+            // --- EXPERT ANTI-THEFT (Media Protection) ---
+            document.addEventListener('contextmenu', e => e.preventDefault()); // Block right-click to save
+            document.addEventListener('keydown', e => {
+                // Block F12, Inspect Element (Ctrl+Shift+I/C/J), and View Source (Ctrl+U)
+                if (e.key === 'F12' || 
+                   (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                   (e.ctrlKey && e.key === 'U')) {
+                    e.preventDefault();
+                }
+            });
 
             document.addEventListener('DOMContentLoaded', () => {
                 const hamburger = document.getElementById('hamburger');
