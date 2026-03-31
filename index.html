@@ -1454,7 +1454,7 @@
 
             .stills-carousel-container {
                 position: relative;
-                height: 85vh; /* Massive height to push everything down */
+                height: 60vh; /* Reduced from massive 85vh to tighten the layout */
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
@@ -1483,11 +1483,12 @@
             }
 
             .carousel-item img {
+                align-self: center; /* Prevent flex-stretching on iOS/Android */
                 max-height: 100%;
                 max-width: 85vw;
-                width: auto;
-                height: auto;
-                /* Removed object-fit to allow the border to snap perfectly to the native image aspect ratio without padding */
+                width: auto !important;
+                height: auto !important;
+                object-fit: fill !important; /* Force true aspect ratio mapping over global contain */
                 border-radius: 6px;
                 box-shadow: 0 10px 50px rgba(0,0,0,0.9);
                 border: 1px solid rgba(255,255,255,0.1); 
@@ -1523,8 +1524,8 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                width: 28px; /* Shrunk as requested */
-                height: 28px;
+                width: 24px; /* Shrunk finer as requested */
+                height: 24px;
                 background: rgba(0, 0, 0, 0.8);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 50%;
@@ -1533,7 +1534,7 @@
                 align-items: center;
                 justify-content: center;
                 color: #fff;
-                font-size: 0.6rem;
+                font-size: 0.5rem;
             }
 
             .arrow-left  { left: 5px; }
@@ -1541,7 +1542,7 @@
 
             /* Progress UI: Forced vertical clearance */
             .stills-explorer-link {
-                margin-top: 5rem !important; /* Pushed down comfortably below the photos */
+                margin-top: 2rem !important; /* Tightened up to the visual */
                 position: relative;
                 z-index: 10;
                 display: block;
