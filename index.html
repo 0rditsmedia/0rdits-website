@@ -1643,8 +1643,10 @@
                 width: 100% !important;
                 height: auto !important;
                 aspect-ratio: 9/16;
-                border-radius: 6px;
+                border-radius: 12px !important; /* Increased to match desktop aesthetic for perfection */
                 border: none;
+                overflow: hidden !important; /* Forces the clipping of sharp corners */
+                isolation: isolate; /* Technical safeguard for smoother rendering on mobile iOS */
             }
             .video-card:nth-child(even) {
                 transform: translateY(25px) !important; /* Subtle premium stagger */
@@ -3626,7 +3628,15 @@
                     const item = document.createElement('div');
                     item.className = 'carousel-item hidden';
                     item.dataset.index = index;
-                    item.innerHTML = `<img data-src="${photo}" alt="Still ${index + 1}">`;
+                    item.innerHTML = `<img data-src="${photo}" alt="Still ${index + 1}" decoding="async">`;
+                    
+                    // High fetch priority for initial images
+                    const img = item.querySelector('img');
+                    if (index < 3) {
+                        img.fetchPriority = 'high';
+                    } else {
+                        img.fetchPriority = 'low';
+                    }
                     stillsContainer.appendChild(item);
                 });
 
@@ -3652,10 +3662,13 @@
                             totalStills - Math.abs(index - currentStillsIndex)
                         );
                         
-                        if (dist <= 2) {
+                        // Aggressive pre-loading window (increased from 2 to 5 for professional experience)
+                        if (dist <= 5) {
                             const img = item.querySelector('img');
                             if (img && !img.hasAttribute('src')) {
-                                img.setAttribute('src', img.getAttribute('data-src'));
+                                img.src = img.getAttribute('data-src');
+                                // Ensure frame-perfect decoding before swiping
+                                img.decode().catch(() => { /* Silent fail fallback */ });
                             }
                         }
 
