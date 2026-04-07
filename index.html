@@ -3433,6 +3433,13 @@
                                 isFullscreen = true;
                                 const rect = card.getBoundingClientRect();
 
+                                // GUARANTEE PLAYBACK (Overrides hover-dependency)
+                                const playerContainer = card.querySelector('.yt-player-container');
+                                const player = players[playerContainer.id];
+                                if (player && player.playVideo) {
+                                    player.playVideo();
+                                }
+
                                 card.classList.add('fullscreen-card');
                                 document.body.classList.add('video-fullscreen-active');
 
@@ -3716,6 +3723,18 @@
                 pointer-events: none;
                 transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             }
+            
+            /* Elevate the container to defeat all overlapping native blur interactions (like Navbar) */
+            body.video-fullscreen-active .video-gallery-section,
+            body.video-fullscreen-active .cards-container {
+                position: relative;
+                z-index: 9999;
+            }
+
+            body.video-fullscreen-active .fullscreen-card .video-thumbnail {
+                opacity: 0 !important; /* Hard-dismiss the thumbnail preview so the playing video shows clearly */
+            }
+
             body.video-fullscreen-active .fullscreen-card::before {
                 opacity: 0 !important; /* hide glow behind card when fullscreen */
             }
