@@ -113,19 +113,20 @@
 
         .content-wrapper {
             opacity: 0;
-            transform: scale(0.95);
-            animation: pageEntry 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            transform: scale(0.98);
+            transition: opacity 1.2s var(--premium-ease), transform 1.2s var(--premium-ease);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            pointer-events: none; /* Disable until loaded */
         }
 
-        @keyframes pageEntry {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .content-wrapper.revealed {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
         }
+
 
         body.lightbox-open {
             overflow: hidden;
@@ -344,14 +345,14 @@
 <body>
     <div class="site-loader" id="site-loader">
         <div class="loader-content">
-            <div class="loader-logo">0RDITS</div>
+            <h1 class="loader-logo euro-style">0RDITS</h1>
             <div class="loader-bar">
                 <div class="loader-progress"></div>
             </div>
         </div>
     </div>
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" id="content-wrapper">
         <header class="header">
             <a href="index.html" class="back-btn">
                 <i class="fas fa-arrow-left"></i> Back
@@ -437,9 +438,13 @@
                 }
             });
         }, {
-            rootMargin: '1200px' // Aggressive pre-load for professional "already there" experience
+            rootMargin: '1200px' 
         });
 
+        const startTime = Date.now();
+        const minLoaderTime = 1500; // 1.5s Minimum for premium feel
+        const landingThreshold = 12; // Wait for first 12 images (landing page grid)
+        const loadPromises = [];
         photos.forEach((photo, index) => {
             const item = document.createElement('div');
             item.className = 'grid-item';
@@ -450,28 +455,39 @@
             img.alt = photo;
             img.decoding = 'async';
             
-            // Priority Hints: First 6 images get high priority for instant FCP
             if (index < 6) {
                 img.fetchPriority = 'high';
             } else {
                 img.fetchPriority = 'low';
             }
 
-            img.onload = () => {
-                // Professional decoding logic: ensures no frame drops when image is shown
-                img.decode().then(() => {
-                    img.style.opacity = '1';
-                    item.style.minHeight = 'auto'; 
-                    imagesLoaded++;
-                    if (imagesLoaded >= threshold) {
-                        dismissLoader();
-                    }
-                }).catch(() => {
-                    // Fallback for decoding errors
-                    img.style.opacity = '1';
-                    item.style.minHeight = 'auto';
+            if (index < landingThreshold) {
+                const p = new Promise(resolve => {
+                    img.onload = () => {
+                        img.decode().then(() => {
+                            img.style.opacity = '1';
+                            item.style.minHeight = 'auto';
+                            resolve();
+                        }).catch(() => {
+                            img.style.opacity = '1';
+                            item.style.minHeight = 'auto';
+                            resolve();
+                        });
+                    };
+                    img.onerror = resolve; // Don't block forever on error
                 });
-            };
+                loadPromises.push(p);
+            } else {
+                img.onload = () => {
+                    img.decode().then(() => {
+                        img.style.opacity = '1';
+                        item.style.minHeight = 'auto';
+                    }).catch(() => {
+                        img.style.opacity = '1';
+                        item.style.minHeight = 'auto';
+                    });
+                };
+            }
 
             item.appendChild(img);
             grid.appendChild(item);
@@ -508,6 +524,14 @@
                     });
                 });
             });
+        });
+
+        // Professional Reveal Sequence
+        Promise.all(loadPromises).then(() => {
+            const timeElapsed = Date.now() - startTime;
+            const remaining = Math.max(0, minLoaderTime - timeElapsed);
+            
+            setTimeout(dismissLoader, remaining);
         });
 
         const closeLightbox = () => {
@@ -547,16 +571,15 @@
 
         const dismissLoader = () => {
             const loader = document.getElementById('site-loader');
+            const wrapper = document.getElementById('content-wrapper');
             if (loader && !loader.classList.contains('loaded')) {
                 loader.classList.add('loaded');
+                if (wrapper) wrapper.classList.add('revealed');
             }
         };
 
-        // Safety Timeout (2 seconds)
-        setTimeout(dismissLoader, 2000);
-
-        // Remove Loader Safety (if load event fires first)
-        window.addEventListener('load', dismissLoader);
+        // Safety Timeout (4 seconds) - Professional backup
+        setTimeout(dismissLoader, 4000);
     </script>
 </body>
 
