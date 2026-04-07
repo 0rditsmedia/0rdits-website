@@ -3551,6 +3551,31 @@
                     });
                 }
 
+                // --- Hero Video Seamless Persistence ---
+                // Triggers playback BEFORE the user sees the section to ensure it's already moving
+                const heroSection = document.querySelector('.landing-section');
+                const heroObserverOptions = {
+                    root: null,
+                    rootMargin: '200px 0px 200px 0px', // Resume 200px before reaching section
+                    threshold: 0
+                };
+
+                const heroObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const heroPlayer = players['hero-player'];
+                        if (heroPlayer && heroPlayer.playVideo) {
+                            if (entry.isIntersecting) {
+                                heroPlayer.playVideo();
+                            } else {
+                                // Pause when far away to preserve resources for motion archive
+                                if (heroPlayer.pauseVideo) heroPlayer.pauseVideo();
+                            }
+                        }
+                    });
+                }, heroObserverOptions);
+
+                if (heroSection) heroObserver.observe(heroSection);
+
                 // --- Email Button Logic ---
                 const emailBtn = document.querySelector('.command-btn i.fa-envelope')?.parentElement;
                 if (emailBtn) {
