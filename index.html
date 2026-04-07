@@ -3511,8 +3511,8 @@
                         
                         if (dist <= 2) {
                             const img = item.querySelector('img');
-                            if (img && !img.src) {
-                                img.src = img.getAttribute('data-src');
+                            if (img && !img.hasAttribute('src')) {
+                                img.setAttribute('src', img.getAttribute('data-src'));
                             }
                         }
 
