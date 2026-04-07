@@ -1643,10 +1643,21 @@
                 width: 100% !important;
                 height: auto !important;
                 aspect-ratio: 9/16;
-                border-radius: 12px !important; /* Increased to match desktop aesthetic for perfection */
+                border-radius: 12px !important;
                 border: none;
-                overflow: hidden !important; /* Forces the clipping of sharp corners */
-                isolation: isolate; /* Technical safeguard for smoother rendering on mobile iOS */
+                overflow: hidden !important;
+                isolation: isolate; /* Forces a new stacking context for reliable clipping */
+                -webkit-mask-image: -webkit-radial-gradient(white, black); /* GPU-level clip for Safari */
+                mask-image: radial-gradient(white, black);
+            }
+
+            .video-wrapper {
+                width: 100% !important;
+                height: 100% !important;
+                overflow: hidden !important;
+                border-radius: 12px !important;
+                -webkit-mask-image: -webkit-radial-gradient(white, black); /* Reinforced GPU clip */
+                mask-image: radial-gradient(white, black);
             }
             .video-card:nth-child(even) {
                 transform: translateY(25px) !important; /* Subtle premium stagger */
