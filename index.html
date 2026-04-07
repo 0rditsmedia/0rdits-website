@@ -3483,7 +3483,7 @@
                     const item = document.createElement('div');
                     item.className = 'carousel-item hidden';
                     item.dataset.index = index;
-                    item.innerHTML = `<img src="${photo}" alt="Still ${index + 1}" loading="lazy">`;
+                    item.innerHTML = `<img data-src="${photo}" alt="Still ${index + 1}">`;
                     stillsContainer.appendChild(item);
                 });
 
@@ -3503,18 +3503,25 @@
                     stillsItems.forEach((item, index) => {
                         item.classList.remove('prev', 'active', 'next', 'hidden');
 
+                        // Smart lazy-loading window: load current +/- 2 items to prevent broken frames and browser queue limits
+                        const dist = Math.min(
+                            Math.abs(index - currentStillsIndex),
+                            totalStills - Math.abs(index - currentStillsIndex)
+                        );
+                        
+                        if (dist <= 2) {
+                            const img = item.querySelector('img');
+                            if (img && !img.src) {
+                                img.src = img.getAttribute('data-src');
+                            }
+                        }
+
                         if (index === currentStillsIndex) {
                             item.classList.add('active');
-                            const img = item.querySelector('img');
-                            if (img) img.loading = "eager";
                         } else if (index === (currentStillsIndex - 1 + totalStills) % totalStills) {
                             item.classList.add('prev');
-                            const img = item.querySelector('img');
-                            if (img) img.loading = "eager";
                         } else if (index === (currentStillsIndex + 1) % totalStills) {
                             item.classList.add('next');
-                            const img = item.querySelector('img');
-                            if (img) img.loading = "eager";
                         } else {
                             item.classList.add('hidden');
                         }
