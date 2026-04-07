@@ -3397,6 +3397,27 @@
                     // Universal Double-Click/Tap to Cinematic Fullscreen
                     let lastTap = 0;
                     let isFullscreen = false;
+                    let backdrop = null;
+
+                    const zoomOut = () => {
+                        if (!isFullscreen) return;
+                        isFullscreen = false;
+                        document.body.classList.remove('video-fullscreen-active');
+                        
+                        card.style.transform = ''; // clears inline style, resets to native CSS
+                        
+                        setTimeout(() => {
+                            if (isFullscreen) return; // Prevent bugs if double clicked during animation
+                            card.classList.remove('fullscreen-card');
+                            card.style.zIndex = '';
+                            card.style.transition = 'transform var(--premium-ease)';
+                        }, 800); // Wait for transition
+
+                        if (backdrop && backdrop.parentNode) {
+                            backdrop.parentNode.removeChild(backdrop);
+                            backdrop = null;
+                        }
+                    };
 
                     card.addEventListener('click', (e) => {
                         if (e.target.closest('.mute-button')) return;
@@ -3411,66 +3432,46 @@
                                 // ZOOM IN
                                 isFullscreen = true;
                                 const rect = card.getBoundingClientRect();
-                                
-                                // Create placeholder to maintain grid layout
-                                const placeholder = document.createElement('div');
-                                placeholder.className = 'video-card-placeholder';
-                                placeholder.style.width = rect.width + 'px';
-                                placeholder.style.height = rect.height + 'px';
-                                card.parentNode.insertBefore(placeholder, card);
 
                                 card.classList.add('fullscreen-card');
                                 document.body.classList.add('video-fullscreen-active');
 
-                                // Lock to current position (Fixed)
-                                card.style.width = rect.width + 'px';
-                                card.style.height = rect.height + 'px';
-                                card.style.position = 'fixed';
-                                card.style.top = rect.top + 'px';
-                                card.style.left = rect.left + 'px';
-                                card.style.zIndex = '9999';
-                                card.style.margin = '0';
-                                card.style.transition = 'none';
-
-                                // Next frame: Animate to Fullscreen bounds
-                                requestAnimationFrame(() => {
-                                    card.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-                                    card.style.top = '0';
-                                    card.style.left = '0';
-                                    card.style.width = '100vw';
-                                    card.style.height = '100vh';
-                                    card.style.borderRadius = '0';
+                                // Create invisible backdrop for clicking out
+                                backdrop = document.createElement('div');
+                                backdrop.style.position = 'fixed';
+                                backdrop.style.top = '0';
+                                backdrop.style.left = '0';
+                                backdrop.style.width = '100vw';
+                                backdrop.style.height = '100vh';
+                                backdrop.style.zIndex = '9998'; // Just below the card
+                                backdrop.style.cursor = 'zoom-out'; // Native browser hint to zoom out
+                                document.body.appendChild(backdrop);
+                                
+                                backdrop.addEventListener('click', () => {
+                                    zoomOut();
                                 });
+
+                                // Calculate perfect scale to fit viewport (90% to leave cinematic padding)
+                                const scaleY = window.innerHeight / rect.height;
+                                const scaleX = window.innerWidth / rect.width;
+                                const scale = Math.min(scaleX, scaleY) * 0.95;
+
+                                // Calculate distance to exact screen center
+                                const centerX = window.innerWidth / 2;
+                                const centerY = window.innerHeight / 2;
+                                const cardCenterX = rect.left + (rect.width / 2);
+                                const cardCenterY = rect.top + (rect.height / 2);
+                                
+                                const translateX = centerX - cardCenterX;
+                                const translateY = centerY - cardCenterY;
+
+                                // Force layout isolation and hardware acceleration
+                                card.style.zIndex = '9999';
+                                card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                                card.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
                             } else {
                                 // ZOOM OUT
-                                isFullscreen = false;
-                                document.body.classList.remove('video-fullscreen-active');
-                                
-                                const placeholder = card.previousElementSibling;
-                                if (placeholder && placeholder.className === 'video-card-placeholder') {
-                                    const targetRect = placeholder.getBoundingClientRect();
-                                    
-                                    // Animate back to placeholder bounds
-                                    card.style.top = targetRect.top + 'px';
-                                    card.style.left = targetRect.left + 'px';
-                                    card.style.width = targetRect.width + 'px';
-                                    card.style.height = targetRect.height + 'px';
-                                    card.style.borderRadius = '12px'; // Back to original radius
-
-                                    setTimeout(() => {
-                                        if (isFullscreen) return; // Prevent bugs if double clicked during animation
-                                        card.classList.remove('fullscreen-card');
-                                        card.style.position = 'relative';
-                                        card.style.top = '';
-                                        card.style.left = '';
-                                        card.style.width = '';
-                                        card.style.height = '';
-                                        card.style.zIndex = '';
-                                        card.style.margin = '';
-                                        card.style.transition = 'transform var(--premium-ease)';
-                                        placeholder.remove();
-                                    }, 800); // Wait for transition
-                                }
+                                zoomOut();
                             }
                         }
                         lastTap = currentTime;
