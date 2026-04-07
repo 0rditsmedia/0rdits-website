@@ -1789,6 +1789,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
+            pointer-events: none; /* Block all mouse/touch interaction with the native player UI */
             transition: transform var(--premium-ease), opacity 0.5s ease;
         }
 
@@ -3301,7 +3302,7 @@
                             height: '100%',
                             width: '100%',
                             videoId: item.videoId,
-                            host: 'https://www.youtube.com',
+                            host: 'https://www.youtube-nocookie.com',
                             playerVars: {
                                 'autoplay': item.autoplay,
                                 'mute': 1,
@@ -3313,12 +3314,14 @@
                                 'enablejsapi': 1,
                                 'iv_load_policy': 3,
                                 'disablekb': 1,
+                                'playsinline': 1,
+                                'vq': 'hd1080',
                                 'origin': window.location.origin,
                                 'widget_referrer': window.location.href
                             },
                             events: {
                                 'onReady': (event) => {
-                                    event.target.setPlaybackQuality('hd1080');
+                                    event.target.setPlaybackQuality('hd1080'); // Force high def attempt
                                     if (item.autoplay) {
                                         event.target.playVideo();
                                     }
@@ -3326,6 +3329,7 @@
                                 'onStateChange': (event) => {
                                     const container = document.getElementById(item.id);
                                     if (event.data === YT.PlayerState.PLAYING) {
+                                        event.target.setPlaybackQuality('highres'); // Aggressively enforce maximum available streaming quality
                                         pauseOthers(item.id); // Pause all other videos
                                         container.classList.add('is-ready');
 
@@ -3388,6 +3392,88 @@
                         if (player && player.pauseVideo) {
                             player.pauseVideo();
                         }
+                    });
+
+                    // Universal Double-Click/Tap to Cinematic Fullscreen
+                    let lastTap = 0;
+                    let isFullscreen = false;
+
+                    card.addEventListener('click', (e) => {
+                        if (e.target.closest('.mute-button')) return;
+
+                        const currentTime = new Date().getTime();
+                        const tapLength = currentTime - lastTap;
+                        
+                        if (tapLength < 400 && tapLength > 0) { // 400ms threshold for reliable double-tap
+                            e.preventDefault();
+                            
+                            if (!isFullscreen) {
+                                // ZOOM IN
+                                isFullscreen = true;
+                                const rect = card.getBoundingClientRect();
+                                
+                                // Create placeholder to maintain grid layout
+                                const placeholder = document.createElement('div');
+                                placeholder.className = 'video-card-placeholder';
+                                placeholder.style.width = rect.width + 'px';
+                                placeholder.style.height = rect.height + 'px';
+                                card.parentNode.insertBefore(placeholder, card);
+
+                                card.classList.add('fullscreen-card');
+                                document.body.classList.add('video-fullscreen-active');
+
+                                // Lock to current position (Fixed)
+                                card.style.width = rect.width + 'px';
+                                card.style.height = rect.height + 'px';
+                                card.style.position = 'fixed';
+                                card.style.top = rect.top + 'px';
+                                card.style.left = rect.left + 'px';
+                                card.style.zIndex = '9999';
+                                card.style.margin = '0';
+                                card.style.transition = 'none';
+
+                                // Next frame: Animate to Fullscreen bounds
+                                requestAnimationFrame(() => {
+                                    card.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                                    card.style.top = '0';
+                                    card.style.left = '0';
+                                    card.style.width = '100vw';
+                                    card.style.height = '100vh';
+                                    card.style.borderRadius = '0';
+                                });
+                            } else {
+                                // ZOOM OUT
+                                isFullscreen = false;
+                                document.body.classList.remove('video-fullscreen-active');
+                                
+                                const placeholder = card.previousElementSibling;
+                                if (placeholder && placeholder.className === 'video-card-placeholder') {
+                                    const targetRect = placeholder.getBoundingClientRect();
+                                    
+                                    // Animate back to placeholder bounds
+                                    card.style.top = targetRect.top + 'px';
+                                    card.style.left = targetRect.left + 'px';
+                                    card.style.width = targetRect.width + 'px';
+                                    card.style.height = targetRect.height + 'px';
+                                    card.style.borderRadius = '12px'; // Back to original radius
+
+                                    setTimeout(() => {
+                                        if (isFullscreen) return; // Prevent bugs if double clicked during animation
+                                        card.classList.remove('fullscreen-card');
+                                        card.style.position = 'relative';
+                                        card.style.top = '';
+                                        card.style.left = '';
+                                        card.style.width = '';
+                                        card.style.height = '';
+                                        card.style.zIndex = '';
+                                        card.style.margin = '';
+                                        card.style.transition = 'transform var(--premium-ease)';
+                                        placeholder.remove();
+                                    }, 800); // Wait for transition
+                                }
+                            }
+                        }
+                        lastTap = currentTime;
                     });
                 });
 
@@ -3615,6 +3701,25 @@
         </a>
 
         <style>
+            /* Video Cinematic Zoom CSS */
+            body.video-fullscreen-active {
+                overflow: hidden;
+            }
+
+            body.video-fullscreen-active .cards-container > *:not(.fullscreen-card),
+            body.video-fullscreen-active .navbar,
+            body.video-fullscreen-active .services-section,
+            body.video-fullscreen-active .stills-archive-section,
+            body.video-fullscreen-active .footer {
+                filter: blur(15px) brightness(0.5);
+                pointer-events: none;
+                transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            body.video-fullscreen-active .fullscreen-card::before {
+                opacity: 0 !important; /* hide glow behind card when fullscreen */
+            }
+
+            /* Contact button original CSS */
             .floating-contact {
                 position: fixed;
                 bottom: 30px;
