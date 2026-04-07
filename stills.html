@@ -207,8 +207,8 @@
             width: 100%;
             height: auto;
             display: block;
-            opacity: 0;
-            transition: opacity 1s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.7s var(--premium-ease), transform 0.8s var(--premium-ease);
+            will-change: opacity, transform;
         }
 
         .grid-item:hover img {
@@ -437,25 +437,40 @@
                 }
             });
         }, {
-            rootMargin: '250px' // Start loading just before they come into screen
+            rootMargin: '1200px' // Aggressive pre-load for professional "already there" experience
         });
 
-        photos.forEach(photo => {
+        photos.forEach((photo, index) => {
             const item = document.createElement('div');
             item.className = 'grid-item';
-            item.style.minHeight = '300px'; // Stop masonry from collapsing to 0 so lazy loading triggers correctly
+            item.style.minHeight = '300px'; 
 
             const img = new Image();
             img.dataset.src = photo;
             img.alt = photo;
+            img.decoding = 'async';
+            
+            // Priority Hints: First 6 images get high priority for instant FCP
+            if (index < 6) {
+                img.fetchPriority = 'high';
+            } else {
+                img.fetchPriority = 'low';
+            }
 
             img.onload = () => {
-                img.style.opacity = '1';
-                item.style.minHeight = 'auto'; // allow natural aspect ratio to set height
-                imagesLoaded++;
-                if (imagesLoaded >= threshold) {
-                    dismissLoader();
-                }
+                // Professional decoding logic: ensures no frame drops when image is shown
+                img.decode().then(() => {
+                    img.style.opacity = '1';
+                    item.style.minHeight = 'auto'; 
+                    imagesLoaded++;
+                    if (imagesLoaded >= threshold) {
+                        dismissLoader();
+                    }
+                }).catch(() => {
+                    // Fallback for decoding errors
+                    img.style.opacity = '1';
+                    item.style.minHeight = 'auto';
+                });
             };
 
             item.appendChild(img);
