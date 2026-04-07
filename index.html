@@ -1745,6 +1745,8 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform var(--premium-ease);
             position: relative;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .video-card::before {
@@ -3409,7 +3411,7 @@
                         isFullscreen = false;
                         document.body.classList.remove('video-fullscreen-active');
                         
-                        card.style.transform = ''; // clears inline style, resets to native CSS
+                        card.style.removeProperty('transform'); // clears inline important style, resets to native CSS
                         
                         setTimeout(() => {
                             if (isFullscreen) return; // Prevent bugs if double clicked during animation
@@ -3478,9 +3480,9 @@
                                 const translateY = centerY - cardCenterY;
 
                                 // Force layout isolation and hardware acceleration
-                                card.style.zIndex = '9999';
-                                card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-                                card.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+                                card.style.setProperty('z-index', '9999', 'important');
+                                card.style.setProperty('transition', 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)', 'important');
+                                card.style.setProperty('transform', `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`, 'important');
                             } else {
                                 // ZOOM OUT
                                 zoomOut();
@@ -3751,6 +3753,11 @@
             body.video-fullscreen-active .cards-container {
                 position: relative;
                 z-index: 9999;
+                pointer-events: none; /* Let background clicks pass through empty space to the backdrop */
+            }
+
+            body.video-fullscreen-active .fullscreen-card {
+                pointer-events: auto; /* Lock interactions exclusively to the video card itself */
             }
 
             body.video-fullscreen-active .fullscreen-card .video-thumbnail {
