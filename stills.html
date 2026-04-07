@@ -423,18 +423,35 @@
         const lightboxImg = lightbox.querySelector('.lightbox-img');
         const lightboxClose = lightbox.querySelector('.lightbox-close');
 
+        let imagesLoaded = 0;
+        const threshold = 5; // Load few to reveal fast
+
+        const lazyObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target.querySelector('img');
+                    if (img && !img.src) {
+                        img.src = img.dataset.src;
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '250px' // Start loading just before they come into screen
+        });
+
         photos.forEach(photo => {
             const item = document.createElement('div');
             item.className = 'grid-item';
+            item.style.minHeight = '300px'; // Stop masonry from collapsing to 0 so lazy loading triggers correctly
+
             const img = new Image();
-            img.src = photo;
-            img.loading = 'lazy';
+            img.dataset.src = photo;
             img.alt = photo;
-            let imagesLoaded = 0;
-            const threshold = 5; // Load few to reveal fast
 
             img.onload = () => {
                 img.style.opacity = '1';
+                item.style.minHeight = 'auto'; // allow natural aspect ratio to set height
                 imagesLoaded++;
                 if (imagesLoaded >= threshold) {
                     dismissLoader();
@@ -443,6 +460,7 @@
 
             item.appendChild(img);
             grid.appendChild(item);
+            lazyObserver.observe(item);
 
             // --- Cinematic FLIP Lightbox Expansion ---
             item.addEventListener('click', (e) => {
