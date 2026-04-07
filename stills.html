@@ -430,8 +430,8 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target.querySelector('img');
-                    if (img && !img.src) {
-                        img.src = img.dataset.src;
+                    if (img && !img.hasAttribute('src')) {
+                        img.setAttribute('src', img.dataset.src);
                         observer.unobserve(entry.target);
                     }
                 }
