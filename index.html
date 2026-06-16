@@ -3411,11 +3411,6 @@
             });
 
             // --- YouTube IFrame API Integration (Optimized) ---
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
             const players = {};
 
             // Helper to stop all other videos
@@ -3440,8 +3435,12 @@
                 { id: 'player-video12', videoId: 'nVC6L8n5b6A', autoplay: 0 }
             ];
 
-            window.onYouTubeIframeAPIReady = function () {
+            function initPlayers() {
                 videoData.forEach(item => {
+                    const container = document.getElementById(item.id);
+                    if (!container) return; // skip if not found
+                    if (players[item.id]) return; // prevent duplicate init
+
                     players[item.id] = new YT.Player(item.id, {
                         height: '100%',
                         width: '100%',
@@ -3464,6 +3463,7 @@
                             'onReady': (event) => {
                                 event.target.setPlaybackQuality('hd1080'); // Force high def attempt
                                 if (item.autoplay) {
+                                    event.target.mute(); // Explicitly mute to bypass browser autoplay blocks
                                     event.target.playVideo();
                                 }
                             },
@@ -3499,7 +3499,18 @@
                         }
                     });
                 });
-            };
+            }
+
+            // Execute initialization properly depending on whether API is already loaded
+            if (window.YT && window.YT.Player) {
+                initPlayers();
+            } else {
+                window.onYouTubeIframeAPIReady = initPlayers;
+                const tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                const firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            }
 
             // --- Mute/Unmute Button Functionality (YouTube) ---
             const muteButtons = document.querySelectorAll('.mute-button');
@@ -3710,6 +3721,7 @@
                     const heroPlayer = players['hero-player'];
                     if (heroPlayer && heroPlayer.playVideo) {
                         if (entry.isIntersecting) {
+                            if (heroPlayer.mute) heroPlayer.mute(); // Ensure muted for autoplay
                             heroPlayer.playVideo();
                         } else {
                             // Pause when far away to preserve resources for motion archive
