@@ -3398,6 +3398,18 @@
                 module.style.transitionDelay = `${index * 0.2}s`;
             });
 
+            // --- Preloader Fallback ---
+            // Ensures the site launches even if the YouTube API fails or autoplay is blocked
+            setTimeout(() => {
+                const loader = document.getElementById('site-loader');
+                if (loader) loader.classList.add('loaded');
+            }, 3000);
+
+            window.addEventListener('load', () => {
+                const loader = document.getElementById('site-loader');
+                if (loader) loader.classList.add('loaded');
+            });
+
             // --- YouTube IFrame API Integration (Optimized) ---
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
