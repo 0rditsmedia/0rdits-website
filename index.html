@@ -18,11 +18,13 @@
             user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
-            -webkit-touch-callout: none; /* Prevents long-press "Save Image" menu on mobile */
+            -webkit-touch-callout: none;
+            /* Prevents long-press "Save Image" menu on mobile */
         }
 
         :root {
-            --premium-ease: 0.7s cubic-bezier(0.65, 0, 0.35, 1); /* Slower, profound ease-in-out */
+            --premium-ease: 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+            /* Slower, profound ease-in-out */
             --neon-green: #39ff14;
         }
 
@@ -59,7 +61,8 @@
             font-weight: 900;
             font-style: italic;
             text-transform: uppercase;
-            transform: scaleX(1.15); /* Match hero branding */
+            transform: scaleX(1.15);
+            /* Match hero branding */
         }
 
         .loader-bar {
@@ -146,7 +149,8 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            z-index: 1100; /* Elevated safely above the sidebar menu (1010) */
+            z-index: 1100;
+            /* Elevated safely above the sidebar menu (1010) */
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
             opacity: 1;
             transform: translate3d(0, 0, 0);
@@ -489,6 +493,10 @@
             filter: brightness(0.9) contrast(1.1);
             pointer-events: none;
             overflow: hidden;
+            background-color: #000;
+            background-image: url('https://img.youtube.com/vi/NZEQTLaDKUA/maxresdefault.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
         #hero-player {
@@ -1183,20 +1191,23 @@
         /* --- MOBILE PERFECTION (DESKTOP INTACT) --- */
         @media (max-width: 768px) {
             :root {
-                --section-padding: 5rem 0.75rem; /* Wider — less wasted side space */
+                --section-padding: 5rem 0.75rem;
+                /* Wider — less wasted side space */
             }
 
-            .about-section, 
-            .services-section, 
-            .video-gallery-section, 
-            .stills-archive-section, 
+            .about-section,
+            .services-section,
+            .video-gallery-section,
+            .stills-archive-section,
             .contact-section {
                 padding-left: 0.75rem !important;
                 padding-right: 0.75rem !important;
             }
 
             /* Utility: line-break only on mobile */
-            .mob-break { display: block; }
+            .mob-break {
+                display: block;
+            }
 
             /* --- 1. FULL-SCREEN MENU & HEADER REDESIGN --- */
             .navbar {
@@ -1205,12 +1216,13 @@
                 -webkit-backdrop-filter: none !important;
                 border: none !important;
                 box-shadow: none !important;
-                padding: 1.2rem 0; /* Tightened */
+                padding: 1.2rem 0;
+                /* Tightened */
                 height: auto;
             }
 
             .navbar.scrolled {
-                background: rgba(0,0,0,0.95) !important;
+                background: rgba(0, 0, 0, 0.95) !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
             }
@@ -1228,7 +1240,8 @@
             }
 
             /* Hide desktop social/contact icons to clean up header */
-            .nav-right, .desktop-nav {
+            .nav-right,
+            .desktop-nav {
                 display: none !important;
             }
 
@@ -1244,16 +1257,20 @@
                 top: -100vh;
                 border: none;
                 box-shadow: none;
-                background: rgba(10, 10, 10, 0.98); /* Deeper for luxury */
-                backdrop-filter: none !important; /* Fixed the weird blur bug when opening menu */
+                background: rgba(10, 10, 10, 0.98);
+                /* Deeper for luxury */
+                backdrop-filter: none !important;
+                /* Fixed the weird blur bug when opening menu */
                 -webkit-backdrop-filter: none !important;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between; /* Space for items and social footer */
+                justify-content: space-between;
+                /* Space for items and social footer */
                 align-items: center;
                 transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
                 padding: 10vh 0 5vh;
-                z-index: 1010; /* Must be ABOVE overlay (1004) so taps reach links */
+                z-index: 1010;
+                /* Must be ABOVE overlay (1004) so taps reach links */
                 overflow-y: auto;
             }
 
@@ -1265,7 +1282,8 @@
             .sidebar-overlay {
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
-                background: rgba(0, 0, 0, 0.7); /* Darker solid color instead of blur */
+                background: rgba(0, 0, 0, 0.7);
+                /* Darker solid color instead of blur */
             }
 
             .menu-items {
@@ -1288,27 +1306,33 @@
                 font-style: italic;
                 text-transform: uppercase;
                 letter-spacing: -1px;
-                color: rgba(255, 255, 255, 0.85); /* Clean, bright, no muffled look */
+                color: rgba(255, 255, 255, 0.85);
+                /* Clean, bright, no muffled look */
                 border: none;
                 padding: 0.5rem 0;
                 text-align: center;
                 transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                opacity: 0.35; /* Expert-level default dimming */
+                opacity: 0.35;
+                /* Expert-level default dimming */
             }
 
             .menu-items:hover a {
-                opacity: 0.35; /* Dim all when parent is hovered */
+                opacity: 0.35;
+                /* Dim all when parent is hovered */
             }
 
             .menu-items a:hover {
-                opacity: 1 !important; /* Keep the focused item fully bright */
+                opacity: 1 !important;
+                /* Keep the focused item fully bright */
                 color: #fff !important;
                 text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
-                transform: scale(1.05); /* Slight pop */
+                transform: scale(1.05);
+                /* Slight pop */
             }
 
             .menu-items a.active {
-                opacity: 1 !important; /* Glowing active section tracker */
+                opacity: 1 !important;
+                /* Glowing active section tracker */
                 color: #fff !important;
                 text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
                 transform: scale(1.05);
@@ -1318,6 +1342,7 @@
             .mobile-socials:hover a {
                 opacity: 0.6;
             }
+
             .mobile-socials a:hover {
                 opacity: 1 !important;
             }
@@ -1327,29 +1352,42 @@
             }
 
             /* Dim inactive items — focus effect */
-            .menu-items:hover .nav-link { opacity: 0.35; transition: opacity 0.3s ease; }
-            .menu-items:hover .nav-link:hover { opacity: 1; }
-            .menu-items .nav-link.active { opacity: 1; }
+            .menu-items:hover .nav-link {
+                opacity: 0.35;
+                transition: opacity 0.3s ease;
+            }
+
+            .menu-items:hover .nav-link:hover {
+                opacity: 1;
+            }
+
+            .menu-items .nav-link.active {
+                opacity: 1;
+            }
 
             /* Mobile Social Footer */
             .mobile-socials {
                 display: flex !important;
                 gap: 2.5rem;
                 margin-top: auto;
-                padding-bottom: 100px; /* Elevated to clear search bars */
+                padding-bottom: 100px;
+                /* Elevated to clear search bars */
                 opacity: 1;
             }
+
             .mobile-socials a {
                 color: #fff;
                 font-size: 1.5rem;
                 transition: transform 0.3s ease;
             }
+
             .mobile-socials a:active {
                 transform: scale(0.9);
             }
 
             .landing-section {
-                height: 100dvh !important; /* Use dynamic VH to perfectly fit mobile screen */
+                height: 100dvh !important;
+                /* Use dynamic VH to perfectly fit mobile screen */
                 position: relative;
                 overflow: hidden;
                 display: flex !important;
@@ -1360,7 +1398,8 @@
             }
 
             .landing-content {
-                position: absolute; /* Lock to the section boundary */
+                position: absolute;
+                /* Lock to the section boundary */
                 top: 0;
                 left: 0;
                 width: 100%;
@@ -1370,7 +1409,8 @@
                 align-items: center;
                 justify-content: center;
                 z-index: 10;
-                pointer-events: none; /* Let clicks pass through if needed */
+                pointer-events: none;
+                /* Let clicks pass through if needed */
             }
 
             /* Hero: "0rdits" — original size restored */
@@ -1388,18 +1428,30 @@
             }
 
             .landing-subtitle {
-                font-size: 1.4rem; /* Final size boost for ultimate visibility */
-                letter-spacing: 1px; 
+                font-size: 1.4rem;
+                /* Final size boost for ultimate visibility */
+                letter-spacing: 1px;
                 opacity: 0.85;
-                margin-top: 5px; /* Tighter layout */
+                margin-top: 5px;
+                /* Tighter layout */
             }
 
             @keyframes heroTitleReveal {
-                to { opacity: 0.9; filter: blur(0); letter-spacing: -0.5vw; transform: scaleX(1) scale(1); }
+                to {
+                    opacity: 0.9;
+                    filter: blur(0);
+                    letter-spacing: -0.5vw;
+                    transform: scaleX(1) scale(1);
+                }
             }
 
             @keyframes heroSubtitleReveal {
-                to { opacity: 0.5; filter: blur(0); letter-spacing: 2px; transform: scaleX(1) scale(1); }
+                to {
+                    opacity: 0.5;
+                    filter: blur(0);
+                    letter-spacing: 2px;
+                    transform: scaleX(1) scale(1);
+                }
             }
 
             /* --- SECTION TITLES: Natural word-wrap at a legible size ---
@@ -1422,11 +1474,14 @@
             .about-section {
                 padding: var(--section-padding);
             }
+
             .about-container {
                 grid-template-columns: 1fr;
                 gap: 4rem;
-                text-align: left; /* Keep left alignment for editorial feel */
+                text-align: left;
+                /* Keep left alignment for editorial feel */
             }
+
             /* "Behind the wheel" — wraps as "Behind the / wheel" if needed, editorial feel */
             .about-title {
                 font-size: 1.6rem;
@@ -1437,11 +1492,14 @@
                 transform: scaleX(1) !important;
                 letter-spacing: -0.5px !important;
             }
+
             .about-body {
                 font-size: 0.9rem;
             }
+
             .about-stats {
-                grid-template-columns: 1fr; /* Stack vertically for space */
+                grid-template-columns: 1fr;
+                /* Stack vertically for space */
                 gap: 2rem;
                 border: none;
                 padding-top: 0;
@@ -1449,28 +1507,31 @@
 
             /* --- 6. STILLS ARCHIVE — From-scratch Mobile Perfection --- */
             .stills-archive-section {
-                padding: 4rem 0 6rem; /* Extra bottom padding for UI breathing */
+                padding: 4rem 0 6rem;
+                /* Extra bottom padding for UI breathing */
                 overflow: hidden;
             }
 
             .stills-carousel-container {
                 position: relative;
-                height: 60vh; /* Reduced from massive 85vh to tighten the layout */
+                height: 60vh;
+                /* Reduced from massive 85vh to tighten the layout */
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                overflow: visible; 
+                overflow: visible;
             }
 
             .stills-carousel {
-                height: 100% !important; 
+                height: 100% !important;
                 width: 100%;
                 position: relative;
             }
 
             .carousel-item {
-                width: 100%; 
-                height: 38vh !important; /* Invisible logic box for perfect centering */
+                width: 100%;
+                height: 38vh !important;
+                /* Invisible logic box for perfect centering */
                 position: absolute;
                 display: flex;
                 align-items: center;
@@ -1484,15 +1545,17 @@
             }
 
             .carousel-item img {
-                align-self: center; /* Prevent flex-stretching on iOS/Android */
+                align-self: center;
+                /* Prevent flex-stretching on iOS/Android */
                 max-height: 100%;
                 max-width: 85vw;
                 width: auto !important;
                 height: auto !important;
-                object-fit: fill !important; /* Force true aspect ratio mapping over global contain */
+                object-fit: fill !important;
+                /* Force true aspect ratio mapping over global contain */
                 border-radius: 6px;
-                box-shadow: 0 10px 50px rgba(0,0,0,0.9);
-                border: 1px solid rgba(255,255,255,0.1); 
+                box-shadow: 0 10px 50px rgba(0, 0, 0, 0.9);
+                border: 1px solid rgba(255, 255, 255, 0.1);
                 display: block;
             }
 
@@ -1525,7 +1588,8 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                width: 24px; /* Shrunk finer as requested */
+                width: 24px;
+                /* Shrunk finer as requested */
                 height: 24px;
                 background: rgba(0, 0, 0, 0.8);
                 border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1538,25 +1602,35 @@
                 font-size: 0.5rem;
             }
 
-            .arrow-left  { left: 5px; }
-            .arrow-right { right: 5px; }
+            .arrow-left {
+                left: 5px;
+            }
+
+            .arrow-right {
+                right: 5px;
+            }
 
             /* Progress UI: Forced vertical clearance */
             .stills-explorer-link {
-                margin-top: 2rem !important; /* Tightened up to the visual */
+                margin-top: 2rem !important;
+                /* Tightened up to the visual */
                 position: relative;
                 z-index: 10;
                 display: block;
                 text-align: center;
             }
+
             .slide-bar-text {
-                display: block !important; /* Reverting visibility as requested */
+                display: block !important;
+                /* Reverting visibility as requested */
                 margin-top: 1.5rem !important;
                 opacity: 0.6;
             }
+
             .stat-item h3 {
                 font-size: 1.8rem;
             }
+
             .profile-card {
                 aspect-ratio: 4/5;
                 width: 100%;
@@ -1565,6 +1639,7 @@
                 justify-content: center;
                 opacity: 1 !important;
             }
+
             .profile-card img {
                 width: 100%;
                 height: 100%;
@@ -1572,7 +1647,9 @@
                 opacity: 1 !important;
                 visibility: visible !important;
             }
-            .about-visual, .about-visual.reveal {
+
+            .about-visual,
+            .about-visual.reveal {
                 opacity: 1 !important;
                 visibility: visible !important;
                 transform: none !important;
@@ -1582,16 +1659,19 @@
             .services-section {
                 padding: var(--section-padding);
             }
+
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 1.2rem; /* Much tighter spacing */
+                gap: 1.2rem;
+                /* Much tighter spacing */
             }
-            
+
             .service-category {
                 background: rgba(10, 10, 10, 0.9) !important;
                 border: 1px solid rgba(255, 255, 255, 0.05) !important;
                 border-radius: 12px !important;
-                padding: 2.5rem 1.5rem !important; /* Elegant mobile padding */
+                padding: 2.5rem 1.5rem !important;
+                /* Elegant mobile padding */
                 box-shadow: none !important;
             }
 
@@ -1600,6 +1680,7 @@
                 align-items: flex-start;
                 gap: 1rem;
             }
+
             /* Service card headings: "Production Tasks", "Identity Maxing" etc. — all short, fit on one line */
             .category-header h2 {
                 font-size: 1.4rem;
@@ -1607,58 +1688,85 @@
                 white-space: normal;
                 word-break: break-word;
             }
+
             .service-list {
                 display: flex;
                 flex-direction: column;
                 gap: 1.5rem;
                 margin-top: 1rem;
             }
-            
+
             /* The Ultimate Growth Pack special treatment */
             .service-category.premium-pack {
-                background: linear-gradient(to bottom, rgba(20,20,30,0.9), rgba(10,10,10,0.9)) !important;
-                border: 1px solid rgba(0,255,0,0.2) !important;
-                box-shadow: 0 10px 40px rgba(0,255,0,0.05) !important;
+                background: linear-gradient(to bottom, rgba(20, 20, 30, 0.9), rgba(10, 10, 10, 0.9)) !important;
+                border: 1px solid rgba(0, 255, 0, 0.2) !important;
+                box-shadow: 0 10px 40px rgba(0, 255, 0, 0.05) !important;
             }
+
             .pack-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+
             .pack-item {
                 background: transparent;
-                border-left: 2px solid rgba(255,255,255,0.2);
+                border-left: 2px solid rgba(255, 255, 255, 0.2);
                 padding-left: 1.5rem;
             }
 
             /* --- 5. MOTION ARCHIVE — Fill screen, keep cinematic stagger --- */
             .cards-container {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important; /* 2 Column grid restored */
-                gap: 8px !important; /* Breathable gap */
+                grid-template-columns: repeat(2, 1fr) !important;
+                /* 2 Column grid restored */
+                gap: 8px !important;
+                /* Breathable gap */
                 padding: 0 0.75rem !important;
                 margin: 0 0 40px !important;
                 align-items: start;
             }
+
             .video-card {
                 width: 100% !important;
                 height: auto !important;
                 aspect-ratio: 9/16;
-                border-radius: 6px;
+                border-radius: 12px !important;
                 border: none;
+                overflow: hidden !important;
+                isolation: isolate;
+                /* Forces a new stacking context for reliable clipping */
+                -webkit-mask-image: -webkit-radial-gradient(white, black);
+                /* GPU-level clip for Safari */
+                mask-image: radial-gradient(white, black);
             }
+
+            .video-wrapper {
+                width: 100% !important;
+                height: 100% !important;
+                overflow: hidden !important;
+                border-radius: 12px !important;
+                -webkit-mask-image: -webkit-radial-gradient(white, black);
+                /* Reinforced GPU clip */
+                mask-image: radial-gradient(white, black);
+            }
+
             .video-card:nth-child(even) {
-                transform: translateY(25px) !important; /* Subtle premium stagger */
+                transform: translateY(25px) !important;
+                /* Subtle premium stagger */
             }
+
             /* Removed duplicate carousel style to preserve Cinematic JS version */
 
             /* --- 6. CONTACT HUD REDESIGN SCROLL-REVEAL GLOW --- */
             .contact-section {
                 padding: 6rem 1.5rem;
             }
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 4rem;
             }
+
             .contact-module {
                 background: transparent !important;
                 border: none !important;
@@ -1666,7 +1774,12 @@
                 box-shadow: none !important;
                 /* transform logic left alone so desktop `.reveal` animates it */
             }
-            .contact-module::before { display: none !important; } /* Remove thick vertical bar */
+
+            .contact-module::before {
+                display: none !important;
+            }
+
+            /* Remove thick vertical bar */
             /* Contact titles: "EMAIL" / "WHATSAPP" — very short, always single line */
             .module-title {
                 font-size: 1.6rem;
@@ -1675,17 +1788,19 @@
                 opacity: 0.9 !important;
                 white-space: normal;
             }
+
             .module-data {
                 font-size: 0.9rem;
                 letter-spacing: 2px !important;
             }
-            
+
             /* Minimalist scan line waits for scroll activation */
             .contact-module .scan-line {
                 position: relative !important;
                 height: 1px !important;
                 width: 100% !important;
-                top: auto; left: auto;
+                top: auto;
+                left: auto;
                 margin-top: 1.5rem;
                 background: linear-gradient(90deg, var(--accent-color), transparent) !important;
                 opacity: 0;
@@ -1696,17 +1811,20 @@
                 opacity: 1 !important;
                 box-shadow: 0 0 15px var(--accent-color);
             }
+
             .contact-module.reveal.active .module-icon {
                 color: var(--accent-color) !important;
                 opacity: 1 !important;
             }
+
             .contact-module.reveal.active .module-title {
                 text-shadow: 0 0 20px var(--accent-glow) !important;
             }
-            
+
             .module-header {
                 margin-bottom: 1rem;
             }
+
             .contact-module .status-text {
                 color: #fff !important;
             }
@@ -1791,7 +1909,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
-            pointer-events: none; /* Block all mouse/touch interaction with the native player UI */
+            pointer-events: none;
+            /* Block all mouse/touch interaction with the native player UI */
             transition: transform var(--premium-ease), opacity 0.5s ease;
         }
 
@@ -2253,7 +2372,8 @@
             align-items: center;
             justify-content: center;
             padding: 2rem 0;
-            min-height: 500px; /* Forces structural height to push siblings down */
+            min-height: 500px;
+            /* Forces structural height to push siblings down */
             perspective: 1000px;
         }
 
@@ -2415,7 +2535,8 @@
         .stills-explorer-link {
             text-decoration: none;
             display: block;
-            margin: 6rem auto 0; /* Pushed down more for mobile comfort */
+            margin: 6rem auto 0;
+            /* Pushed down more for mobile comfort */
             text-align: center;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
@@ -2573,14 +2694,21 @@
 
                 <div class="about-body">
                     <p>Hey, I'm <span class="body-accent">Marouane</span>.</p>
-                        
-                    <p><span class="body-accent">CARS</span> are my passion, <span class="body-accent">CAMERA</span> is my weapon, and <span class="body-accent">BRANDING</span> is my way.</p>
 
-                    <p>As a Digital Marketing specialist, I’ve refined the strategy and brand-thinking required to build a dominant digital footprint for those who are extraordinary. Embracing the beauty of doing things differently, I <span class="body-accent">BLEND precision with artistic aesthetics</span> while pushing creativity to its limits.</p>
+                    <p><span class="body-accent">CARS</span> are my passion, <span class="body-accent">CAMERA</span> is
+                        my weapon, and <span class="body-accent">BRANDING</span> is my way.</p>
 
-                    <p><span class="body-accent">0RDITS</span> is where it all began. If you look close enough at my emblem, you’re finding a better meaning each and every time. That’s exactly what 0RDITS is about. It started as a passion, then a hobby, then a job, and soon it will be a career.</p>
+                    <p>As a Digital Marketing specialist, I’ve refined the strategy and brand-thinking required to build
+                        a dominant digital footprint for those who are extraordinary. Embracing the beauty of doing
+                        things differently, I <span class="body-accent">BLEND precision with artistic aesthetics</span>
+                        while pushing creativity to its limits.</p>
 
-                    <p>I work with people like me, those with passion and ambition who are willing to change the approach as many times as it takes, <span class="body-accent">but never the Goal</span>.</p>
+                    <p><span class="body-accent">0RDITS</span> is where it all began. If you look close enough at my
+                        emblem, you’re finding a better meaning each and every time. That’s exactly what 0RDITS is
+                        about. It started as a passion, then a hobby, then a job, and soon it will be a career.</p>
+
+                    <p>I work with people like me, those with passion and ambition who are willing to change the
+                        approach as many times as it takes, <span class="body-accent">but never the Goal</span>.</p>
 
                     <div class="authority-statement">
                         Everything else is just traffic.
@@ -2726,1104 +2854,1119 @@
                     <span class="value euro-style">7,500 <span>MAD / month</span></span>
                 </div>
             </div>
-            </div>
+        </div>
         </div>
     </section>
 
     <!-- VIDEO GALLERY -->
     <section class="video-gallery-section" id="motion">
         <div class="section-title">
-                <h1 class="euro-style">Motion Archive</h1>
-            </div>
-            <div class="cards-container">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video1" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/QtBzPo-Ma9s/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
+            <h1 class="euro-style">Motion Archive</h1>
+        </div>
+        <div class="cards-container">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video1" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/QtBzPo-Ma9s/maxresdefault.jpg');">
                     </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video2" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/5r3CSVdd-D8/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video3" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/G5n9VGB-2rI/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video5" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/EiKjUytpan0/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video6" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/RbqL66wc3_Q/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video9" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/Wo43KlT9mu4/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video10" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/gqhES4DNk7M/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video11" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/OhfFRP-Ngew/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <div id="player-video12" class="yt-player-container"></div>
-                        <div class="video-thumbnail"
-                            style="background-image: url('https://img.youtube.com/vi/nVC6L8n5b6A/maxresdefault.jpg');">
-                        </div>
-                        <button class="mute-button" aria-label="Toggle mute">
-                            <i class="fas fa-volume-mute"></i>
-                        </button>
-                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
                 </div>
             </div>
-        </section>
-
-        <!-- STILLS ARCHIVE -->
-        <section class="stills-archive-section" id="stills">
-            <div class="section-title">
-                <h1 class="euro-style">Stills Archive</h1>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video2" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/5r3CSVdd-D8/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video3" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/G5n9VGB-2rI/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video5" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/EiKjUytpan0/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video6" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/RbqL66wc3_Q/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
             </div>
 
-            <div class="stills-carousel-container">
-                <button class="carousel-arrow arrow-left" id="prevStills">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <div class="stills-carousel" id="stillsCarousel">
-                    <!-- Items will be injected by JavaScript -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video9" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/Wo43KlT9mu4/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
                 </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video10" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/gqhES4DNk7M/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video11" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/OhfFRP-Ngew/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <div id="player-video12" class="yt-player-container"></div>
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://img.youtube.com/vi/nVC6L8n5b6A/maxresdefault.jpg');">
+                    </div>
+                    <button class="mute-button" aria-label="Toggle mute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <button class="carousel-arrow arrow-right" id="nextStills">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+    <!-- STILLS ARCHIVE -->
+    <section class="stills-archive-section" id="stills">
+        <div class="section-title">
+            <h1 class="euro-style">Stills Archive</h1>
+        </div>
+
+        <div class="stills-carousel-container">
+            <button class="carousel-arrow arrow-left" id="prevStills">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="stills-carousel" id="stillsCarousel">
+                <!-- Items will be injected by JavaScript -->
             </div>
 
-            <a href="stills.html" class="stills-explorer-link" id="stillsExplorer">
-                <div class="slide-bar-container" id="stillsSlideBar">
-                    <div class="slide-bar-fill" id="slideBarFill"></div>
+            <button class="carousel-arrow arrow-right" id="nextStills">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <a href="stills.html" class="stills-explorer-link" id="stillsExplorer">
+            <div class="slide-bar-container" id="stillsSlideBar">
+                <div class="slide-bar-fill" id="slideBarFill"></div>
+            </div>
+            <p class="slide-bar-text">Explore Full Catalog</p>
+        </a>
+    </section>
+
+    <!-- HYPER-DRIVE INTERFACE (Let's Talk) -->
+    <section class="contact-section" id="lets-talk">
+        <div class="section-title reveal">
+            <h1 class="euro-style">Let's Talk</h1>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Email Module: Transmission -->
+            <a href="mailto:0rditsmedia@gmail.com" class="contact-module email-module reveal">
+                <div class="dashboard-glitch"></div>
+                <div class="module-content">
+                    <div class="module-header">
+                        <div class="module-icon-group">
+                            <i class="fas fa-envelope module-icon"></i>
+                        </div>
+                        <div class="status-indicator">
+                            <span class="pulse-dot"></span>
+                            <span class="status-text">SIGNAL ONLINE</span>
+                        </div>
+                    </div>
+                    <h2 class="module-title">EMAIL</h2>
+                    <p class="module-data">0RDITSMEDIA@GMAIL.COM</p>
+                    <div class="scan-line"></div>
                 </div>
-                <p class="slide-bar-text">Explore Full Catalog</p>
             </a>
-        </section>
 
-        <!-- HYPER-DRIVE INTERFACE (Let's Talk) -->
-        <section class="contact-section" id="lets-talk">
-            <div class="section-title reveal">
-                <h1 class="euro-style">Let's Talk</h1>
-            </div>
-
-            <div class="contact-grid">
-                <!-- Email Module: Transmission -->
-                <a href="mailto:0rditsmedia@gmail.com" class="contact-module email-module reveal">
-                    <div class="dashboard-glitch"></div>
-                    <div class="module-content">
-                        <div class="module-header">
-                            <div class="module-icon-group">
-                                <i class="fas fa-envelope module-icon"></i>
-                            </div>
-                            <div class="status-indicator">
-                                <span class="pulse-dot"></span>
-                                <span class="status-text">SIGNAL ONLINE</span>
-                            </div>
+            <!-- WhatsApp Module: Secure Channel -->
+            <a href="https://wa.me/212770422822" target="_blank"
+                class="contact-module whatsapp-module reveal delay-200">
+                <div class="dashboard-glitch"></div>
+                <div class="module-content">
+                    <div class="module-header">
+                        <div class="module-icon-group">
+                            <i class="fab fa-whatsapp module-icon"></i>
                         </div>
-                        <h2 class="module-title">EMAIL</h2>
-                        <p class="module-data">0RDITSMEDIA@GMAIL.COM</p>
-                        <div class="scan-line"></div>
-                    </div>
-                </a>
-
-                <!-- WhatsApp Module: Secure Channel -->
-                <a href="https://wa.me/212770422822" target="_blank"
-                    class="contact-module whatsapp-module reveal delay-200">
-                    <div class="dashboard-glitch"></div>
-                    <div class="module-content">
-                        <div class="module-header">
-                            <div class="module-icon-group">
-                                <i class="fab fa-whatsapp module-icon"></i>
-                            </div>
-                            <div class="status-indicator">
-                                <span class="pulse-dot"></span>
-                                <span class="status-text">SIGNAL ONLINE</span>
-                            </div>
+                        <div class="status-indicator">
+                            <span class="pulse-dot"></span>
+                            <span class="status-text">SIGNAL ONLINE</span>
                         </div>
-                        <h2 class="module-title">WHATSAPP</h2>
-                        <p class="module-data">+212 770 422 822</p>
-                        <div class="scan-line"></div>
                     </div>
-                </a>
-            </div>
-        </section>
+                    <h2 class="module-title">WHATSAPP</h2>
+                    <p class="module-data">+212 770 422 822</p>
+                    <div class="scan-line"></div>
+                </div>
+            </a>
+        </div>
+    </section>
 
-        <footer class="footer">
-            <p>© 2026 ORDITS. ALL RIGHTS RESERVED. ENGINEERED FOR AUTHORITY.</p>
-        </footer>
+    <footer class="footer">
+        <p>© 2026 ORDITS. ALL RIGHTS RESERVED. ENGINEERED FOR AUTHORITY.</p>
+    </footer>
 
-        <style>
-            /* [EXISTING STYLES PRESERVED] - appending new animation styles */
+    <style>
+        /* [EXISTING STYLES PRESERVED] - appending new animation styles */
 
-            /* Consolidated Navbar Styles */
+        /* Consolidated Navbar Styles */
 
-            /* Reveal Animation Classes */
-            .reveal {
-                opacity: 0;
-                transform: translateY(40px);
-                transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-                will-change: opacity, transform;
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Delays */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+
+        /* Card Hover */
+        .profile-card {
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Consolidated Contact Styles above */
+    </style>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', e => {
+            // Disable Ctrl+S, Ctrl+U, Ctrl+Shift+I, F12
+            if (
+                (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'S' || e.key === 'U')) ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) ||
+                (e.key === 'F12')
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // --- Custom Eased Smooth Scroll (900ms Cubic) ---
+        function smoothScrollTo(targetY, duration = 900) {
+            const startY = window.pageYOffset;
+            const distance = targetY - startY;
+            let startTime = null;
+
+            function cubicEaseInOut(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
             }
 
-            .reveal.active {
-                opacity: 1;
-                transform: translateY(0);
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const ease = cubicEaseInOut(progress);
+
+                window.scrollTo(0, startY + distance * ease);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
             }
 
-            /* Staggered Delays */
-            .delay-100 {
-                transition-delay: 0.1s;
+            requestAnimationFrame(animation);
+        }
+
+        // --- EXPERT ANTI-THEFT (Media Protection) ---
+        document.addEventListener('contextmenu', e => e.preventDefault()); // Block right-click to save
+        document.addEventListener('keydown', e => {
+            // Block F12, Inspect Element (Ctrl+Shift+I/C/J), and View Source (Ctrl+U)
+            if (e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
             }
+        });
 
-            .delay-200 {
-                transition-delay: 0.2s;
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section, footer');
+            const navbar = document.querySelector('.navbar');
+            const heroContent = document.querySelector('.landing-content');
+            const heroVideo = document.querySelector('.landing-video');
 
-            .delay-300 {
-                transition-delay: 0.3s;
-            }
+            // --- Toggle Sidebar ---
+            hamburger.addEventListener('click', () => {
+                const willBeActive = !sidebar.classList.contains('active');
 
-            .delay-400 {
-                transition-delay: 0.4s;
-            }
-
-            /* Card Hover */
-            .profile-card {
-                transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            /* Consolidated Contact Styles above */
-        </style>
-
-        <script>
-            document.addEventListener('contextmenu', event => event.preventDefault());
-
-            document.addEventListener('keydown', e => {
-                // Disable Ctrl+S, Ctrl+U, Ctrl+Shift+I, F12
-                if (
-                    (e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'S' || e.key === 'U')) ||
-                    (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) ||
-                    (e.key === 'F12')
-                ) {
-                    e.preventDefault();
-                    return false;
+                if (willBeActive) {
+                    hamburger.classList.add('active'); // The X animation stays working!
+                    sidebar.classList.add('active');
+                    overlay.classList.add('active');
+                    document.documentElement.style.overflow = 'hidden';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    closeSidebar();
                 }
             });
 
-            // --- Custom Eased Smooth Scroll (900ms Cubic) ---
-            function smoothScrollTo(targetY, duration = 900) {
-                const startY = window.pageYOffset;
-                const distance = targetY - startY;
-                let startTime = null;
-
-                function cubicEaseInOut(t) {
-                    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                }
-
-                function animation(currentTime) {
-                    if (startTime === null) startTime = currentTime;
-                    const timeElapsed = currentTime - startTime;
-                    const progress = Math.min(timeElapsed / duration, 1);
-                    const ease = cubicEaseInOut(progress);
-
-                    window.scrollTo(0, startY + distance * ease);
-
-                    if (timeElapsed < duration) {
-                        requestAnimationFrame(animation);
-                    }
-                }
-
-                requestAnimationFrame(animation);
-            }
-
-            // --- EXPERT ANTI-THEFT (Media Protection) ---
-            document.addEventListener('contextmenu', e => e.preventDefault()); // Block right-click to save
-            document.addEventListener('keydown', e => {
-                // Block F12, Inspect Element (Ctrl+Shift+I/C/J), and View Source (Ctrl+U)
-                if (e.key === 'F12' || 
-                   (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-                   (e.ctrlKey && e.key === 'U')) {
+            overlay.addEventListener('click', closeSidebar);
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                }
-            });
+                    const targetId = link.getAttribute('href');
 
-            document.addEventListener('DOMContentLoaded', () => {
-                const hamburger = document.getElementById('hamburger');
-                const sidebar = document.getElementById('sidebar');
-                const overlay = document.getElementById('sidebarOverlay');
-                const navLinks = document.querySelectorAll('.nav-link');
-                const sections = document.querySelectorAll('section, footer');
-                const navbar = document.querySelector('.navbar');
-                const heroContent = document.querySelector('.landing-content');
-                const heroVideo = document.querySelector('.landing-video');
+                    // Visual feedback instantly jumps to clicked location
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
 
-                // --- Toggle Sidebar ---
-                hamburger.addEventListener('click', () => {
-                    const willBeActive = !sidebar.classList.contains('active');
-                    
-                    if (willBeActive) {
-                        hamburger.classList.add('active'); // The X animation stays working!
-                        sidebar.classList.add('active');
-                        overlay.classList.add('active');
-                        document.documentElement.style.overflow = 'hidden';
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        closeSidebar();
-                    }
-                });
+                    // Close sidebar first
+                    closeSidebar();
 
-                overlay.addEventListener('click', closeSidebar);
-                navLinks.forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = link.getAttribute('href');
-
-                        // Visual feedback instantly jumps to clicked location
-                        navLinks.forEach(l => l.classList.remove('active'));
-                        link.classList.add('active');
-
-                        // Close sidebar first
-                        closeSidebar();
-
-                        // Scroll after sidebar transition
-                        if (targetId && targetId.startsWith('#')) {
-                            const targetElement = document.querySelector(targetId);
-                            if (targetElement) {
-                                setTimeout(() => {
-                                    const top = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                                    const offset = 60; // navbar height
-                                    smoothScrollTo(Math.max(0, top - offset), 900);
-                                }, 500); // reduced delay to account for longer scroll duration
-                            }
-                        }
-                    });
-                });
-
-                function closeSidebar() {
-                    hamburger.classList.remove('active');
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.documentElement.style.overflow = ''; // Unblock scroll
-                    document.body.style.overflow = '';
-                }
-
-                // --- Sidebar Glow Section Tracking ---
-                const navOptions = { 
-                    root: null, 
-                    rootMargin: '-20% 0px -60% 0px', // Trigger precisely when section enters middle of view
-                    threshold: 0 
-                };
-                const navObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.getAttribute('id');
-                            if (id) {
-                                navLinks.forEach(link => {
-                                    // Remove glow from all, add to currently tracking section
-                                    link.classList.remove('active');
-                                    if(link.getAttribute('href') === '#' + id) {
-                                        link.classList.add('active');
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }, navOptions);
-
-                sections.forEach(sec => {
-                    if (sec.id) navObserver.observe(sec);
-                });
-
-                // --- "Cinema" High-Consistency Navigation ---
-                let lastScroll = window.pageYOffset;
-                let tick = false;
-                let isAtTop = true;
-
-                function triggerNavReveal() {
-                    navbar.classList.remove('nav-reveal-active');
-                    void navbar.offsetWidth; // Force reflow
-                    navbar.classList.add('nav-reveal-active');
-                }
-
-                // Initial reveal on load
-                triggerNavReveal();
-
-                function updateNav() {
-                    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                    const heroHeight = window.innerHeight;
-                    const scrollDiff = currentScroll - lastScroll;
-
-                    // 1. Top-Reset & Reveal Trigger
-                    if (currentScroll <= 10) {
-                        if (!isAtTop) {
-                            navbar.style.transform = '';
-                            navbar.style.opacity = '';
-                            navbar.classList.remove('nav-hidden');
-                            triggerNavReveal();
-                            isAtTop = true;
-                        }
-                    }
-                    // 2. Scrolling UP (Anywhere) - Always Seamless Entry
-                    else if (scrollDiff < -15) {
-                        navbar.style.transform = '';
-                        navbar.style.opacity = '';
-                        navbar.classList.remove('nav-hidden');
-                        isAtTop = false;
-                        lastScroll = currentScroll;
-                    }
-                    // 3. Scrolling DOWN
-                    else if (scrollDiff > 0) {
-                        isAtTop = false;
-                        if (currentScroll <= heroHeight) {
-                            // Progressive Exit & Fade in Hero Zone
-                            const progress = Math.min(1, currentScroll / (heroHeight * 0.8));
-                            const easedProgress = progress * progress;
-
-                            navbar.style.transform = `translate3d(0, -${easedProgress * 105}%, 0)`;
-                            navbar.style.opacity = (1 - easedProgress).toString();
-                            navbar.classList.remove('nav-hidden');
-                        } else if (scrollDiff > 10) {
-                            // Standard Smooth Hide below hero
-                            navbar.style.transform = '';
-                            navbar.style.opacity = '';
-                            navbar.classList.add('nav-hidden');
-                            lastScroll = currentScroll;
-                        }
-                    }
-
-                    // Scrolled Aesthetics
-                    if (currentScroll > 50) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.remove('scrolled');
-                    }
-
-                    // Scroll Spy
-                    let activeId = "";
-                    sections.forEach(section => {
-                        const top = section.offsetTop - 150;
-                        if (currentScroll >= top) activeId = section.getAttribute('id');
-                    });
-
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('data-section') === activeId);
-                    });
-
-                    // Hero Parallax
-                    if (heroContent && currentScroll < heroHeight) {
-                        heroContent.style.transform = `translate3d(0, ${currentScroll * 0.4}px, 0)`;
-                        heroContent.style.opacity = 1 - (currentScroll / 600);
-                        heroContent.style.filter = `blur(${currentScroll * 0.005}px)`;
-                        if (heroVideo) heroVideo.style.transform = `scale(${1 + currentScroll * 0.0002})`;
-                    }
-
-                    tick = false;
-                }
-
-                window.addEventListener('scroll', () => {
-                    if (!tick) {
-                        requestAnimationFrame(updateNav);
-                        tick = true;
-                    }
-                }, { passive: true });
-
-                updateNav();
-                // --- 3D Profile Card Tilt & Contact Module Glow ---
-                const profileCard = document.querySelector('.profile-card');
-                const contactModules = document.querySelectorAll('.contact-module');
-
-                document.addEventListener('mousemove', (e) => {
-                    if (window.innerWidth < 992) return;
-
-                    // Profile Card Tilt
-                    if (profileCard) {
-                        const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-                        const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-                        const clampX = Math.max(-10, Math.min(10, xAxis));
-                        const clampY = Math.max(-10, Math.min(10, yAxis));
-                        profileCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-                    }
-
-                    // Contact Module glow follow
-                    contactModules.forEach(module => {
-                        const rect = module.getBoundingClientRect();
-                        const x = ((e.clientX - rect.left) / rect.width) * 100;
-                        const y = ((e.clientY - rect.top) / rect.height) * 100;
-                        module.style.setProperty('--mouse-x', `${x}%`);
-                        module.style.setProperty('--mouse-y', `${y}%`);
-                    });
-                });
-
-                // --- Intersection Observer for Scroll Reveals ---
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px',
-                    threshold: 0.1 // Trigger earlier
-                };
-
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('active');
-                            observer.unobserve(entry.target); // Only animate once
-                        }
-                    });
-                }, observerOptions);
-
-                // Elements to reveal - AUTOMATIC SELECTION of major elements
-                // We select sections and their immediate potentially interesting children
-                const revealSelectors = [
-                    '.section-title',
-                    '.about-visual',
-                    '.about-header-group',
-                    '.about-body p', // Select individual paragraphs
-                    '.about-stats',
-                    '.video-card',
-                    '.authority-statement',
-                    '.contact-section',
-                    '#lets-talk',
-                    '.contact-module',
-                    '.footer p'
-                ];
-
-                const revealElements = document.querySelectorAll(revealSelectors.join(','));
-
-                revealElements.forEach((el, index) => {
-                    el.classList.add('reveal');
-                    observer.observe(el);
-                });
-
-                // Special handling for video cards and contact modules to ensure stagger
-                const videoCards = document.querySelectorAll('.video-card');
-                videoCards.forEach((card, index) => {
-                    card.style.transitionDelay = `${index * 0.15}s`;
-                });
-
-                contactModules.forEach((module, index) => {
-                    module.style.transitionDelay = `${index * 0.2}s`;
-                });
-
-                // --- YouTube IFrame API Integration (Optimized) ---
-                const tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                const firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-                const players = {};
-                
-                // Helper to stop all other videos
-                function pauseOthers(activeId) {
-                    Object.keys(players).forEach(id => {
-                        if (id !== activeId && players[id] && players[id].pauseVideo) {
-                            players[id].pauseVideo();
-                        }
-                    });
-                }
-
-                const videoData = [
-                    { id: 'hero-player', videoId: 'NZEQTLaDKUA', autoplay: 1 },
-                    { id: 'player-video1', videoId: 'QtBzPo-Ma9s', autoplay: 0 },
-                    { id: 'player-video2', videoId: '5r3CSVdd-D8', autoplay: 0 },
-                    { id: 'player-video3', videoId: 'G5n9VGB-2rI', autoplay: 0 },
-                    { id: 'player-video5', videoId: 'EiKjUytpan0', autoplay: 0 },
-                    { id: 'player-video6', videoId: 'RbqL66wc3_Q', autoplay: 0 },
-                    { id: 'player-video9', videoId: 'Wo43KlT9mu4', autoplay: 0 },
-                    { id: 'player-video10', videoId: 'gqhES4DNk7M', autoplay: 0 },
-                    { id: 'player-video11', videoId: 'OhfFRP-Ngew', autoplay: 0 },
-                    { id: 'player-video12', videoId: 'nVC6L8n5b6A', autoplay: 0 }
-                ];
-
-                window.onYouTubeIframeAPIReady = function () {
-                    videoData.forEach(item => {
-                        players[item.id] = new YT.Player(item.id, {
-                            height: '100%',
-                            width: '100%',
-                            videoId: item.videoId,
-                            host: 'https://www.youtube-nocookie.com',
-                            playerVars: {
-                                'autoplay': item.autoplay,
-                                'mute': 1,
-                                'loop': 1,
-                                'playlist': item.videoId,
-                                'controls': 0,
-                                'modestbranding': 1,
-                                'rel': 0,
-                                'enablejsapi': 1,
-                                'iv_load_policy': 3,
-                                'disablekb': 1,
-                                'playsinline': 1,
-                                'vq': 'hd1080',
-                                'origin': window.location.origin,
-                                'widget_referrer': window.location.href
-                            },
-                            events: {
-                                'onReady': (event) => {
-                                    event.target.setPlaybackQuality('hd1080'); // Force high def attempt
-                                    if (item.autoplay) {
-                                        event.target.playVideo();
-                                    }
-                                },
-                                'onStateChange': (event) => {
-                                    const container = document.getElementById(item.id);
-                                    if (event.data === YT.PlayerState.PLAYING) {
-                                        event.target.setPlaybackQuality('highres'); // Aggressively enforce maximum available streaming quality
-                                        pauseOthers(item.id); // Pause all other videos
-                                        container.classList.add('is-ready');
-
-                                        // Handle preloader for hero
-                                        if (item.id === 'hero-player') {
-                                            const loader = document.getElementById('site-loader');
-                                            if (loader) loader.classList.add('loaded');
-                                        }
-
-                                        // Find parent card and hide thumbnail
-                                        const card = container.closest('.video-wrapper');
-                                        if (card) {
-                                            const thumb = card.querySelector('.video-thumbnail');
-                                            if (thumb) thumb.classList.add('fade-out');
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    });
-                };
-
-                // --- Mute/Unmute Button Functionality (YouTube) ---
-                const muteButtons = document.querySelectorAll('.mute-button');
-                muteButtons.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const playerContainer = button.closest('.video-wrapper').querySelector('.yt-player-container');
-                        const player = players[playerContainer.id];
-                        const icon = button.querySelector('i');
-
-                        if (player) {
-                            if (player.isMuted()) {
-                                player.unMute();
-                                icon.classList.remove('fa-volume-mute');
-                                icon.classList.add('fa-volume-up');
-                            } else {
-                                player.mute();
-                                icon.classList.remove('fa-volume-up');
-                                icon.classList.add('fa-volume-mute');
-                            }
-                        }
-                    });
-                });
-
-                // --- Video Hover-to-Play Functionality (YouTube) ---
-                const archiveVideoCards = document.querySelectorAll('.video-gallery-section .video-card');
-                archiveVideoCards.forEach(card => {
-                    const playerContainer = card.querySelector('.yt-player-container');
-
-                    card.addEventListener('mouseenter', () => {
-                        const player = players[playerContainer.id];
-                        if (player && player.playVideo) {
-                            player.playVideo();
-                        }
-                    });
-
-                    card.addEventListener('mouseleave', () => {
-                        // PREVENT VIDEO FROM RANDOMLY AUTOPAUSING WHEN MOUSE LEAVES THE ORIGINAL LOCATION
-                        if (card.classList.contains('fullscreen-card')) return; 
-
-                        const player = players[playerContainer.id];
-                        if (player && player.pauseVideo) {
-                            player.pauseVideo();
-                        }
-                    });
-
-                    // Universal Double-Click/Tap to Cinematic Fullscreen
-                    let lastTap = 0;
-                    let isFullscreen = false;
-                    let backdrop = null;
-
-                    const zoomOut = () => {
-                        if (!isFullscreen) return;
-                        isFullscreen = false;
-                        document.body.classList.remove('video-fullscreen-active');
-                        
-                        card.style.removeProperty('transform'); // clears inline important style, resets to native CSS
-                        
-                        setTimeout(() => {
-                            if (isFullscreen) return; // Prevent bugs if double clicked during animation
-                            card.classList.remove('fullscreen-card');
-                            card.style.zIndex = '';
-                            card.style.transition = 'transform var(--premium-ease)';
-                        }, 800); // Wait for transition
-
-                        if (backdrop && backdrop.parentNode) {
-                            backdrop.parentNode.removeChild(backdrop);
-                            backdrop = null;
-                        }
-                    };
-
-                    card.addEventListener('click', (e) => {
-                        if (e.target.closest('.mute-button')) return;
-
-                        const currentTime = new Date().getTime();
-                        const tapLength = currentTime - lastTap;
-                        
-                        if (tapLength < 400 && tapLength > 0) { // 400ms threshold for reliable double-tap
-                            e.preventDefault();
-                            
-                            if (!isFullscreen) {
-                                // ZOOM IN
-                                isFullscreen = true;
-                                const rect = card.getBoundingClientRect();
-
-                                // GUARANTEE PLAYBACK (Overrides hover-dependency)
-                                const playerContainer = card.querySelector('.yt-player-container');
-                                const player = players[playerContainer.id];
-                                if (player && player.playVideo) {
-                                    player.playVideo();
-                                }
-
-                                card.classList.add('fullscreen-card');
-                                document.body.classList.add('video-fullscreen-active');
-
-                                // Create invisible backdrop for clicking out
-                                backdrop = document.createElement('div');
-                                backdrop.style.position = 'fixed';
-                                backdrop.style.top = '0';
-                                backdrop.style.left = '0';
-                                backdrop.style.width = '100vw';
-                                backdrop.style.height = '100vh';
-                                backdrop.style.zIndex = '9998'; // Just below the card
-                                backdrop.style.cursor = 'zoom-out'; // Native browser hint to zoom out
-                                document.body.appendChild(backdrop);
-                                
-                                backdrop.addEventListener('click', () => {
-                                    zoomOut();
-                                });
-
-                                // Calculate perfect scale to fit viewport (90% to leave cinematic padding)
-                                const scaleY = window.innerHeight / rect.height;
-                                const scaleX = window.innerWidth / rect.width;
-                                const scale = Math.min(scaleX, scaleY) * 0.95;
-
-                                // Calculate distance to exact screen center
-                                const centerX = window.innerWidth / 2;
-                                const centerY = window.innerHeight / 2;
-                                const cardCenterX = rect.left + (rect.width / 2);
-                                const cardCenterY = rect.top + (rect.height / 2);
-                                
-                                const translateX = centerX - cardCenterX;
-                                const translateY = centerY - cardCenterY;
-
-                                // Force layout isolation and hardware acceleration
-                                card.style.setProperty('z-index', '9999', 'important');
-                                card.style.setProperty('transition', 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)', 'important');
-                                card.style.setProperty('transform', `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`, 'important');
-                            } else {
-                                // ZOOM OUT
-                                zoomOut();
-                            }
-                        } else {
-                            // SINGLE TAP: If already fullscreen, single tap toggles pause/play natively 
+                    // Scroll after sidebar transition
+                    if (targetId && targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
                             setTimeout(() => {
-                                // Ensure it wasn't a double-click
-                                const timeNow = new Date().getTime();
-                                if (timeNow - lastTap >= 400 && isFullscreen) {
-                                    const playerContainer = card.querySelector('.yt-player-container');
-                                    const player = players[playerContainer.id];
-                                    if (player) {
-                                        if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-                                            player.pauseVideo();
-                                        } else {
-                                            player.playVideo();
-                                        }
-                                    }
-                                }
-                            }, 450); // Checks slightly after the double-tap threshold expires
+                                const top = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                                const offset = 60; // navbar height
+                                smoothScrollTo(Math.max(0, top - offset), 900);
+                            }, 500); // reduced delay to account for longer scroll duration
                         }
-                        lastTap = currentTime;
-                    });
+                    }
                 });
+            });
 
-                // --- MOBILE: Auto-play First Video on Scroll, Click-to-Play others ---
-                if (window.innerWidth <= 768) {
-                    const videoObserverOptions = {
-                        root: null,
-                        threshold: 0.7 // Play when 70% of video is visible
-                    };
+            function closeSidebar() {
+                hamburger.classList.remove('active');
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.documentElement.style.overflow = ''; // Unblock scroll
+                document.body.style.overflow = '';
+            }
 
-                    const videoObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            const playerContainer = entry.target.querySelector('.yt-player-container');
-                            const player = players[playerContainer.id];
-                            
-                            if (player && player.playVideo && player.pauseVideo) {
-                                if (entry.isIntersecting) {
-                                    player.playVideo();
-                                } else {
-                                    player.pauseVideo();
-                                }
-                            }
-                        });
-                    }, videoObserverOptions);
-
-                    archiveVideoCards.forEach((card, index) => {
-                        if (index === 0) {
-                            // Only auto-play the very first video
-                            videoObserver.observe(card);
-                        } else {
-                            // Click-to-play for all others so they stay hidden under thumbnails
-                            card.addEventListener('click', (e) => {
-                                // Don't intercept if they clicked the mute button
-                                if (e.target.closest('.mute-button')) return;
-                                
-                                const playerContainer = card.querySelector('.yt-player-container');
-                                const player = players[playerContainer.id];
-                                if (player && player.playVideo) {
-                                    player.playVideo();
+            // --- Sidebar Glow Section Tracking ---
+            const navOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', // Trigger precisely when section enters middle of view
+                threshold: 0
+            };
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        if (id) {
+                            navLinks.forEach(link => {
+                                // Remove glow from all, add to currently tracking section
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
                                 }
                             });
                         }
-                    });
+                    }
+                });
+            }, navOptions);
+
+            sections.forEach(sec => {
+                if (sec.id) navObserver.observe(sec);
+            });
+
+            // --- "Cinema" High-Consistency Navigation ---
+            let lastScroll = window.pageYOffset;
+            let tick = false;
+            let isAtTop = true;
+
+            function triggerNavReveal() {
+                navbar.classList.remove('nav-reveal-active');
+                void navbar.offsetWidth; // Force reflow
+                navbar.classList.add('nav-reveal-active');
+            }
+
+            // Initial reveal on load
+            triggerNavReveal();
+
+            function updateNav() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                const heroHeight = window.innerHeight;
+                const scrollDiff = currentScroll - lastScroll;
+
+                // 1. Top-Reset & Reveal Trigger
+                if (currentScroll <= 10) {
+                    if (!isAtTop) {
+                        navbar.style.transform = '';
+                        navbar.style.opacity = '';
+                        navbar.classList.remove('nav-hidden');
+                        triggerNavReveal();
+                        isAtTop = true;
+                    }
+                }
+                // 2. Scrolling UP (Anywhere) - Always Seamless Entry
+                else if (scrollDiff < -15) {
+                    navbar.style.transform = '';
+                    navbar.style.opacity = '';
+                    navbar.classList.remove('nav-hidden');
+                    isAtTop = false;
+                    lastScroll = currentScroll;
+                }
+                // 3. Scrolling DOWN
+                else if (scrollDiff > 0) {
+                    isAtTop = false;
+                    if (currentScroll <= heroHeight) {
+                        // Progressive Exit & Fade in Hero Zone
+                        const progress = Math.min(1, currentScroll / (heroHeight * 0.8));
+                        const easedProgress = progress * progress;
+
+                        navbar.style.transform = `translate3d(0, -${easedProgress * 105}%, 0)`;
+                        navbar.style.opacity = (1 - easedProgress).toString();
+                        navbar.classList.remove('nav-hidden');
+                    } else if (scrollDiff > 10) {
+                        // Standard Smooth Hide below hero
+                        navbar.style.transform = '';
+                        navbar.style.opacity = '';
+                        navbar.classList.add('nav-hidden');
+                        lastScroll = currentScroll;
+                    }
                 }
 
-                // --- Hero Video Seamless Persistence ---
-                // Triggers playback BEFORE the user sees the section to ensure it's already moving
-                const heroSection = document.querySelector('.landing-section');
-                const heroObserverOptions = {
-                    root: null,
-                    rootMargin: '200px 0px 200px 0px', // Resume 200px before reaching section
-                    threshold: 0
+                // Scrolled Aesthetics
+                if (currentScroll > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Scroll Spy
+                let activeId = "";
+                sections.forEach(section => {
+                    const top = section.offsetTop - 150;
+                    if (currentScroll >= top) activeId = section.getAttribute('id');
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('data-section') === activeId);
+                });
+
+                // Hero Parallax
+                if (heroContent && currentScroll < heroHeight) {
+                    heroContent.style.transform = `translate3d(0, ${currentScroll * 0.4}px, 0)`;
+                    heroContent.style.opacity = 1 - (currentScroll / 600);
+                    heroContent.style.filter = `blur(${currentScroll * 0.005}px)`;
+                    if (heroVideo) heroVideo.style.transform = `scale(${1 + currentScroll * 0.0002})`;
+                }
+
+                tick = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!tick) {
+                    requestAnimationFrame(updateNav);
+                    tick = true;
+                }
+            }, { passive: true });
+
+            updateNav();
+            // --- 3D Profile Card Tilt & Contact Module Glow ---
+            const profileCard = document.querySelector('.profile-card');
+            const contactModules = document.querySelectorAll('.contact-module');
+
+            document.addEventListener('mousemove', (e) => {
+                if (window.innerWidth < 992) return;
+
+                // Profile Card Tilt
+                if (profileCard) {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                    const clampX = Math.max(-10, Math.min(10, xAxis));
+                    const clampY = Math.max(-10, Math.min(10, yAxis));
+                    profileCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                }
+
+                // Contact Module glow follow
+                contactModules.forEach(module => {
+                    const rect = module.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    module.style.setProperty('--mouse-x', `${x}%`);
+                    module.style.setProperty('--mouse-y', `${y}%`);
+                });
+            });
+
+            // --- Intersection Observer for Scroll Reveals ---
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger earlier
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            // Elements to reveal - AUTOMATIC SELECTION of major elements
+            // We select sections and their immediate potentially interesting children
+            const revealSelectors = [
+                '.section-title',
+                '.about-visual',
+                '.about-header-group',
+                '.about-body p', // Select individual paragraphs
+                '.about-stats',
+                '.video-card',
+                '.authority-statement',
+                '.contact-section',
+                '#lets-talk',
+                '.contact-module',
+                '.footer p'
+            ];
+
+            const revealElements = document.querySelectorAll(revealSelectors.join(','));
+
+            revealElements.forEach((el, index) => {
+                el.classList.add('reveal');
+                observer.observe(el);
+            });
+
+            // Special handling for video cards and contact modules to ensure stagger
+            const videoCards = document.querySelectorAll('.video-card');
+            videoCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.15}s`;
+            });
+
+            contactModules.forEach((module, index) => {
+                module.style.transitionDelay = `${index * 0.2}s`;
+            });
+
+            // --- YouTube IFrame API Integration (Optimized) ---
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            const players = {};
+
+            // Helper to stop all other videos
+            function pauseOthers(activeId) {
+                Object.keys(players).forEach(id => {
+                    if (id !== activeId && players[id] && players[id].pauseVideo) {
+                        players[id].pauseVideo();
+                    }
+                });
+            }
+
+            const videoData = [
+                { id: 'hero-player', videoId: 'NZEQTLaDKUA', autoplay: 1 },
+                { id: 'player-video1', videoId: 'QtBzPo-Ma9s', autoplay: 0 },
+                { id: 'player-video2', videoId: '5r3CSVdd-D8', autoplay: 0 },
+                { id: 'player-video3', videoId: 'G5n9VGB-2rI', autoplay: 0 },
+                { id: 'player-video5', videoId: 'EiKjUytpan0', autoplay: 0 },
+                { id: 'player-video6', videoId: 'RbqL66wc3_Q', autoplay: 0 },
+                { id: 'player-video9', videoId: 'Wo43KlT9mu4', autoplay: 0 },
+                { id: 'player-video10', videoId: 'gqhES4DNk7M', autoplay: 0 },
+                { id: 'player-video11', videoId: 'OhfFRP-Ngew', autoplay: 0 },
+                { id: 'player-video12', videoId: 'nVC6L8n5b6A', autoplay: 0 }
+            ];
+
+            window.onYouTubeIframeAPIReady = function () {
+                videoData.forEach(item => {
+                    players[item.id] = new YT.Player(item.id, {
+                        height: '100%',
+                        width: '100%',
+                        videoId: item.videoId,
+                        host: 'https://www.youtube-nocookie.com',
+                        playerVars: {
+                            'autoplay': item.autoplay,
+                            'mute': 1,
+                            'loop': 1,
+                            'playlist': item.videoId,
+                            'controls': 0,
+                            'modestbranding': 1,
+                            'rel': 0,
+                            'enablejsapi': 1,
+                            'iv_load_policy': 3,
+                            'disablekb': 1,
+                            'playsinline': 1,
+                            'vq': 'hd1080',
+                            'origin': window.location.origin,
+                            'widget_referrer': window.location.href
+                        },
+                        events: {
+                            'onReady': (event) => {
+                                event.target.setPlaybackQuality('hd1080'); // Force high def attempt
+                                if (item.autoplay) {
+                                    event.target.playVideo();
+                                }
+                            },
+                            'onStateChange': (event) => {
+                                const container = document.getElementById(item.id);
+                                if (event.data === YT.PlayerState.PLAYING) {
+                                    event.target.setPlaybackQuality('highres'); // Aggressively enforce maximum available streaming quality
+                                    pauseOthers(item.id); // Pause all other videos
+                                    container.classList.add('is-ready');
+
+                                    // Handle preloader for hero
+                                    if (item.id === 'hero-player') {
+                                        const loader = document.getElementById('site-loader');
+                                        if (loader) loader.classList.add('loaded');
+                                    }
+
+                                    // Find parent card and hide thumbnail
+                                    const card = container.closest('.video-wrapper');
+                                    if (card) {
+                                        const thumb = card.querySelector('.video-thumbnail');
+                                        if (thumb) thumb.classList.add('fade-out');
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            };
+
+            // --- Mute/Unmute Button Functionality (YouTube) ---
+            const muteButtons = document.querySelectorAll('.mute-button');
+            muteButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const playerContainer = button.closest('.video-wrapper').querySelector('.yt-player-container');
+                    const player = players[playerContainer.id];
+                    const icon = button.querySelector('i');
+
+                    if (player) {
+                        if (player.isMuted()) {
+                            player.unMute();
+                            icon.classList.remove('fa-volume-mute');
+                            icon.classList.add('fa-volume-up');
+                        } else {
+                            player.mute();
+                            icon.classList.remove('fa-volume-up');
+                            icon.classList.add('fa-volume-mute');
+                        }
+                    }
+                });
+            });
+
+            // --- Video Hover-to-Play Functionality (YouTube) ---
+            const archiveVideoCards = document.querySelectorAll('.video-gallery-section .video-card');
+            archiveVideoCards.forEach(card => {
+                const playerContainer = card.querySelector('.yt-player-container');
+
+                card.addEventListener('mouseenter', () => {
+                    const player = players[playerContainer.id];
+                    if (player && player.playVideo) {
+                        player.playVideo();
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // PREVENT VIDEO FROM RANDOMLY AUTOPAUSING WHEN MOUSE LEAVES THE ORIGINAL LOCATION
+                    if (card.classList.contains('fullscreen-card')) return;
+
+                    const player = players[playerContainer.id];
+                    if (player && player.pauseVideo) {
+                        player.pauseVideo();
+                    }
+                });
+
+                // Universal Double-Click/Tap to Cinematic Fullscreen
+                let lastTap = 0;
+                let isFullscreen = false;
+                let backdrop = null;
+
+                const zoomOut = () => {
+                    if (!isFullscreen) return;
+                    isFullscreen = false;
+                    document.body.classList.remove('video-fullscreen-active');
+
+                    card.style.removeProperty('transform'); // clears inline important style, resets to native CSS
+
+                    setTimeout(() => {
+                        if (isFullscreen) return; // Prevent bugs if double clicked during animation
+                        card.classList.remove('fullscreen-card');
+                        card.style.zIndex = '';
+                        card.style.transition = 'transform var(--premium-ease)';
+                    }, 800); // Wait for transition
+
+                    if (backdrop && backdrop.parentNode) {
+                        backdrop.parentNode.removeChild(backdrop);
+                        backdrop = null;
+                    }
                 };
 
-                const heroObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        const heroPlayer = players['hero-player'];
-                        if (heroPlayer && heroPlayer.playVideo) {
-                            if (entry.isIntersecting) {
-                                heroPlayer.playVideo();
-                            } else {
-                                // Pause when far away to preserve resources for motion archive
-                                if (heroPlayer.pauseVideo) heroPlayer.pauseVideo();
-                            }
-                        }
-                    });
-                }, heroObserverOptions);
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.mute-button')) return;
 
-                if (heroSection) heroObserver.observe(heroSection);
+                    const currentTime = new Date().getTime();
+                    const tapLength = currentTime - lastTap;
 
-                // --- Email Button Logic ---
-                const emailBtn = document.querySelector('.command-btn i.fa-envelope')?.parentElement;
-                if (emailBtn) {
-                    emailBtn.addEventListener('click', () => {
-                        window.location.href = "mailto:0rdits@gmail.com";
-                    });
-                }
-
-                // --- Stills Archive Carousel Logic ---
-                const photos = [
-                    "photo1/_AIS0424.jpg", "photo1/_AIS9022.jpg", "photo1/_AIS9090.jpg", "photo1/_AIS9097-Enhanced-NR.jpg", "photo1/_AIS9141-Enhanced-NR.jpg",
-                    "photo1/_AIS9150.jpg", "photo1/_AIS9155.jpg", "photo1/_AIS9159-Enhanced-NR.jpg", "photo1/_AIS9310-Enhanced-NR.jpg", "photo1/_AIS9338.jpg",
-                    "photo1/_AIS9786.jpg", "photo1/_AIS9808.jpg", "photo1/_AIS9821.jpg", "photo1/_AIS9845.jpg", "photo1/_AIS9853.jpg",
-                    "photo2/AIS01709.jpg", "photo2/AIS01723.jpg", "photo2/AIS01734.jpg", "photo2/AIS01776.jpg", "photo2/AIS01802-2.jpg",
-                    "photo2/AIS01826-2.jpg", "photo2/AIS01889-2.jpg", "photo2/AIS01892-2.jpg", "photo2/AIS01943-Enhanced-NR-3.jpg", "photo2/DSC00024-Enhanced-NR.jpg",
-                    "photo2/DSC00052.jpg", "photo2/DSC00701-Enhanced-NR.jpg", "photo2/DSC00706.jpg", "photo2/DSC00800-Enhanced-NR.jpg", "photo2/DSC00808.jpg",
-                    "photo3/DSC00870.jpg", "photo3/DSC00903.jpg", "photo3/DSC02400.jpg", "photo3/DSC02410.jpg", "photo3/DSC02444.jpg",
-                    "photo3/DSC02745-Enhanced-NR.jpg", "photo3/DSC02838.jpg", "photo3/DSC04991-Enhanced-NR-2.jpg", "photo3/DSC05107-Enhanced-NR-3.jpg", "photo3/DSC05146-Enhanced-NR-2.jpg",
-                    "photo3/DSC05722-Enhanced-NR.jpg", "photo3/DSC05737-Enhanced-NR.jpg", "photo3/DSC05741-Enhanced-NR.jpg", "photo3/DSC05749-Enhanced-NR.jpg", "photo3/DSC05806-Enhanced-NR.jpg",
-                    "photo4/DSC05846.jpg", "photo4/DSC05850.jpg", "photo4/DSC05904-Enhanced-NR.jpg", "photo4/DSC05964-Enhanced-NR.jpg", "photo4/DSC06017.jpg",
-                    "photo4/DSC06276-Enhanced-NR.jpg", "photo4/DSC06404.jpg", "photo4/DSC06483-Enhanced-NR.jpg", "photo4/DSC06492-Enhanced-NR.jpg", "photo4/DSC06922-Enhanced-NR.jpg",
-                    "photo4/DSC06952.jpg", "photo4/DSC06997.jpg", "photo4/DSC07003.jpg", "photo4/DSC07031.jpg", "photo4/DSC07034.jpg",
-                    "photo5/DSC07069.jpg", "photo5/DSC07229.jpg", "photo5/DSC07291-Enhanced-NR.jpg", "photo5/DSC07300-Enhanced-NR.jpg", "photo5/DSC09090.jpg",
-                    "photo5/DSC09096-Enhanced-NR.jpg", "photo5/DSC09117-Enhanced-NR.jpg", "photo5/DSC09139-Enhanced-NR.jpg", "photo5/DSC09142-Enhanced-NR.jpg", "photo5/DSC09152-Enhanced-NR-2.jpg",
-                    "photo5/f31030592.jpg", "photo5/f33173376.jpg", "photo5/f34984576-Enhanced-NR.jpg", "photo5/f45225664-Enhanced-NR.jpg", "photo5/f46533120-Enhanced-NR.jpg",
-                    "photo6/f46726912.jpg", "photo6/f47408064-Enhanced-NR.jpg", "photo6/f48088704-Enhanced-NR.jpg", "photo6/f49206656-Enhanced-NR.jpg", "photo6/f49401344.jpg",
-                    "photo6/f49595648.jpg", "photo6/f52467456-Enhanced-NR.jpg", "photo6/f52710464-Enhanced-NR.jpg", "photo6/f55780416-Enhanced-NR.jpg", "photo6/IMG_2455-Enhanced-NR.jpg",
-                    "photo6/miniature edit 1.png"
-                ];
-
-                // Fisher-Yates Shuffle Algorithm
-                function shuffle(array) {
-                    for (let i = array.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [array[i], array[j]] = [array[j], array[i]];
-                    }
-                    return array;
-                }
-
-                // Shuffle photos on load
-                shuffle(photos);
-
-                const stillsContainer = document.getElementById('stillsCarousel');
-                const isMobile = window.innerWidth <= 768;
-                const displayPhotos = isMobile ? photos.slice(0, 20) : photos;
-
-                displayPhotos.forEach((photo, index) => {
-                    const item = document.createElement('div');
-                    item.className = 'carousel-item hidden';
-                    item.dataset.index = index;
-                    item.innerHTML = `<img data-src="${photo}" alt="Still ${index + 1}">`;
-                    stillsContainer.appendChild(item);
-                });
-
-                /* Removed redundant View Full Archive link from carousel items as requested */
-
-                const stillsItems = document.querySelectorAll('.stills-archive-section .carousel-item');
-                const prevStillsBtn = document.getElementById('prevStills');
-                const nextStillsBtn = document.getElementById('nextStills');
-                const slideBarFill = document.getElementById('slideBarFill');
-                const stillsSlideBar = document.getElementById('stillsSlideBar');
-
-                let currentStillsIndex = 0;
-                const totalStills = stillsItems.length;
-
-                function updateStillsCarousel() {
-                    // Re-enabled logic for all screens to maintain high-end cinematic feel
-                    stillsItems.forEach((item, index) => {
-                        item.classList.remove('prev', 'active', 'next', 'hidden');
-
-                        // Smart lazy-loading window: load current +/- 2 items to prevent broken frames and browser queue limits
-                        const dist = Math.min(
-                            Math.abs(index - currentStillsIndex),
-                            totalStills - Math.abs(index - currentStillsIndex)
-                        );
-                        
-                        if (dist <= 2) {
-                            const img = item.querySelector('img');
-                            if (img && !img.hasAttribute('src')) {
-                                img.setAttribute('src', img.getAttribute('data-src'));
-                            }
-                        }
-
-                        if (index === currentStillsIndex) {
-                            item.classList.add('active');
-                        } else if (index === (currentStillsIndex - 1 + totalStills) % totalStills) {
-                            item.classList.add('prev');
-                        } else if (index === (currentStillsIndex + 1) % totalStills) {
-                            item.classList.add('next');
-                        } else {
-                            item.classList.add('hidden');
-                        }
-                    });
-
-                    // Update slide bar
-                    const progress = ((currentStillsIndex + 1) / totalStills) * 100;
-                    if (slideBarFill) slideBarFill.style.width = `${progress}%`;
-                }
-
-                if (prevStillsBtn) {
-                    prevStillsBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        currentStillsIndex = (currentStillsIndex - 1 + totalStills) % totalStills;
-                        updateStillsCarousel();
-                    });
-                }
-
-                if (nextStillsBtn) {
-                    nextStillsBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        currentStillsIndex = (currentStillsIndex + 1) % totalStills;
-                        updateStillsCarousel();
-                    });
-                }
-
-                // Navbar Hide on Scroll Logic removed in favor of direct scroll-based ease-out
-                /*
-                let lastScrollTop = 0;
-                const scrollThreshold = 50;
-    
-                window.addEventListener('scroll', () => {
-                    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
-    
-                    if (scrollTop > lastScrollTop && scrollTop > 100) {
-                        navbar.classList.add('nav-hidden');
-                    } else {
-                        navbar.classList.remove('nav-hidden');
-                    }
-                    lastScrollTop = scrollTop;
-                });
-                */
-
-                // --- Touch Swipe Support for Stills ---
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                stillsContainer.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
-
-                stillsContainer.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                }, { passive: true });
-
-                function handleSwipe() {
-                    const swipeThreshold = 50;
-                    if (touchEndX < touchStartX - swipeThreshold) {
-                        // Swipe Left -> Next
-                        currentStillsIndex = (currentStillsIndex + 1) % totalStills;
-                        updateStillsCarousel();
-                    } else if (touchEndX > touchStartX + swipeThreshold) {
-                        // Swipe Right -> Prev
-                        currentStillsIndex = (currentStillsIndex - 1 + totalStills) % totalStills;
-                        updateStillsCarousel();
-                    }
-                }
-
-                // Handle stills explorer click
-                const stillsExplorerElement = document.getElementById('stillsExplorer');
-                if (stillsExplorerElement) {
-                    stillsExplorerElement.addEventListener('click', (e) => {
+                    if (tapLength < 400 && tapLength > 0) { // 400ms threshold for reliable double-tap
                         e.preventDefault();
-                        document.body.classList.add('scale-up-exit');
+
+                        if (!isFullscreen) {
+                            // ZOOM IN
+                            isFullscreen = true;
+                            const rect = card.getBoundingClientRect();
+
+                            // GUARANTEE PLAYBACK (Overrides hover-dependency)
+                            const playerContainer = card.querySelector('.yt-player-container');
+                            const player = players[playerContainer.id];
+                            if (player && player.playVideo) {
+                                player.playVideo();
+                            }
+
+                            card.classList.add('fullscreen-card');
+                            document.body.classList.add('video-fullscreen-active');
+
+                            // Create invisible backdrop for clicking out
+                            backdrop = document.createElement('div');
+                            backdrop.style.position = 'fixed';
+                            backdrop.style.top = '0';
+                            backdrop.style.left = '0';
+                            backdrop.style.width = '100vw';
+                            backdrop.style.height = '100vh';
+                            backdrop.style.zIndex = '9998'; // Just below the card
+                            backdrop.style.cursor = 'zoom-out'; // Native browser hint to zoom out
+                            document.body.appendChild(backdrop);
+
+                            backdrop.addEventListener('click', () => {
+                                zoomOut();
+                            });
+
+                            // Calculate perfect scale to fit viewport (90% to leave cinematic padding)
+                            const scaleY = window.innerHeight / rect.height;
+                            const scaleX = window.innerWidth / rect.width;
+                            const scale = Math.min(scaleX, scaleY) * 0.95;
+
+                            // Calculate distance to exact screen center
+                            const centerX = window.innerWidth / 2;
+                            const centerY = window.innerHeight / 2;
+                            const cardCenterX = rect.left + (rect.width / 2);
+                            const cardCenterY = rect.top + (rect.height / 2);
+
+                            const translateX = centerX - cardCenterX;
+                            const translateY = centerY - cardCenterY;
+
+                            // Force layout isolation and hardware acceleration
+                            card.style.setProperty('z-index', '9999', 'important');
+                            card.style.setProperty('transition', 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)', 'important');
+                            card.style.setProperty('transform', `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`, 'important');
+                        } else {
+                            // ZOOM OUT
+                            zoomOut();
+                        }
+                    } else {
+                        // SINGLE TAP: If already fullscreen, single tap toggles pause/play natively 
                         setTimeout(() => {
-                            window.location.href = 'stills.html';
-                        }, 800);
-                    });
-                }
-
-                // Initialize carousel
-                if (stillsItems.length > 0) updateStillsCarousel();
+                            // Ensure it wasn't a double-click
+                            const timeNow = new Date().getTime();
+                            if (timeNow - lastTap >= 400 && isFullscreen) {
+                                const playerContainer = card.querySelector('.yt-player-container');
+                                const player = players[playerContainer.id];
+                                if (player) {
+                                    if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                                        player.pauseVideo();
+                                    } else {
+                                        player.playVideo();
+                                    }
+                                }
+                            }
+                        }, 450); // Checks slightly after the double-tap threshold expires
+                    }
+                    lastTap = currentTime;
+                });
             });
-        </script>
-        <!-- Floating WhatsApp Shortcut -->
-        <a href="https://wa.me/212770422822" target="_blank" class="floating-contact reveal">
-            <i class="fab fa-whatsapp"></i>
-            <div class="scan-line"></div>
-        </a>
 
-        <style>
-            /* Video Cinematic Zoom CSS */
-            body.video-fullscreen-active {
-                overflow: hidden;
-            }
+            // --- MOBILE: Auto-play First Video on Scroll, Click-to-Play others ---
+            if (window.innerWidth <= 768) {
+                const videoObserverOptions = {
+                    root: null,
+                    threshold: 0.7 // Play when 70% of video is visible
+                };
 
-            body.video-fullscreen-active .cards-container > *:not(.fullscreen-card),
-            body.video-fullscreen-active .navbar,
-            body.video-fullscreen-active .services-section,
-            body.video-fullscreen-active .stills-archive-section,
-            body.video-fullscreen-active .footer {
-                filter: blur(15px) brightness(0.5);
-                pointer-events: none;
-                transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-            
-            /* Elevate the container to defeat all overlapping native blur interactions (like Navbar) */
-            body.video-fullscreen-active .video-gallery-section,
-            body.video-fullscreen-active .cards-container {
-                position: relative;
-                z-index: 9999;
-                pointer-events: none; /* Let background clicks pass through empty space to the backdrop */
-            }
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const playerContainer = entry.target.querySelector('.yt-player-container');
+                        const player = players[playerContainer.id];
 
-            body.video-fullscreen-active .fullscreen-card {
-                pointer-events: auto; /* Lock interactions exclusively to the video card itself */
-            }
+                        if (player && player.playVideo && player.pauseVideo) {
+                            if (entry.isIntersecting) {
+                                player.playVideo();
+                            } else {
+                                player.pauseVideo();
+                            }
+                        }
+                    });
+                }, videoObserverOptions);
 
-            body.video-fullscreen-active .fullscreen-card .video-thumbnail {
-                opacity: 0 !important; /* Hard-dismiss the thumbnail preview so the playing video shows clearly */
-            }
+                archiveVideoCards.forEach((card, index) => {
+                    if (index === 0) {
+                        // Only auto-play the very first video
+                        videoObserver.observe(card);
+                    } else {
+                        // Click-to-play for all others so they stay hidden under thumbnails
+                        card.addEventListener('click', (e) => {
+                            // Don't intercept if they clicked the mute button
+                            if (e.target.closest('.mute-button')) return;
 
-            body.video-fullscreen-active .fullscreen-card::before {
-                opacity: 0 !important; /* hide glow behind card when fullscreen */
-            }
-
-            /* Contact button original CSS */
-            .floating-contact {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                width: 60px;
-                height: 60px;
-                background: #25D366;
-                color: #fff;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2rem;
-                text-decoration: none;
-                z-index: 2000;
-                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                overflow: hidden;
+                            const playerContainer = card.querySelector('.yt-player-container');
+                            const player = players[playerContainer.id];
+                            if (player && player.playVideo) {
+                                player.playVideo();
+                            }
+                        });
+                    }
+                });
             }
 
-            .floating-contact:hover {
-                transform: scale(1.1) rotate(5deg);
+            // --- Hero Video Seamless Persistence ---
+            // Triggers playback BEFORE the user sees the section to ensure it's already moving
+            const heroSection = document.querySelector('.landing-section');
+            const heroObserverOptions = {
+                root: null,
+                rootMargin: '200px 0px 200px 0px', // Resume 200px before reaching section
+                threshold: 0
+            };
+
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const heroPlayer = players['hero-player'];
+                    if (heroPlayer && heroPlayer.playVideo) {
+                        if (entry.isIntersecting) {
+                            heroPlayer.playVideo();
+                        } else {
+                            // Pause when far away to preserve resources for motion archive
+                            if (heroPlayer.pauseVideo) heroPlayer.pauseVideo();
+                        }
+                    }
+                });
+            }, heroObserverOptions);
+
+            if (heroSection) heroObserver.observe(heroSection);
+
+            // --- Email Button Logic ---
+            const emailBtn = document.querySelector('.command-btn i.fa-envelope')?.parentElement;
+            if (emailBtn) {
+                emailBtn.addEventListener('click', () => {
+                    window.location.href = "mailto:0rdits@gmail.com";
+                });
             }
 
-            /* Ensure profile scan stays visible */
-            .profile-card .scan-line {
-                opacity: 1 !important;
-                animation: scan 4s linear infinite !important;
+            // --- Stills Archive Carousel Logic ---
+            const photos = [
+                "photo1/_AIS0424.jpg", "photo1/_AIS9022.jpg", "photo1/_AIS9090.jpg", "photo1/_AIS9097-Enhanced-NR.jpg", "photo1/_AIS9141-Enhanced-NR.jpg",
+                "photo1/_AIS9150.jpg", "photo1/_AIS9155.jpg", "photo1/_AIS9159-Enhanced-NR.jpg", "photo1/_AIS9310-Enhanced-NR.jpg", "photo1/_AIS9338.jpg",
+                "photo1/_AIS9786.jpg", "photo1/_AIS9808.jpg", "photo1/_AIS9821.jpg", "photo1/_AIS9845.jpg", "photo1/_AIS9853.jpg",
+                "photo2/AIS01709.jpg", "photo2/AIS01723.jpg", "photo2/AIS01734.jpg", "photo2/AIS01776.jpg", "photo2/AIS01802-2.jpg",
+                "photo2/AIS01826-2.jpg", "photo2/AIS01889-2.jpg", "photo2/AIS01892-2.jpg", "photo2/AIS01943-Enhanced-NR-3.jpg", "photo2/DSC00024-Enhanced-NR.jpg",
+                "photo2/DSC00052.jpg", "photo2/DSC00701-Enhanced-NR.jpg", "photo2/DSC00706.jpg", "photo2/DSC00800-Enhanced-NR.jpg", "photo2/DSC00808.jpg",
+                "photo3/DSC00870.jpg", "photo3/DSC00903.jpg", "photo3/DSC02400.jpg", "photo3/DSC02410.jpg", "photo3/DSC02444.jpg",
+                "photo3/DSC02745-Enhanced-NR.jpg", "photo3/DSC02838.jpg", "photo3/DSC04991-Enhanced-NR-2.jpg", "photo3/DSC05107-Enhanced-NR-3.jpg", "photo3/DSC05146-Enhanced-NR-2.jpg",
+                "photo3/DSC05722-Enhanced-NR.jpg", "photo3/DSC05737-Enhanced-NR.jpg", "photo3/DSC05741-Enhanced-NR.jpg", "photo3/DSC05749-Enhanced-NR.jpg", "photo3/DSC05806-Enhanced-NR.jpg",
+                "photo4/DSC05846.jpg", "photo4/DSC05850.jpg", "photo4/DSC05904-Enhanced-NR.jpg", "photo4/DSC05964-Enhanced-NR.jpg", "photo4/DSC06017.jpg",
+                "photo4/DSC06276-Enhanced-NR.jpg", "photo4/DSC06404.jpg", "photo4/DSC06483-Enhanced-NR.jpg", "photo4/DSC06492-Enhanced-NR.jpg", "photo4/DSC06922-Enhanced-NR.jpg",
+                "photo4/DSC06952.jpg", "photo4/DSC06997.jpg", "photo4/DSC07003.jpg", "photo4/DSC07031.jpg", "photo4/DSC07034.jpg",
+                "photo5/DSC07069.jpg", "photo5/DSC07229.jpg", "photo5/DSC07291-Enhanced-NR.jpg", "photo5/DSC07300-Enhanced-NR.jpg", "photo5/DSC09090.jpg",
+                "photo5/DSC09096-Enhanced-NR.jpg", "photo5/DSC09117-Enhanced-NR.jpg", "photo5/DSC09139-Enhanced-NR.jpg", "photo5/DSC09142-Enhanced-NR.jpg", "photo5/DSC09152-Enhanced-NR-2.jpg",
+                "photo5/f31030592.jpg", "photo5/f33173376.jpg", "photo5/f34984576-Enhanced-NR.jpg", "photo5/f45225664-Enhanced-NR.jpg", "photo5/f46533120-Enhanced-NR.jpg",
+                "photo6/f46726912.jpg", "photo6/f47408064-Enhanced-NR.jpg", "photo6/f48088704-Enhanced-NR.jpg", "photo6/f49206656-Enhanced-NR.jpg", "photo6/f49401344.jpg",
+                "photo6/f49595648.jpg", "photo6/f52467456-Enhanced-NR.jpg", "photo6/f52710464-Enhanced-NR.jpg", "photo6/f55780416-Enhanced-NR.jpg", "photo6/IMG_2455-Enhanced-NR.jpg",
+                "photo6/miniature edit 1.png"
+            ];
+
+            // Fisher-Yates Shuffle Algorithm
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
             }
-        </style>
+
+            // Shuffle photos on load
+            shuffle(photos);
+
+            const stillsContainer = document.getElementById('stillsCarousel');
+            const isMobile = window.innerWidth <= 768;
+            const displayPhotos = isMobile ? photos.slice(0, 20) : photos;
+
+            displayPhotos.forEach((photo, index) => {
+                const item = document.createElement('div');
+                item.className = 'carousel-item hidden';
+                item.dataset.index = index;
+                item.innerHTML = `<img data-src="${photo}" alt="Still ${index + 1}" decoding="async">`;
+
+                // High fetch priority for initial images
+                const img = item.querySelector('img');
+                if (index < 3) {
+                    img.fetchPriority = 'high';
+                } else {
+                    img.fetchPriority = 'low';
+                }
+                stillsContainer.appendChild(item);
+            });
+
+            /* Removed redundant View Full Archive link from carousel items as requested */
+
+            const stillsItems = document.querySelectorAll('.stills-archive-section .carousel-item');
+            const prevStillsBtn = document.getElementById('prevStills');
+            const nextStillsBtn = document.getElementById('nextStills');
+            const slideBarFill = document.getElementById('slideBarFill');
+            const stillsSlideBar = document.getElementById('stillsSlideBar');
+
+            let currentStillsIndex = 0;
+            const totalStills = stillsItems.length;
+
+            function updateStillsCarousel() {
+                // Re-enabled logic for all screens to maintain high-end cinematic feel
+                stillsItems.forEach((item, index) => {
+                    item.classList.remove('prev', 'active', 'next', 'hidden');
+
+                    // Smart lazy-loading window: load current +/- 2 items to prevent broken frames and browser queue limits
+                    const dist = Math.min(
+                        Math.abs(index - currentStillsIndex),
+                        totalStills - Math.abs(index - currentStillsIndex)
+                    );
+
+                    // Aggressive pre-loading window (increased from 2 to 5 for professional experience)
+                    if (dist <= 5) {
+                        const img = item.querySelector('img');
+                        if (img && !img.hasAttribute('src')) {
+                            img.src = img.getAttribute('data-src');
+                            // Ensure frame-perfect decoding before swiping
+                            img.decode().catch(() => { /* Silent fail fallback */ });
+                        }
+                    }
+
+                    if (index === currentStillsIndex) {
+                        item.classList.add('active');
+                    } else if (index === (currentStillsIndex - 1 + totalStills) % totalStills) {
+                        item.classList.add('prev');
+                    } else if (index === (currentStillsIndex + 1) % totalStills) {
+                        item.classList.add('next');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Update slide bar
+                const progress = ((currentStillsIndex + 1) / totalStills) * 100;
+                if (slideBarFill) slideBarFill.style.width = `${progress}%`;
+            }
+
+            if (prevStillsBtn) {
+                prevStillsBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentStillsIndex = (currentStillsIndex - 1 + totalStills) % totalStills;
+                    updateStillsCarousel();
+                });
+            }
+
+            if (nextStillsBtn) {
+                nextStillsBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentStillsIndex = (currentStillsIndex + 1) % totalStills;
+                    updateStillsCarousel();
+                });
+            }
+
+            // Navbar Hide on Scroll Logic removed in favor of direct scroll-based ease-out
+            /*
+            let lastScrollTop = 0;
+            const scrollThreshold = 50;
+ 
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
+ 
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    navbar.classList.add('nav-hidden');
+                } else {
+                    navbar.classList.remove('nav-hidden');
+                }
+                lastScrollTop = scrollTop;
+            });
+            */
+
+            // --- Touch Swipe Support for Stills ---
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            stillsContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            stillsContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe Left -> Next
+                    currentStillsIndex = (currentStillsIndex + 1) % totalStills;
+                    updateStillsCarousel();
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe Right -> Prev
+                    currentStillsIndex = (currentStillsIndex - 1 + totalStills) % totalStills;
+                    updateStillsCarousel();
+                }
+            }
+
+            // Handle stills explorer click
+            const stillsExplorerElement = document.getElementById('stillsExplorer');
+            if (stillsExplorerElement) {
+                stillsExplorerElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.body.classList.add('scale-up-exit');
+                    setTimeout(() => {
+                        window.location.href = 'stills.html';
+                    }, 800);
+                });
+            }
+
+            // Initialize carousel
+            if (stillsItems.length > 0) updateStillsCarousel();
+        });
+    </script>
+    <!-- Floating WhatsApp Shortcut -->
+    <a href="https://wa.me/212770422822" target="_blank" class="floating-contact reveal">
+        <i class="fab fa-whatsapp"></i>
+        <div class="scan-line"></div>
+    </a>
+
+    <style>
+        /* Video Cinematic Zoom CSS */
+        body.video-fullscreen-active {
+            overflow: hidden;
+        }
+
+        body.video-fullscreen-active .cards-container>*:not(.fullscreen-card),
+        body.video-fullscreen-active .navbar,
+        body.video-fullscreen-active .services-section,
+        body.video-fullscreen-active .stills-archive-section,
+        body.video-fullscreen-active .footer {
+            filter: blur(15px) brightness(0.5);
+            pointer-events: none;
+            transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Elevate the container to defeat all overlapping native blur interactions (like Navbar) */
+        body.video-fullscreen-active .video-gallery-section,
+        body.video-fullscreen-active .cards-container {
+            position: relative;
+            z-index: 9999;
+            pointer-events: none;
+            /* Let background clicks pass through empty space to the backdrop */
+        }
+
+        body.video-fullscreen-active .fullscreen-card {
+            pointer-events: auto;
+            /* Lock interactions exclusively to the video card itself */
+        }
+
+        body.video-fullscreen-active .fullscreen-card .video-thumbnail {
+            opacity: 0 !important;
+            /* Hard-dismiss the thumbnail preview so the playing video shows clearly */
+        }
+
+        body.video-fullscreen-active .fullscreen-card::before {
+            opacity: 0 !important;
+            /* hide glow behind card when fullscreen */
+        }
+
+        /* Contact button original CSS */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            z-index: 2000;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .floating-contact:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Ensure profile scan stays visible */
+        .profile-card .scan-line {
+            opacity: 1 !important;
+            animation: scan 4s linear infinite !important;
+        }
+    </style>
 </body>
 
 </html>
